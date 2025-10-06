@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wedding - Save the Date</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.8;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        header.transparent {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        header.transparent nav a {
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+        }
+
+        nav {
+            padding: 25px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            color: #b8956a;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: -10%;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 40px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .couple-names h1 {
+            font-size: 120px;
+            font-weight: 500;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .and {
+            font-size: 72px;
+            font-style: italic;
+            margin: 40px 0;
+            font-weight: 300;
+        }
+
+        .hero-date {
+            font-size: 22px;
+            margin-top: 50px;
+            letter-spacing: 2px;
+            opacity: 0.95;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Prenup Gallery Section */
+        .gallery-section {
+            background: #fff;
+            padding: 150px 0;
+        }
+
+        .section-title {
+            font-size: 64px;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #333;
+            font-weight: 400;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: 1/1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in:nth-child(1) { transition-delay: 0.1s; }
+        .fade-in:nth-child(2) { transition-delay: 0.2s; }
+        .fade-in:nth-child(3) { transition-delay: 0.3s; }
+        .fade-in:nth-child(4) { transition-delay: 0.4s; }
+        .fade-in:nth-child(5) { transition-delay: 0.5s; }
+        .fade-in:nth-child(6) { transition-delay: 0.6s; }
+        .fade-in:nth-child(7) { transition-delay: 0.7s; }
+        .fade-in:nth-child(8) { transition-delay: 0.8s; }
+        .fade-in:nth-child(9) { transition-delay: 0.9s; }
+
+        /* Location Section */
+        .location-section {
+            padding: 150px 0;
+            background: #fff;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 80px;
+            align-items: center;
+        }
+
+        .location-info h3 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .location-details {
+            font-size: 18px;
+            line-height: 2;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .location-details p {
+            margin-bottom: 20px;
+        }
+
+        .map-container {
+            height: 500px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Parallax Divider */
+        .parallax-divider {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #fff;
+            padding: 0 40px;
+        }
+
+        .parallax-content h3 {
+            font-size: 56px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .parallax-content p {
+            font-size: 20px;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        /* Dress Code Section */
+        .dresscode-section {
+            padding: 150px 0;
+            background: #f8f6f3;
+        }
+
+        .dresscode-content {
+            display: flex;
+            align-items: center;
+            gap: 100px;
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dresscode-text {
+            flex: 1;
+        }
+
+        .dresscode-text h3 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .dresscode-text p {
+            font-size: 18px;
+            line-height: 2;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .dresscode-image {
+            flex: 1;
+            height: 500px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .dresscode-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Gift Registry Section */
+        .registry-section {
+            padding: 150px 0;
+            background: #fff;
+        }
+
+        .registry-list {
+            max-width: 800px;
+            margin: 80px auto 0;
+        }
+
+        .registry-item {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background 0.3s ease;
+        }
+
+        .registry-item:hover {
+            background: #f9f9f9;
+        }
+
+        .registry-icon {
+            font-size: 40px;
+            margin-right: 30px;
+        }
+
+        .registry-info {
+            flex: 1;
+        }
+
+        .registry-info h4 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .registry-info p {
+            font-size: 16px;
+            color: #999;
+        }
+
+        .registry-link {
+            padding: 10px 24px;
+            border: 2px solid #b8956a;
+            color: #b8956a;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .registry-link:hover {
+            background: #b8956a;
+            color: #fff;
+        }
+
+        /* Program Flow Section */
+        .program-section {
+            background: #f8f6f3;
+            padding: 150px 0;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 80px auto 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #b8956a, #d4c4b0);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .timeline-content {
+            padding: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .timeline-time {
+            font-size: 32px;
+            font-weight: 500;
+            color: #b8956a;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .timeline-title {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .timeline-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: #b8956a;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 4px #f8f6f3;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #fff;
+            padding: 150px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 900px;
+            margin: 80px auto 0;
+        }
+
+        .contact-person {
+            text-align: center;
+            padding: 40px;
+            background: #f8f6f3;
+            border-radius: 8px;
+        }
+
+        .contact-person h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .contact-person .role {
+            font-size: 16px;
+            color: #999;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #b8956a;
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #2a2a2a;
+            padding: 60px 0;
+            text-align: center;
+            color: #999;
+        }
+
+        footer p {
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 0;
+            }
+
+            header.transparent {
+                background: rgba(0,0,0,0.5);
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            nav {
+                gap: 15px;
+                font-size: 11px;
+                flex-wrap: wrap;
+                padding: 15px 20px;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+
+            .couple-names h1 {
+                font-size: 48px;
+                letter-spacing: 8px;
+            }
+
+            .and {
+                font-size: 36px;
+                margin: 30px 0;
+            }
+
+            .hero-date {
+                font-size: 16px;
+            }
+
+            .scroll-indicator {
+                bottom: 20px;
+                font-size: 12px;
+            }
+
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 50px;
+            }
+
+            .gallery-section, .location-section, .dresscode-section, 
+            .registry-section, .program-section, .contact-section {
+                padding: 80px 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .gallery-item {
+                aspect-ratio: 4/5;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+                grid-row: span 1;
+                aspect-ratio: 4/5;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .location-info h3 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .location-details {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .location-details p {
+                margin-bottom: 15px;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+
+            .dresscode-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .dresscode-text h3 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .dresscode-text p {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            .dresscode-image {
+                height: 300px;
+                order: -1;
+            }
+
+            .registry-list {
+                margin-top: 50px;
+            }
+
+            .registry-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px 20px;
+                gap: 15px;
+            }
+
+            .registry-icon {
+                font-size: 36px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .registry-info h4 {
+                font-size: 20px;
+            }
+
+            .registry-info p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .registry-link {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+
+            .timeline {
+                margin-top: 50px;
+                padding-left: 40px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                margin-bottom: 50px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(odd) .timeline-content {
+                grid-column: 1;
+                text-align: left;
+            }
+
+            .timeline-content {
+                padding: 20px;
+            }
+
+            .timeline-time {
+                font-size: 24px;
+            }
+
+            .timeline-title {
+                font-size: 20px;
+            }
+
+            .timeline-description {
+                font-size: 14px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+                width: 16px;
+                height: 16px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-person {
+                padding: 30px 20px;
+            }
+
+            .contact-person h3 {
+                font-size: 24px;
+            }
+
+            .contact-link {
+                font-size: 14px;
+            }
+
+            .info-link {
+                padding: 10px 24px;
+                font-size: 13px;
+            }
+
+            footer {
+                padding: 50px 0;
+            }
+
+            footer p {
+                font-size: 12px;
+            }
+
+            .parallax-divider {
+                height: 300px;
+            }
+
+            .parallax-content h3 {
+                font-size: 36px;
+            }
+
+            .parallax-content p {
+                font-size: 16px;
+            }
+
+            .hero-bg, .parallax-bg {
+                background-attachment: scroll !important;
+                top: 0 !important;
+                height: 100% !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="transparent">
+        <nav>
+            <a href="#gallery">Our Story</a>
+            <a href="#location">Location</a>
+            <a href="#dresscode">Dress Code</a>
+            <a href="#registry">Registry</a>
+            <a href="#program">Program</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">We're Getting Married</p>
+            
+            <div class="couple-names">
+                <h1>EMMA</h1>
+                <p class="and">&</p>
+                <h1>JAMES</h1>
+            </div>
+
+            <p class="hero-date">June 15, 2025 • Malibu, California</p>
+            
+            <div class="scroll-indicator">↓</div>
+        </div>
+    </section>
+
+    <!-- Prenup Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Story</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item large fade-in">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1594842645299-4f8f85c62be5?w=400" alt="Couple photo">
+                </div>
+                <div class="gallery-item large fade-in">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=400" alt="Couple photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Divider 1 -->
+    <div class="parallax-divider">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1920');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+            <h3>Join Us By The Sea</h3>
+            <p>Celebrate love, laughter, and happily ever after</p>
+        </div>
+    </div>
+
+    <!-- Location Section -->
+    <section id="location" class="location-section">
+        <div class="container">
+            <h2 class="section-title">Location</h2>
+            
+            <div class="location-grid">
+                <div class="location-info">
+                    <h3>Seaside Garden Estate</h3>
+                    <div class="location-details">
+                        <p><strong>Address:</strong><br>123 Ocean View Drive<br>Malibu, California 90265</p>
+                        <p><strong>Parking:</strong><br>Free valet parking available</p>
+                        <p><strong>Getting There:</strong><br>45 minutes from LAX Airport<br>Shuttle service available upon request</p>
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" class="info-link">Get Directions</a>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.2919886894896!2d-118.68!3d34.03!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAxJzQ4LjAiTiAxMTjCsDQwJzQ4LjAiVw!5e0!3m2!1sen!2sus!4v1234567890" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Divider 2 -->
+    <div class="parallax-divider">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1920');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+            <h3>Dress to Impress</h3>
+            <p>Beach elegance meets timeless style</p>
+        </div>
+    </div>
+
+    <!-- Dress Code Section -->
+    <section id="dresscode" class="dresscode-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Dress Code</h2>
+            
+            <div class="dresscode-content">
+                <div class="dresscode-text">
+                    <h3>Beach Formal Elegance</h3>
+                    <p>We're celebrating by the ocean! Think elegant but comfortable. Light, flowing fabrics work beautifully for our seaside ceremony.</p>
+                    <p><strong>Suggested Colors:</strong> Soft pastels, creams, light blues, and blush tones complement our beachside setting perfectly.</p>
+                    <p><strong>Ladies:</strong> Flowing maxi dresses, elegant jumpsuits, or cocktail dresses. Wedges or block heels recommended for the sand.</p>
+                    <p><strong>Gentlemen:</strong> Linen suits, dress shirts with slacks. Ties optional. Light colors preferred.</p>
+                </div>
+                
+                <div class="dresscode-image">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600" alt="Beach formal attire">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Registry Section -->
+    <section id="registry" class="registry-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Gift Registry</h2>
+            
+            <div class="registry-list">
+                <div class="registry-item">
+                    <span class="registry-icon">🏠</span>
+                    <div class="registry-info">
+                        <h4>Home Essentials</h4>
+                        <p>Crate & Barrel Registry</p>
+                    </div>
+                    <a href="#" class="registry-link">View Registry</a>
+                </div>
+                
+                <div class="registry-item">
+                    <span class="registry-icon">✈️</span>
+                    <div class="registry-info">
+                        <h4>Honeymoon Fund</h4>
+                        <p>Help us explore Italy</p>
+                    </div>
+                    <a href="#" class="registry-link">Contribute</a>
+                </div>
+                
+                <div class="registry-item">
+                    <span class="registry-icon">🍽️</span>
+                    <div class="registry-info">
+                        <h4>Kitchen & Dining</h4>
+                        <p>Williams Sonoma Registry</p>
+                    </div>
+                    <a href="#" class="registry-link">View Registry</a>
+                </div>
+                
+                <div class="registry-item">
+                    <span class="registry-icon">🎨</span>
+                    <div class="registry-info">
+                        <h4>Art & Decor</h4>
+                        <p>West Elm Registry</p>
+                    </div>
+                    <a href="#" class="registry-link">View Registry</a>
+                </div>
+                
+                <div class="registry-item">
+                    <span class="registry-icon">💝</span>
+                    <div class="registry-info">
+                        <h4>Cash Gift</h4>
+                        <p>Your presence is enough, but if you wish...</p>
+                    </div>
+                    <a href="#" class="registry-link">Send Gift</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Divider 3 -->
+    <div class="parallax-divider">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920');"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+            <h3>A Day to Remember</h3>
+            <p>Every moment thoughtfully planned for you</p>
+        </div>
+    </div>
+
+    <!-- Program Flow Section -->
+    <section id="program" class="program-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Program Flow</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">3:30 PM</div>
+                        <h4 class="timeline-title">Guest Arrival</h4>
+                        <p class="timeline-description">Please arrive early to find your seats. Light refreshments will be served.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">4:00 PM</div>
+                        <h4 class="timeline-title">Ceremony Begins</h4>
+                        <p class="timeline-description">Oceanside ceremony with stunning sunset views.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">4:45 PM</div>
+                        <h4 class="timeline-title">Cocktail Hour</h4>
+                        <p class="timeline-description">Enjoy drinks and appetizers on the terrace while we take photos.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">6:00 PM</div>
+                        <h4 class="timeline-title">Reception Dinner</h4>
+                        <p class="timeline-description">Three-course meal with wine pairings.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">7:30 PM</div>
+                        <h4 class="timeline-title">First Dance & Party</h4>
+                        <p class="timeline-description">Let's dance the night away under the stars!</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-time">10:00 PM</div>
+                        <h4 class="timeline-title">Grand Exit</h4>
+                        <p class="timeline-description">Sparkler send-off as we begin our new journey together.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-person">
+                    <h3>Emma</h3>
+                    <p class="role">Bride</p>
+                    <div class="contact-links">
+                        <a href="https://m.me/emma" class="contact-link">
+                            <span>💬</span>
+                            <span>Messenger</span>
+                        </a>
+                        <a href="https://facebook.com/emma" class="contact-link">
+                            <span>📘</span>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="mailto:emma@wedding.com" class="contact-link">
+                            <span>✉️</span>
+                            <span>emma@wedding.com</span>
+                        </a>
+                        <a href="tel:+1234567890" class="contact-link">
+                            <span>📱</span>
+                            <span>(123) 456-7890</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-person">
+                    <h3>James</h3>
+                    <p class="role">Groom</p>
+                    <div class="contact-links">
+                        <a href="https://m.me/james" class="contact-link">
+                            <span>💬</span>
+                            <span>Messenger</span>
+                        </a>
+                        <a href="https://facebook.com/james" class="contact-link">
+                            <span>📘</span>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="mailto:james@wedding.com" class="contact-link">
+                            <span>✉️</span>
+                            <span>james@wedding.com</span>
+                        </a>
+                        <a href="tel:+1234567891" class="contact-link">
+                            <span>📱</span>
+                            <span>(123) 456-7891</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Emma & James • With Love</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.remove('transparent');
+            } else {
+                header.classList.add('transparent');
+            }
+        });
+
+        // Parallax effect
+        function parallaxScroll() {
+            const parallaxElements = document.querySelectorAll('.parallax-bg, .hero-bg');
+            
+            parallaxElements.forEach(element => {
+                const scrolled = window.pageYOffset;
+                const rect = element.parentElement.getBoundingClientRect();
+                const elementTop = rect.top + scrolled;
+                const elementHeight = rect.height;
+                
+                // Check if element is in viewport
+                if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
+                    // Use smaller parallax factor (0.3) to prevent blank areas
+                    const yPos = -(scrolled - elementTop) * 0.3;
+                    // Clamp the movement to prevent showing blank areas
+                    const maxMove = elementHeight * 0.2;
+                    const clampedYPos = Math.max(-maxMove, Math.min(maxMove, yPos));
+                    element.style.transform = `translate3d(0, ${clampedYPos}px, 0)`;
+                }
+            });
+        }
+
+        // Fade in on scroll
+        function fadeInOnScroll() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Throttle function for performance
+        function throttle(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Add scroll listeners
+        const throttledParallax = throttle(parallaxScroll, 10);
+        const throttledFadeIn = throttle(fadeInOnScroll, 100);
+
+        window.addEventListener('scroll', throttledParallax);
+        window.addEventListener('scroll', throttledFadeIn);
+        
+        // Initial check
+        window.addEventListener('load', function() {
+            parallaxScroll();
+            fadeInOnScroll();
+        });
+
+        // Listen for customization data from parent
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'UPDATE_WEDDING_DATA') {
+                const { bride, groom, date } = event.data;
+                
+                // Update names in hero
+                const heroNames = document.querySelectorAll('.couple-names h1');
+                if (heroNames.length >= 2) {
+                    heroNames[0].textContent = bride.toUpperCase();
+                    heroNames[1].textContent = groom.toUpperCase();
+                }
+                
+                // Format and update date
+                if (date) {
+                    const dateObj = new Date(date);
+                    const formattedDate = dateObj.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    const shortDate = dateObj.toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                    
+                    // Update hero date
+                    const heroDate = document.querySelector('.hero-date');
+                    if (heroDate) {
+                        heroDate.textContent = `${shortDate} • Malibu, California`;
+                    }
+                }
+                
+                // Update contact section
+                const contactNames = document.querySelectorAll('.contact-person h3');
+                if (contactNames.length >= 2) {
+                    contactNames[0].textContent = bride;
+                    contactNames[1].textContent = groom;
+                }
+                
+                // Update footer
+                const footer = document.querySelector('footer p');
+                if (footer) {
+                    const year = new Date(date || Date.now()).getFullYear();
+                    footer.textContent = `© ${year} ${bride} & ${groom} • With Love`;
+                }
+                
+                // Update parallax content if needed
+                const parallaxTitle = document.querySelector('.parallax-content h3');
+                if (parallaxTitle && parallaxTitle.textContent.includes('Join Us')) {
+                    // Keep original text for parallax dividers
+                }
+            }
+        });
+    </script>
+</body>
+</html>

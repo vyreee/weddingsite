@@ -1,103 +1,116 @@
-import Image from "next/image";
+"use client";
+
+import BrandButton from "@/components/BrandButton";
+import Link from "next/link";
+import BrandCard from "@/components/BrandCard";
+import Header from "@/components/Header";
+import FeaturesSection from "@/components/sections/FeaturesSection";
+import HowItWorksSection from "@/components/sections/HowItWorksSection";
+import HeroDevices from "@/components/HeroDevices";
+import TemplateShowcaseSection from "@/components/sections/TemplateShowcaseSection";
+import PricingSection from "@/components/sections/PricingSection";
+import FAQSection from "@/components/sections/FAQSection";
+import CTASection from "@/components/sections/CTASection";
+import ContactFormSection from "@/components/sections/ContactFormSection";
+import SiteFooter from "@/components/SiteFooter";
+import { motion } from "motion/react";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="font-sans min-h-screen">
+      <Header />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Hero */}
+      <section className="relative isolate">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#98C1D9] via-[#6969B3] to-[#533A7B] opacity-20" />
+        <div className="mx-auto max-w-6xl px-4 py-16 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-semibold text-brand-primary"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Beautiful Wedding Websites Made Simple
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-4 text-brand-dark/80 max-w-2xl mx-auto"
           >
-            Read our docs
-          </a>
+            One source of truth for all your wedding information.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-8 flex items-center justify-center gap-3"
+          >
+            <Link href="/preview">
+              <BrandButton>Try Interactive Preview</BrandButton>
+            </Link>
+            <Link href="/#pricing">
+              <BrandButton variant="ghost">View Pricing</BrandButton>
+            </Link>
+          </motion.div>
+          <div className="mt-6">
+            <HeroDevices />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Demo Card */}
+      <section className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-2">
+        <BrandCard title="Everything You Need" subtitle="Fast setup • Beautiful templates • Guest friendly">
+          <p className="text-sm/6">
+            Build and preview your site in minutes. Choose a template, customize your details, and go live.
+          </p>
+          <div className="mt-6 flex gap-3">
+            <Link href="/preview">
+              <BrandButton variant="secondary">Explore Templates</BrandButton>
+            </Link>
+            <Link href="/#how">
+              <BrandButton variant="accent">How It Works</BrandButton>
+            </Link>
+          </div>
+        </BrandCard>
+        <BrandCard title="Simple, Transparent Pricing" subtitle="Starting at $45 / ₱2,499">
+          <ul className="text-sm/6 list-disc pl-5">
+            <li>Elegant designs</li>
+            <li>Mobile responsive</li>
+            <li>Live preview</li>
+          </ul>
+          <div className="mt-6">
+            <Link href="/#pricing">
+              <BrandButton>Choose Your Plan</BrandButton>
+            </Link>
+          </div>
+        </BrandCard>
+      </section>
+
+      {/* Features */}
+      <FeaturesSection />
+
+      {/* How It Works */}
+      <HowItWorksSection />
+
+      {/* Template Showcase */}
+      <TemplateShowcaseSection />
+
+      {/* Pricing */}
+      <PricingSection />
+
+      {/* FAQ */}
+      <FAQSection />
+
+      {/* Contact Form */}
+      <ContactFormSection />
+
+      {/* Final CTA */}
+      <CTASection />
+
+      {/* Footer */}
+      <SiteFooter />
     </div>
   );
 }

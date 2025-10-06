@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joanna & Nicolas - Wedding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 30px 60px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        .logo-container {
+            background: #fff;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-container::before,
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+        }
+
+        .logo-container::before {
+            top: -10px;
+            left: -10px;
+            border-left: 2px solid #fff;
+            border-top: 2px solid #fff;
+        }
+
+        .logo-container::after {
+            bottom: -10px;
+            right: -10px;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        .logo {
+            font-size: 36px;
+            color: #c9a880;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), #d4c4b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .couple-names {
+            margin: 30px 0;
+        }
+
+        .bride-name {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .and {
+            font-size: 48px;
+            font-style: italic;
+            margin: 15px 0;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .groom-name {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .hero-footer {
+            font-size: 18px;
+            font-style: italic;
+            margin-top: 30px;
+        }
+
+        .decorative-element {
+            margin: 40px 0;
+        }
+
+        .decorative-line {
+            width: 120px;
+            height: 1px;
+            background: #fff;
+            margin: 0 auto;
+        }
+
+        .decorative-leaf {
+            width: 60px;
+            height: 30px;
+            margin: 10px auto;
+            opacity: 0.8;
+        }
+
+        /* Invite Section */
+        .invite-section {
+            background: #f9f7f4;
+            padding: 120px 60px;
+            text-align: center;
+        }
+
+        .invite-title {
+            font-size: 42px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .invite-to {
+            font-size: 20px;
+            font-style: italic;
+            color: #999;
+            margin-bottom: 50px;
+        }
+
+        .celebration-text {
+            font-size: 48px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 300;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Details Section */
+        .details-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .details-content {
+            background: #fff;
+            padding: 100px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .details-image {
+            background: #d4c4b0;
+        }
+
+        .detail-item {
+            margin-bottom: 50px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .detail-value {
+            font-size: 24px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Prenup Section */
+        .prenup-section {
+            background: #f9f7f4;
+            padding: 120px 60px;
+        }
+
+        .prenup-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .prenup-header h2 {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .prenup-header p {
+            font-size: 18px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .prenup-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .prenup-photo {
+            background: #d4c4b0;
+            aspect-ratio: 3/4;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prenup-photo.large {
+            grid-column: span 2;
+            aspect-ratio: 16/9;
+        }
+
+        /* Footer */
+        footer {
+            background: #2a2a2a;
+            padding: 60px;
+            text-align: center;
+            color: #999;
+        }
+
+        footer p {
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .bride-name, .groom-name {
+                font-size: 42px;
+                letter-spacing: 6px;
+            }
+
+            .and {
+                font-size: 32px;
+            }
+
+            .details-section {
+                grid-template-columns: 1fr;
+            }
+
+            .invite-title {
+                font-size: 32px;
+            }
+
+            .celebration-text {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">Join Us</a>
+            <a href="#">Timeline</a>
+            <a href="#">Prenup Gallery</a>
+            <div class="logo-container">
+                <span class="logo">YN</span>
+            </div>
+            <a href="#">Location</a>
+            <a href="#">Attire</a>
+            <a href="#">FYIs</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">perfect wedding story</p>
+            
+            <div class="couple-names">
+                <h1 class="bride-name">YOUR</h1>
+                <p class="and">and & and</p>
+                <h1 class="groom-name">NAMES</h1>
+            </div>
+
+            <p class="hero-footer">hope you'll enjoy</p>
+
+            <div class="decorative-element">
+                <div class="decorative-line"></div>
+                <div class="decorative-leaf"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="invite-section">
+        <h2 class="invite-title">INVITE YOU</h2>
+        <p class="invite-to">to</p>
+        <p class="celebration-text">JOIN IN THE CELEBRATION</p>
+    </section>
+
+    <section class="details-section">
+        <div class="details-content">
+            <div class="detail-item">
+                <p class="detail-label">WHEN</p>
+                <p class="detail-value">Saturday, June 15th, 2024<br>at 4:00 PM</p>
+            </div>
+
+            <div class="detail-item">
+                <p class="detail-label">WHERE</p>
+                <p class="detail-value">Seaside Garden Estate<br>123 Ocean View Drive<br>Malibu, California</p>
+            </div>
+
+            <div class="detail-item">
+                <p class="detail-label">DRESS CODE</p>
+                <p class="detail-value">Formal Attire<br>Beach Elegant</p>
+            </div>
+        </div>
+        <div class="details-image"></div>
+    </section>
+
+    <section class="rsvp-section">
+        <h2>RSVP</h2>
+        <p>Kindly respond by May 1st, 2024</p>
+        <a href="#" class="btn-rsvp">Reserve Your Seat</a>
+    </section>
+
+    <footer>
+        <p>© 2024 Joanna & Nicolas. All rights reserved.</p>
+    </footer>
+</body>
+</html>

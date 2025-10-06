@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
+  /* Surfaces */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #25171A; /* Licorice */
+
+  /* Brand in HSL for flexibility with opacity */
+  --primary: 263 36% 35%;           /* #533A7B Royal Purple */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 33% 56%;         /* #6969B3 Slate Blue */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 202 46% 72%;            /* #98C1D9 Powder Blue */
+  --accent-foreground: 347 23% 12%; /* #25171A Licorice */
+  --deep: 293 33% 22%;              /* ~#4B244A Violet */
+  --dark: 347 23% 12%;              /* #25171A Licorice */
+  
+  /* shadcn defaults */
+  --radius: 0.625rem;
+  --card: 0 0% 100%;
+  --card-foreground: 347 23% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 347 23% 12%;
+  --muted: 0 0% 97%;
+  --muted-foreground: 0 0% 55.6%;
+  --destructive: 0 84.2% 60.2%;
+  --border: 0 0% 92.2%;
+  --input: 0 0% 92.2%;
+  --ring: 0 0% 70.8%;
 }
 
 @theme inline {
+  /* Map tokens so we can use classes like bg-background, text-foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Brand color tokens (usable via bg-brand-primary, text-brand-secondary, etc.) */
+  --color-brand-primary: hsl(var(--primary));
+  --color-brand-primary-foreground: hsl(var(--primary-foreground));
+  --color-brand-secondary: hsl(var(--secondary));
+  --color-brand-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-brand-accent: hsl(var(--accent));
+  --color-brand-accent-foreground: hsl(var(--accent-foreground));
+  --color-brand-deep: hsl(var(--deep));
+  --color-brand-dark: hsl(var(--dark));
+
+  /* shadcn tokens */
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-destructive: hsl(var(--destructive));
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Fonts from Next.js starter */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+/* Simple float animations for hero devices */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float-slow { animation: float 6s ease-in-out infinite; }
+.animate-float-slower { animation: float 9s ease-in-out infinite; }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --card: 0 0% 20.5%;
+    --card-foreground: 0 0% 98.5%;
+    --popover: 0 0% 20.5%;
+    --popover-foreground: 0 0% 98.5%;
+    --muted: 0 0% 26.9%;
+    --muted-foreground: 0 0% 70.8%;
+    --border: 0 0% 100% / 10%;
+    --input: 0 0% 100% / 15%;
+    --ring: 0 0% 55.6%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
