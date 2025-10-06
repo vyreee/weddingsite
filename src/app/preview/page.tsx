@@ -48,16 +48,16 @@ export default function PreviewPage() {
     return () => clearTimeout(timer);
   }, [brideName, groomName, weddingDate, iframeKey, sendDataToIframe]);
 
-  // Format date for display
-  const formatDate = (dateStr: string) => {
-    if (!dateStr) return '';
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
+  // Format date for display (currently unused but kept for future use)
+  // const formatDate = (dateStr: string) => {
+  //   if (!dateStr) return '';
+  //   const date = new Date(dateStr);
+  //   return date.toLocaleDateString('en-US', { 
+  //     year: 'numeric', 
+  //     month: 'long', 
+  //     day: 'numeric' 
+  //   });
+  // };
 
   // Generate URL from names
   const generateUrl = () => {
@@ -153,7 +153,7 @@ export default function PreviewPage() {
                 <div className="space-y-3">
                   <div>
                     <label className="block text-xs font-medium text-brand-dark/70 mb-1">
-                      Bride's Name
+                      Bride&apos;s Name
                     </label>
                     <input
                       type="text"
@@ -166,7 +166,7 @@ export default function PreviewPage() {
                   
                   <div>
                     <label className="block text-xs font-medium text-brand-dark/70 mb-1">
-                      Groom's Name
+                      Groom&apos;s Name
                     </label>
                     <input
                       type="text"

@@ -60,9 +60,9 @@ export default function ContactFormSection() {
 
     try {
       // Don't send honeypot field to the server
-      const { website, ...dataToSend } = formData;
+      const { website: _website, ...dataToSend } = formData;
       
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -109,7 +109,7 @@ export default function ContactFormSection() {
           Get Started Today
         </h2>
         <p className="text-center text-brand-dark/70 mb-10">
-          Tell us about your special day and we'll get back to you within 24 hours
+          Tell us about your special day and we&apos;ll get back to you within 24 hours
         </p>
 
         <motion.form
@@ -246,16 +246,16 @@ export default function ContactFormSection() {
                 <CheckCircle2 className="size-5 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold text-base mb-2">
-                    Thank you! We've received your inquiry.
+                    Thank you! We&apos;ve received your inquiry.
                   </p>
                   <div className="text-sm space-y-2">
-                    <p className="font-medium">Here's what happens next:</p>
+                    <p className="font-medium">Here&apos;s what happens next:</p>
                     <ol className="list-decimal list-inside space-y-1.5 ml-2">
-                      <li>We'll contact you within 24 hours via email or phone</li>
-                      <li>We'll send you a Google Drive folder to upload your wedding photos</li>
-                      <li>You'll receive a form to confirm website content, copy, and color preferences</li>
-                      <li>We'll create a demo website for your review</li>
-                      <li>Once approved, we'll send payment details</li>
+                      <li>We&apos;ll contact you within 24 hours via email or phone</li>
+                      <li>We&apos;ll send you a Google Drive folder to upload your wedding photos</li>
+                      <li>You&apos;ll receive a form to confirm website content, copy, and color preferences</li>
+                      <li>We&apos;ll create a demo website for your review</li>
+                      <li>Once approved, we&apos;ll send payment details</li>
                       <li>After payment confirmation, your beautiful wedding site goes live! 🎉</li>
                     </ol>
                     <p className="mt-3 text-xs opacity-80">
