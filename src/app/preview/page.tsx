@@ -210,9 +210,9 @@ export default function PreviewPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="min-h-[800px]"
+            className="h-fit"
           >
-            <div className="rounded-xl border border-brand-secondary/30 bg-white shadow-lg overflow-hidden">
+            <div className="rounded-xl border border-brand-secondary/30 bg-white shadow-lg overflow-hidden h-full flex flex-col">
               {/* Browser Chrome */}
               <div className="flex items-center gap-2 px-4 py-3 border-b border-brand-secondary/20 bg-gradient-to-r from-brand-accent/5 to-transparent">
                 <div className="flex gap-2">
@@ -229,7 +229,7 @@ export default function PreviewPage() {
               </div>
 
               {/* Template Preview */}
-              <div className="bg-brand-accent/5 flex justify-center">
+              <div className="bg-brand-accent/5 flex justify-center flex-1">
                 <motion.div
                   key={`${template}-${device}`}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -237,7 +237,7 @@ export default function PreviewPage() {
                   transition={{ duration: 0.3 }}
                   className={`bg-white shadow-2xl overflow-hidden ${
                     device === "desktop" 
-                      ? "w-full h-[calc(100vh-280px)] rounded-lg" 
+                      ? "w-full h-full rounded-lg" 
                       : "w-[375px] h-[667px] rounded-[2.5rem] border-8 border-gray-800"
                   }`}
                 >
