@@ -99,8 +99,8 @@ export default function PreviewPage() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-[280px_1fr] gap-6">
+      <div className="max-w-[1800px] mx-auto px-4 py-8">
+        <div className="grid lg:grid-cols-[320px_1fr] gap-8">
           {/* Sidebar */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }}
