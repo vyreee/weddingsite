@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #b8941f;
+            --cream: #f9f7f4;
+            --dark: #1a1512;
+            --gray: #6b6560;
+            --light-gray: #e8e5e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+            background: var(--cream);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 30px 60px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(249, 247, 244, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            padding: 20px 60px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--dark);
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        header:not(.scrolled) .nav-logo {
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        header:not(.scrolled) .nav-links a {
+            color: rgba(255,255,255,0.95);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--dark);
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26,21,18,0.7) 0%, rgba(26,21,18,0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 0 40px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero-names {
+            margin: 40px 0;
+        }
+
+        .hero-names h1 {
+            font-size: clamp(70px, 10vw, 140px);
+            font-weight: 300;
+            letter-spacing: 10px;
+            line-height: 1.1;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            animation: fadeInScale 1.2s ease-out 0.8s forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-ampersand {
+            font-size: clamp(50px, 7vw, 90px);
+            font-style: italic;
+            color: var(--gold);
+            margin: 30px 0;
+            display: block;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards;
+        }
+
+        .hero-divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 50px auto;
+            opacity: 0;
+            animation: expandWidth 1s ease-out 1.5s forwards;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 120px;
+                opacity: 1;
+            }
+        }
+
+        .hero-date {
+            font-size: 20px;
+            letter-spacing: 3px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.8s forwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 25px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2s forwards;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 10px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 2px;
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes scrollDown {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(-50%) translateY(15px);
+                opacity: 0;
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 150px 60px;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -200px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--light-gray) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .section-number {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(50px, 7vw, 80px);
+            color: var(--dark);
+            font-weight: 300;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-person {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .about-person.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            aspect-ratio: 3/4;
+            margin-bottom: 40px;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transition: transform 0.5s ease;
+        }
+
+        .about-person:hover .about-image-wrapper {
+            transform: translateY(-10px);
+        }
+
+        .about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, transparent 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .about-person:hover .about-image-wrapper::before {
+            opacity: 1;
+        }
+
+        .about-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .about-person:hover .about-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .about-info {
+            text-align: center;
+        }
+
+        .about-role {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .about-name {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .about-description {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--gray);
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 150px 60px;
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.5s ease;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.7) 0%, rgba(26,21,18,0.5) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item::after {
+            content: '+';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 2;
+            font-size: 60px;
+            color: #fff;
+            font-weight: 300;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .gallery-item:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            padding: 60px;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+            animation: scaleIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Details Section */
+        .details-section {
+            padding: 150px 60px;
+            background: var(--dark);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .details-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+        }
+
+        .details-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .detail-card {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .detail-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .detail-icon {
+            font-size: 48px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .detail-title {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .detail-info {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .detail-info strong {
+            color: #fff;
+            display: block;
+            margin-top: 15px;
+        }
+
+        /* Program Section */
+        .program-section {
+            padding: 150px 60px;
+            background: #fff;
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 100px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold), var(--dark-gold));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 40px 0 40px 60px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -60px;
+            top: 50px;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border: 4px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--light-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            transform: scale(1.3);
+        }
+
+        .timeline-time {
+            font-size: 48px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .timeline-title {
+            font-size: 28px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-description {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 100px 60px 60px;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+
+        .footer-about h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .footer-about p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: var(--gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .details-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .timeline {
+                padding-left: 60px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 40px;
+            }
+
+            .timeline-item::before {
+                left: -40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 30px;
+            }
+
+            header.scrolled {
+                padding: 15px 30px;
+            }
+
+            .nav-logo {
+                font-size: 22px;
+            }
+
+            .nav-links {
+                gap: 25px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .about-section,
+            .gallery-section,
+            .details-section,
+            .program-section {
+                padding: 100px 30px;
+            }
+
+            .section-title {
+                font-size: clamp(40px, 10vw, 60px);
+            }
+
+            .hero-names h1 {
+                font-size: clamp(50px, 12vw, 80px);
+                letter-spacing: 5px;
+            }
+
+            .hero-ampersand {
+                font-size: clamp(40px, 8vw, 60px);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 80px 30px 40px;
+            }
+
+            .lightbox {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-logo">E & J</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#details">Details</a>
+                <a href="#program">Program</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Slideshow -->
+    <section class="hero">
+        <div class="hero-slideshow">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1920')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920')"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-subtitle">Join Us In Celebrating</div>
+            <div class="hero-names">
+                <h1>EMMA</h1>
+                <span class="hero-ampersand">&</span>
+                <h1>JAMES</h1>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hero-date">June 15, 2025 • Malibu, California</div>
+        </div>
+
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number">01 — About Us</span>
+            <h2 class="section-title">Our Love Story</h2>
+        </div>
+
+        <div class="about-container">
+            <div class="about-person">
+                <div class="about-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800" alt="The Bride">
+                </div>
+                <div class="about-info">
+                    <div class="about-role">The Bride</div>
+                    <h3 class="about-name">Emma Johnson</h3>
+                    <p class="about-description">
+                        A free spirit with a passion for art and design. Emma brings warmth and creativity to everything she touches. She believes in love that grows deeper with each passing day and cherishes every moment of this beautiful journey.
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-person">
+                <div class="about-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800" alt="The Groom">
+                </div>
+                <div class="about-info">
+                    <div class="about-role">The Groom</div>
+                    <h3 class="about-name">James Anderson</h3>
+                    <p class="about-description">
+                        An adventurous soul with a heart full of dreams. James is passionate about travel, photography, and creating unforgettable memories. He found his perfect partner in Emma and can't wait to start this new chapter together.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number">02 — Memories</span>
+            <h2 class="section-title">Our Journey Together</h2>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1594842645299-4f8f85c62be5?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=800" alt="Couple photo">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" alt="Couple photo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <img src="" alt="Gallery image">
+        </div>
+    </div>
+
+    <!-- Details Section -->
+    <section id="details" class="details-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number" style="color: var(--gold);">03 — Event Details</span>
+            <h2 class="section-title" style="color: #fff;">The Celebration</h2>
+        </div>
+
+        <div class="details-container">
+            <div class="detail-card">
+                <span class="detail-icon">📅</span>
+                <div class="detail-label">When</div>
+                <h3 class="detail-title">Date & Time</h3>
+                <div class="detail-info">
+                    Saturday, June 15, 2025
+                    <strong>4:00 PM - 11:00 PM</strong>
+                    Ceremony begins promptly at 4:00 PM
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <span class="detail-icon">📍</span>
+                <div class="detail-label">Where</div>
+                <h3 class="detail-title">Location</h3>
+                <div class="detail-info">
+                    Seaside Garden Estate
+                    <strong>123 Ocean View Drive</strong>
+                    Malibu, California 90265
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <span class="detail-icon">👔</span>
+                <div class="detail-label">Attire</div>
+                <h3 class="detail-title">Dress Code</h3>
+                <div class="detail-info">
+                    Beach Formal Elegance
+                    <strong>Light, flowing fabrics recommended</strong>
+                    Soft pastels, creams, and light colors preferred
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" class="program-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number">04 — Schedule</span>
+            <h2 class="section-title">Program Flow</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-time">3:30 PM</div>
+                <h3 class="timeline-title">Guest Arrival</h3>
+                <p class="timeline-description">
+                    Welcome drinks and light refreshments as you find your seats. Take in the beautiful oceanside views and enjoy the pre-ceremony ambiance.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">4:00 PM</div>
+                <h3 class="timeline-title">Ceremony Begins</h3>
+                <p class="timeline-description">
+                    The wedding ceremony begins with oceanside views. Witness the exchange of vows as the sun begins its descent toward the horizon.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">4:45 PM</div>
+                <h3 class="timeline-title">Cocktail Hour</h3>
+                <p class="timeline-description">
+                    Enjoy signature cocktails and gourmet appetizers on the terrace while the newlyweds take photos. Mingle with other guests and celebrate.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">6:00 PM</div>
+                <h3 class="timeline-title">Reception Dinner</h3>
+                <p class="timeline-description">
+                    A curated three-course meal with wine pairings, followed by heartfelt speeches and toasts celebrating the happy couple.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">7:30 PM</div>
+                <h3 class="timeline-title">First Dance & Party</h3>
+                <p class="timeline-description">
+                    The celebration continues with the first dance, followed by an evening of dancing under the stars with live music and DJ entertainment.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">10:00 PM</div>
+                <h3 class="timeline-title">Grand Farewell</h3>
+                <p class="timeline-description">
+                    A magical sparkler send-off as we begin our new journey together. Thank you for celebrating with us!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>Emma & James</h3>
+                <p>
+                    Thank you for being part of our special day. Your presence means the world to us as we begin this beautiful journey together. We can't wait to celebrate with you!
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">i</a>
+                    <a href="#" class="social-link">@</a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#gallery">Photo Gallery</a></li>
+                    <li><a href="#details">Event Details</a></li>
+                    <li><a href="#program">Program</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:emma@wedding.com">emma@wedding.com</a></li>
+                    <li><a href="mailto:james@wedding.com">james@wedding.com</a></li>
+                    <li><a href="tel:+1234567890">(123) 456-7890</a></li>
+                    <li><a href="tel:+1234567891">(123) 456-7891</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Emma & James • Designed with Love</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hero slideshow
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal, .about-person, .gallery-item, .detail-card, .timeline-item');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // Gallery lightbox
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll indicator
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.querySelector('#about').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Listen for customization data from parent
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'UPDATE_WEDDING_DATA') {
+                const { bride, groom, date } = event.data;
+
+                // Update nav logo
+                const navLogo = document.querySelector('.nav-logo');
+                if (navLogo) {
+                    navLogo.textContent = `${bride.charAt(0)} & ${groom.charAt(0)}`;
+                }
+
+                // Update hero names
+                const heroNames = document.querySelectorAll('.hero-names h1');
+                if (heroNames.length >= 2) {
+                    heroNames[0].textContent = bride.toUpperCase();
+                    heroNames[1].textContent = groom.toUpperCase();
+                }
+
+                // Update date
+                if (date) {
+                    const dateObj = new Date(date);
+                    const formatted = dateObj.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    const heroDate = document.querySelector('.hero-date');
+                    if (heroDate) {
+                        heroDate.textContent = `${formatted} • Malibu, California`;
+                    }
+                }
+
+                // Update about names
+                const aboutNames = document.querySelectorAll('.about-name');
+                if (aboutNames.length >= 2) {
+                    aboutNames[0].textContent = `${bride} Johnson`;
+                    aboutNames[1].textContent = `${groom} Anderson`;
+                }
+
+                // Update footer
+                const footerTitle = document.querySelector('.footer-about h3');
+                if (footerTitle) {
+                    footerTitle.textContent = `${bride} & ${groom}`;
+                }
+
+                const footerBottom = document.querySelector('.footer-bottom p');
+                if (footerBottom) {
+                    const year = new Date(date || Date.now()).getFullYear();
+                    footerBottom.textContent = `© ${year} ${bride} & ${groom} • Designed with Love`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
