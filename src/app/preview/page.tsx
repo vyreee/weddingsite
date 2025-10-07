@@ -210,7 +210,7 @@ export default function PreviewPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="h-fit"
+            className="min-h-[800px]"
           >
             <div className="rounded-xl border border-brand-secondary/30 bg-white shadow-lg overflow-hidden h-full flex flex-col">
               {/* Browser Chrome */}
