@@ -5,13 +5,14 @@ import { motion } from "motion/react";
 import { Monitor, Smartphone, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-type TemplateKey = "1" | "2" | "4";
+type TemplateKey = "1" | "2" | "3" | "4";
 type DeviceView = "desktop" | "mobile";
 
 const TEMPLATES: Record<TemplateKey, { name: string; desc: string; status: string }> = {
   "1": { name: "Classic Elegance", desc: "Timeless & Romantic", status: "Live" },
   "2": { name: "Modern Minimalist", desc: "Clean & Contemporary", status: "Live" },
-  "4": { name: "Garden Romance", desc: "Floral & Natural", status: "Live" },
+  "3": { name: "Garden Romance", desc: "Floral & Natural", status: "Live" },
+  "4": { name: "Royal Bliss", desc: "Royalty Feels", status: "Live" },
 };
 
 export default function PreviewPage() {

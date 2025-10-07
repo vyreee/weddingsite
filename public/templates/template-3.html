@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden Romance - Coming Soon</title>
+    <title>Emma & James - Garden Wedding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,73 +12,1069 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --sage: #5a7a52;
+            --sage-dark: #3d5a38;
+            --sage-light: #7ea374;
+            --blush: #d4677b;
+            --cream: #f4ede3;
+            --ivory: #fef8f1;
+            --gold: #d4af37;
+            --text-dark: #2d3a2d;
+            --text-light: #4a5e48;
+            --rose: #c75b7a;
+            --terracotta: #d97757;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #98C1D9 0%, #533A7B 100%);
+            font-family: 'Raleway', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+            background: #fdf6ed;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+        }
+
+        .serif {
+            font-family: 'Lora', serif;
+        }
+
+        /* Floral Decorations */
+        .floral-corner {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .floral-corner.top-left {
+            top: 0;
+            left: 0;
+        }
+
+        .floral-corner.top-right {
+            top: 0;
+            right: 0;
+            transform: scaleX(-1);
+        }
+
+        .floral-corner.bottom-left {
+            bottom: 0;
+            left: 0;
+            transform: scaleY(-1);
+        }
+
+        .floral-corner.bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: scale(-1);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(253, 246, 237, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(90, 122, 82, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(15px, 3vh, 25px) clamp(20px, 5vw, 40px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(25px, 5vw, 50px);
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--sage-dark);
+            font-size: clamp(12px, 2vw, 14px);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '✿';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            color: var(--rose);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--rose);
+        }
+
+        nav a:hover::after {
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-        }
-
-        .container {
             text-align: center;
-            padding: 40px;
-            max-width: 600px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(90, 122, 82, 0.85) 0%, rgba(126, 163, 116, 0.75) 50%, rgba(212, 103, 123, 0.7) 100%),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=85') center/cover;
+            color: var(--text-dark);
+            padding: clamp(80px, 15vh, 120px) 20px clamp(60px, 10vh, 80px);
+            margin-top: clamp(60px, 10vh, 80px);
         }
 
-        h1 {
-            font-size: 52px;
-            font-weight: 300;
-            margin-bottom: 20px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(253, 246, 237, 0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-ornament {
+            font-size: clamp(30px, 6vw, 50px);
+            color: var(--rose);
+            margin-bottom: clamp(20px, 4vh, 30px);
+            text-shadow: 0 2px 10px rgba(212, 103, 123, 0.3);
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 12vw, 90px);
+            margin-bottom: clamp(20px, 3vh, 30px);
+            color: var(--sage-dark);
             letter-spacing: 3px;
+        }
+
+        .hero-ampersand {
+            font-size: clamp(40px, 8vw, 60px);
+            font-family: 'Lora', serif;
             font-style: italic;
+            color: var(--rose);
+            margin: clamp(15px, 3vh, 25px) 0;
+            text-shadow: 0 2px 10px rgba(212, 103, 123, 0.3);
         }
 
-        .subtitle {
-            font-size: 24px;
-            font-weight: 300;
-            margin-bottom: 40px;
-            opacity: 0.9;
+        .hero-date {
+            font-size: clamp(18px, 3vw, 24px);
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: var(--text-light);
+            margin-top: clamp(30px, 5vh, 40px);
+            letter-spacing: 1px;
         }
 
-        .placeholder-text {
-            font-size: 18px;
+        .hero-divider {
+            width: clamp(100px, 20vw, 150px);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sage), transparent);
+            margin: clamp(25px, 4vh, 35px) auto;
+        }
+
+        /* Section Styles */
+        section {
+            padding: clamp(60px, 12vh, 100px) clamp(20px, 5vw, 40px);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(40px, 8vh, 70px);
+        }
+
+        .section-ornament {
+            font-size: clamp(25px, 5vw, 40px);
+            color: var(--rose);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 7vw, 60px);
+            color: var(--sage-dark);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: var(--ivory);
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(30px, 6vw, 60px);
+            align-items: center;
+        }
+
+        .story-image {
+            aspect-ratio: 4/5;
+            border-radius: 200px 200px 20px 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(139, 157, 131, 0.2);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-text {
+            padding: 20px;
+        }
+
+        .story-text h3 {
+            font-size: clamp(28px, 5vw, 36px);
+            color: var(--sage-dark);
+            margin-bottom: 20px;
+        }
+
+        .story-text p {
+            font-size: clamp(15px, 2.5vw, 17px);
+            line-height: 2;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(139, 157, 131, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 60px rgba(139, 157, 131, 0.25);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Venue Section */
+        .venue-section {
+            background: var(--ivory);
+        }
+
+        .venue-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(40px, 8vw, 80px);
+            align-items: center;
+        }
+
+        .venue-details {
+            padding: clamp(20px, 4vw, 40px);
+        }
+
+        .venue-item {
+            margin-bottom: clamp(30px, 5vh, 40px);
+            padding: 25px;
+            background: var(--cream);
+            border-radius: 15px;
+            border: 2px solid var(--sage-light);
+            transition: all 0.3s ease;
+        }
+
+        .venue-item:hover {
+            transform: translateX(10px);
+            border-color: var(--sage);
+            box-shadow: 0 10px 30px rgba(139, 157, 131, 0.15);
+        }
+
+        .venue-item h3 {
+            font-size: clamp(20px, 3vw, 24px);
+            color: var(--sage-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .venue-item p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--text-light);
             line-height: 1.8;
-            opacity: 0.85;
-            margin-bottom: 30px;
         }
 
-        .badge {
+        .venue-icon {
+            font-size: clamp(20px, 3vw, 24px);
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(139, 157, 131, 0.2);
+            height: clamp(350px, 60vh, 500px);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Dress Code Section */
+        .dresscode-section {
+            background: var(--cream);
+            position: relative;
+        }
+
+        .dresscode-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(25px, 5vw, 40px);
+        }
+
+        .dresscode-card {
+            background: var(--ivory);
+            padding: clamp(30px, 5vw, 45px);
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--sage-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dresscode-card::before {
+            content: '✿';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 100px;
+            color: var(--rose);
+            opacity: 0.15;
+        }
+
+        .dresscode-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--rose);
+            box-shadow: 0 15px 40px rgba(212, 103, 123, 0.3);
+        }
+
+        .dresscode-icon {
+            font-size: clamp(40px, 8vw, 60px);
+            margin-bottom: 20px;
+        }
+
+        .dresscode-card h3 {
+            font-size: clamp(24px, 4vw, 30px);
+            color: var(--sage-dark);
+            margin-bottom: 20px;
+        }
+
+        .dresscode-card p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        /* Registry Section */
+        .registry-section {
+            background: var(--ivory);
+        }
+
+        .registry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(25px, 5vw, 35px);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .registry-card {
+            background: var(--cream);
+            padding: clamp(35px, 6vw, 50px);
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--sage-light);
+            transition: all 0.3s ease;
+        }
+
+        .registry-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--rose);
+            box-shadow: 0 15px 45px rgba(212, 103, 123, 0.3);
+        }
+
+        .registry-card h3 {
+            font-size: clamp(22px, 4vw, 26px);
+            color: var(--sage-dark);
+            margin-bottom: 15px;
+        }
+
+        .registry-card p {
+            font-size: clamp(14px, 2.5vw, 15px);
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .btn {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-size: 14px;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: clamp(12px, 2vw, 14px);
             letter-spacing: 2px;
             text-transform: uppercase;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--sage);
+            box-shadow: 0 4px 15px rgba(90, 122, 82, 0.3);
         }
 
-        .decorative {
-            margin: 30px 0;
-            font-size: 36px;
+        .btn:hover {
+            background: linear-gradient(135deg, var(--rose) 0%, var(--blush) 100%);
+            border-color: var(--rose);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(199, 91, 122, 0.4);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background: var(--cream);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--sage) 0%, var(--rose) 50%, var(--terracotta) 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(40px, 8vw, 80px);
+            margin-bottom: clamp(40px, 8vh, 60px);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            grid-column: 1;
+            text-align: right;
+        }
+
+        .timeline-content {
+            padding: clamp(25px, 4vw, 35px);
+            background: var(--ivory);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(139, 157, 131, 0.12);
+            transition: all 0.3s ease;
+            border: 2px solid var(--sage-light);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: var(--rose);
+            box-shadow: 0 12px 40px rgba(212, 103, 123, 0.2);
+        }
+
+        .timeline-time {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            color: var(--sage);
+            margin-bottom: 12px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .timeline-title {
+            font-size: clamp(20px, 3vw, 24px);
+            color: var(--sage-dark);
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .timeline-flower {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--rose) 0%, var(--blush) 100%);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--cream);
+            box-shadow: 0 0 0 4px var(--sage-light), 0 4px 15px rgba(212, 103, 123, 0.4);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--ivory);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(30px, 6vw, 50px);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: clamp(40px, 6vw, 55px);
+            background: var(--cream);
+            border-radius: 20px;
+            border: 2px solid var(--sage-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '❀';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 50px;
+            color: var(--rose);
+            opacity: 0.25;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--rose);
+            box-shadow: 0 15px 50px rgba(212, 103, 123, 0.3);
+        }
+
+        .contact-card h3 {
+            font-size: clamp(30px, 5vw, 40px);
+            color: var(--sage-dark);
+            margin-bottom: 10px;
+        }
+
+        .contact-role {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--rose);
+            font-style: italic;
+            margin-bottom: 30px;
+            font-family: 'Lora', serif;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: clamp(14px, 2vw, 16px);
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--ivory);
+            color: var(--sage-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--sage-dark) 0%, var(--sage) 50%, var(--terracotta) 100%);
+            color: white;
+            padding: clamp(50px, 8vh, 80px) clamp(20px, 5vw, 40px);
+            text-align: center;
+        }
+
+        .footer-ornament {
+            font-size: clamp(30px, 5vw, 40px);
+            margin-bottom: 20px;
             opacity: 0.7;
+        }
+
+        footer p {
+            font-size: clamp(13px, 2vw, 15px);
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline {
+                padding-left: 50px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(odd) .timeline-content {
+                grid-column: 1;
+                text-align: left;
+            }
+
+            .timeline-flower {
+                left: 20px;
+                width: 24px;
+                height: 24px;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr;
+            }
+
+            .story-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Garden Romance</h1>
-        <p class="subtitle">Template 3</p>
-        <div class="decorative">🌸 ❀ 🌸</div>
-        <p class="placeholder-text">
-            This enchanting template is currently being crafted.<br>
-            Featuring floral accents, natural beauty, and romantic details.
-        </p>
-        <div class="badge">Coming Soon</div>
-    </div>
+    <header>
+        <nav>
+            <a href="#story">Our Story</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#venue">Venue</a>
+            <a href="#attire">Attire</a>
+            <a href="#registry">Registry</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-ornament">✿ ❀ ✿</div>
+            <h1>Emma</h1>
+            <div class="hero-ampersand">&</div>
+            <h1>James</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-date">June 15, 2025 • Garden Estate</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" class="story-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">❀</div>
+            <h2 class="section-title">Our Love Story</h2>
+            <p class="section-subtitle">Where two hearts became one</p>
+        </div>
+
+        <div class="story-content">
+            <div class="story-image fade-in">
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=85" alt="Couple photo">
+            </div>
+            <div class="story-text fade-in">
+                <h3>How We Met</h3>
+                <p>Seven years ago, our paths crossed at a charming coffee shop on a rainy afternoon. James accidentally knocked over Emma's latte while reaching for a napkin—what could have been an awkward moment turned into hours of conversation and laughter.</p>
+                <p>From that serendipitous meeting, we discovered shared dreams of traveling the world, Sunday morning farmers markets, and building a garden filled with wildflowers. Through countless adventures, quiet moments, and everything in between, our love has blossomed like the flowers we both adore.</p>
+                <p>Now, we're ready to plant new roots and grow our garden together, surrounded by the people who mean the most to us.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">✿</div>
+            <h2 class="section-title">Captured Memories</h2>
+            <p class="section-subtitle">Moments from our journey together</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=85" alt="Couple">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=85" alt="Couple">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=85" alt="Couple">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1594842645299-4f8f85c62be5?w=600&q=85" alt="Couple">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=85" alt="Couple">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&q=85" alt="Couple">
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue" class="venue-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">❀</div>
+            <h2 class="section-title">The Venue</h2>
+            <p class="section-subtitle">Celebrate with us in our secret garden</p>
+        </div>
+
+        <div class="venue-content">
+            <div class="venue-details fade-in">
+                <div class="venue-item">
+                    <h3><span class="venue-icon">🌿</span> Location</h3>
+                    <p>Botanical Garden Estate<br>456 Blossom Lane<br>Malibu, California 90265</p>
+                </div>
+
+                <div class="venue-item">
+                    <h3><span class="venue-icon">🌸</span> Date & Time</h3>
+                    <p>Saturday, June 15, 2025<br>Ceremony at 4:00 PM<br>Reception to follow</p>
+                </div>
+
+                <div class="venue-item">
+                    <h3><span class="venue-icon">🚗</span> Getting There</h3>
+                    <p>40 minutes from LAX Airport<br>Complimentary valet parking<br>Shuttle service from select hotels</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.2919886894896!2d-118.68!3d34.03!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAxJzQ4LjAiTiAxMTjCsDQwJzQ4LjAiVw!5e0!3m2!1sen!2sus!4v1234567890" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Code Section -->
+    <section id="attire" class="dresscode-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">✿</div>
+            <h2 class="section-title">Dress Code</h2>
+            <p class="section-subtitle">Garden chic elegance</p>
+        </div>
+
+        <div class="dresscode-content">
+            <div class="dresscode-card fade-in">
+                <div class="dresscode-icon">👗</div>
+                <h3>For Her</h3>
+                <p><strong>Garden Formal</strong></p>
+                <p>Flowing midi or maxi dresses in floral prints or soft pastels. Think romantic garden party with elegant touches.</p>
+                <p>Wedge heels or dressy flats recommended for our garden setting.</p>
+            </div>
+
+            <div class="dresscode-card fade-in">
+                <div class="dresscode-icon">🎩</div>
+                <h3>For Him</h3>
+                <p><strong>Garden Formal</strong></p>
+                <p>Light-colored suits or dress shirts with slacks. Linen or cotton works beautifully.</p>
+                <p>Ties optional. Pocket squares encouraged for a touch of garden flair!</p>
+            </div>
+
+            <div class="dresscode-card fade-in">
+                <div class="dresscode-icon">🎨</div>
+                <h3>Color Palette</h3>
+                <p><strong>Embrace Nature's Hues</strong></p>
+                <p>Sage green, dusty rose, lavender, cream, and soft florals perfectly complement our garden venue.</p>
+                <p>Please avoid pure white to reserve for the bride.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registry Section -->
+    <section id="registry" class="registry-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">❀</div>
+            <h2 class="section-title">Gift Registry</h2>
+            <p class="section-subtitle">Your presence is the greatest gift, but if you wish to celebrate with us...</p>
+        </div>
+
+        <div class="registry-grid">
+            <div class="registry-card fade-in">
+                <h3>🏡 Home & Garden</h3>
+                <p>Help us create our dream home and cultivate our garden sanctuary</p>
+                <a href="#" class="btn">View Registry</a>
+            </div>
+
+            <div class="registry-card fade-in">
+                <h3>✈️ Honeymoon Fund</h3>
+                <p>Join us on our adventure through the gardens of Tuscany and Provence</p>
+                <a href="#" class="btn">Contribute</a>
+            </div>
+
+            <div class="registry-card fade-in">
+                <h3>🍽️ Kitchen & Dining</h3>
+                <p>Help us host beautiful garden dinners and Sunday brunches</p>
+                <a href="#" class="btn">View Registry</a>
+            </div>
+
+            <div class="registry-card fade-in">
+                <h3>🌱 Seeds of Love</h3>
+                <p>Contribute to our garden fund and help us plant new memories</p>
+                <a href="#" class="btn">Contribute</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="schedule" class="timeline-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">✿</div>
+            <h2 class="section-title">Order of Events</h2>
+            <p class="section-subtitle">A day in the garden to remember</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-time">3:30 PM</div>
+                    <h4 class="timeline-title">Guest Arrival</h4>
+                    <p class="timeline-description">Welcome drinks and light refreshments in the rose garden as you find your seats</p>
+                </div>
+                <div class="timeline-flower">✿</div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-time">4:00 PM</div>
+                    <h4 class="timeline-title">Ceremony</h4>
+                    <p class="timeline-description">Exchange of vows beneath the flowering arbor surrounded by our favorite blooms</p>
+                </div>
+                <div class="timeline-flower">❀</div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-time">4:45 PM</div>
+                    <h4 class="timeline-title">Garden Hour</h4>
+                    <p class="timeline-description">Stroll through the gardens with cocktails and artisan hors d'oeuvres</p>
+                </div>
+                <div class="timeline-flower">✿</div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-time">6:00 PM</div>
+                    <h4 class="timeline-title">Garden Feast</h4>
+                    <p class="timeline-description">Farm-to-table dinner featuring locally-sourced seasonal cuisine</p>
+                </div>
+                <div class="timeline-flower">❀</div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-time">7:30 PM</div>
+                    <h4 class="timeline-title">Celebration</h4>
+                    <p class="timeline-description">First dance, toasts, and dancing under twinkling garden lights</p>
+                </div>
+                <div class="timeline-flower">✿</div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-time">10:00 PM</div>
+                    <h4 class="timeline-title">Firefly Farewell</h4>
+                    <p class="timeline-description">Sparkler send-off through the moonlit garden path</p>
+                </div>
+                <div class="timeline-flower">❀</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">❀</div>
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Questions? We'd love to hear from you</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card fade-in">
+                <h3>Emma</h3>
+                <p class="contact-role">Bride</p>
+                <div class="contact-links">
+                    <a href="mailto:emma@wedding.com" class="contact-link">
+                        <span>✉️</span>
+                        <span>emma@wedding.com</span>
+                    </a>
+                    <a href="tel:+1234567890" class="contact-link">
+                        <span>📱</span>
+                        <span>(123) 456-7890</span>
+                    </a>
+                    <a href="https://m.me/emma" class="contact-link">
+                        <span>💬</span>
+                        <span>Message Me</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-card fade-in">
+                <h3>James</h3>
+                <p class="contact-role">Groom</p>
+                <div class="contact-links">
+                    <a href="mailto:james@wedding.com" class="contact-link">
+                        <span>✉️</span>
+                        <span>james@wedding.com</span>
+                    </a>
+                    <a href="tel:+1234567891" class="contact-link">
+                        <span>📱</span>
+                        <span>(123) 456-7891</span>
+                    </a>
+                    <a href="https://m.me/james" class="contact-link">
+                        <span>💬</span>
+                        <span>Message Me</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-ornament">✿ ❀ ✿</div>
+        <p>© 2025 Emma & James • Where Love Blooms</p>
+    </footer>
+
+    <script>
+        // Fade in on scroll
+        function fadeInOnScroll() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight - 80 && elementBottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Throttle function
+        function throttle(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        const throttledFadeIn = throttle(fadeInOnScroll, 100);
+        window.addEventListener('scroll', throttledFadeIn);
+        
+        window.addEventListener('load', function() {
+            fadeInOnScroll();
+        });
+    </script>
 </body>
 </html>
