@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Minimalist Wedding</title>
+    <title>Emma & James - June 15, 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -39,14 +39,14 @@
         nav {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 24px 40px;
+            padding: clamp(16px, 3vh, 24px) clamp(20px, 5vw, 40px);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .nav-logo {
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             font-weight: 700;
             letter-spacing: -0.5px;
             color: #000;
@@ -54,16 +54,18 @@
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: clamp(20px, 4vw, 40px);
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #1a1a1a;
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 14px);
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            white-space: nowrap;
         }
 
         .nav-links a::after {
@@ -86,75 +88,60 @@
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            margin-top: 72px;
-            padding-top: 80px;
         }
 
         .hero-content {
-            padding: 80px;
+            padding: clamp(40px, 8vw, 80px);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200') center/cover;
+            background: linear-gradient(135deg, rgba(184, 149, 106, 0.95) 0%, rgba(154, 122, 82, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200') center/cover;
             color: #fff;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-content::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 0;
-        }
-
         .hero-label {
-            font-size: 12px;
+            font-size: clamp(10px, 2vw, 12px);
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
-            opacity: 0.9;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
+            opacity: 0.95;
+            margin-bottom: clamp(20px, 4vh, 40px);
         }
 
         .hero-names {
-            margin-bottom: 60px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: clamp(40px, 6vh, 60px);
         }
 
         .hero-names h1 {
-            font-size: 80px;
+            font-size: clamp(40px, 10vw, 80px);
             font-weight: 600;
             letter-spacing: -2px;
             line-height: 0.9;
             margin-bottom: 20px;
             text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            word-wrap: break-word;
         }
 
         .hero-divider {
-            width: 80px;
+            width: clamp(60px, 10vw, 80px);
             height: 3px;
             background: #fff;
-            margin: 40px 0;
-            position: relative;
-            z-index: 1;
+            margin: clamp(20px, 4vh, 40px) 0;
         }
 
         .hero-date {
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             font-weight: 500;
             letter-spacing: 0.5px;
-            position: relative;
-            z-index: 1;
         }
 
         .hero-image {
             background: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200') center/cover;
             position: relative;
+            min-height: 400px;
         }
 
         .hero-image::after {
@@ -166,19 +153,17 @@
 
         /* Gallery Section */
         .gallery-section {
-            padding: 120px 80px;
+            padding: clamp(60px, 12vh, 120px) clamp(20px, 5vw, 80px);
             background: #fff;
         }
 
         .section-header {
             max-width: 800px;
-            margin-bottom: 80px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: clamp(40px, 8vh, 80px);
         }
 
         .section-label {
-            font-size: 12px;
+            font-size: clamp(10px, 2vw, 12px);
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -187,17 +172,18 @@
         }
 
         .section-title {
-            font-size: 56px;
+            font-size: clamp(36px, 7vw, 56px);
             font-weight: 600;
             letter-spacing: -2px;
             margin-bottom: 20px;
             color: #1a1a1a;
+            word-wrap: break-word;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(15px, 2vw, 20px);
         }
 
         .gallery-item {
@@ -233,45 +219,46 @@
         }
 
         .split-content {
-            padding: 120px 80px;
+            padding: clamp(60px, 12vh, 120px) clamp(30px, 6vw, 80px);
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .split-content.dark {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        .split-content.accent {
+            background: linear-gradient(135deg, #b8956a 0%, #9a7a52 100%);
             color: #fff;
             position: relative;
             overflow: hidden;
         }
 
-        .split-content.dark::before {
+        .split-content.accent::before {
             content: '';
             position: absolute;
             top: -20%;
             right: -10%;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
             border-radius: 50%;
         }
 
         .split-content h2 {
-            font-size: 72px;
+            font-size: clamp(48px, 9vw, 72px);
             font-weight: 600;
             letter-spacing: -3px;
-            margin-bottom: 40px;
+            margin-bottom: clamp(30px, 5vh, 40px);
             position: relative;
             z-index: 1;
+            word-wrap: break-word;
         }
 
         .info-item {
-            margin-bottom: 40px;
-            padding-bottom: 40px;
+            margin-bottom: clamp(30px, 5vh, 40px);
+            padding-bottom: clamp(30px, 5vh, 40px);
             padding-left: 20px;
             border-left: 3px solid transparent;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
@@ -287,22 +274,24 @@
         }
 
         .info-label {
-            font-size: 12px;
+            font-size: clamp(10px, 2vw, 12px);
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.5;
+            opacity: 0.7;
             margin-bottom: 12px;
         }
 
         .info-value {
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             font-weight: 400;
             line-height: 1.6;
+            word-wrap: break-word;
         }
 
         .map-embed {
             background: #e0e0e0;
+            min-height: 400px;
         }
 
         .map-embed iframe {
@@ -313,7 +302,7 @@
 
         /* Dress Code & Registry Sections */
         .content-section {
-            padding: 120px 80px;
+            padding: clamp(60px, 12vh, 120px) clamp(20px, 5vw, 80px);
             background: #f8f8f8;
         }
 
@@ -323,14 +312,14 @@
 
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(30px, 6vw, 60px);
             max-width: 1200px;
-            margin: 80px auto 0;
+            margin: clamp(40px, 8vh, 80px) auto 0;
         }
 
         .content-item {
-            padding: 40px;
+            padding: clamp(30px, 5vw, 40px);
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
@@ -347,13 +336,14 @@
         }
 
         .content-item h3 {
-            font-size: 24px;
+            font-size: clamp(20px, 4vw, 24px);
             font-weight: 600;
             margin-bottom: 20px;
+            word-wrap: break-word;
         }
 
         .content-item p {
-            font-size: 16px;
+            font-size: clamp(14px, 2.5vw, 16px);
             line-height: 1.8;
             color: #666;
             margin-bottom: 12px;
@@ -362,14 +352,18 @@
         .registry-list {
             list-style: none;
             padding: 0;
+            max-width: 800px;
+            margin: clamp(40px, 8vh, 80px) auto 0;
         }
 
         .registry-list li {
-            padding: 20px 0;
+            padding: clamp(15px, 3vh, 20px) 0;
             border-bottom: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .registry-list li:last-child {
@@ -377,44 +371,46 @@
         }
 
         .registry-info h4 {
-            font-size: 18px;
+            font-size: clamp(16px, 3vw, 18px);
             font-weight: 600;
             margin-bottom: 4px;
+            word-wrap: break-word;
         }
 
         .registry-info p {
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 14px);
             color: #999;
             margin: 0;
         }
 
         .registry-link {
             padding: 10px 24px;
-            background: #000;
+            background: #b8956a;
             color: #fff;
             text-decoration: none;
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 14px);
             border-radius: 6px;
             transition: all 0.3s ease;
             display: inline-block;
+            white-space: nowrap;
         }
 
         .registry-link:hover {
-            background: #333;
+            background: #9a7a52;
         }
 
         /* Timeline Section */
         .timeline-section {
-            padding: 120px 80px;
+            padding: clamp(60px, 12vh, 120px) clamp(20px, 5vw, 80px);
             max-width: 1000px;
             margin: 0 auto;
         }
 
         .timeline-item {
             display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 60px;
-            padding: 40px;
+            grid-template-columns: clamp(80px, 15vw, 120px) 1fr;
+            gap: clamp(30px, 6vw, 60px);
+            padding: clamp(20px, 4vh, 40px);
             border-radius: 12px;
             margin-bottom: 20px;
             transition: all 0.3s ease;
@@ -423,36 +419,34 @@
 
         .timeline-item:hover {
             background: #f8f8f8;
-            border-left-color: #000;
+            border-left-color: #b8956a;
             transform: translateX(10px);
         }
 
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
         .timeline-time {
-            font-size: 28px;
+            font-size: clamp(20px, 4vw, 28px);
             font-weight: 700;
-            color: #000;
+            color: #b8956a;
         }
 
         .timeline-details h3 {
-            font-size: 20px;
+            font-size: clamp(18px, 3vw, 20px);
             font-weight: 600;
             margin-bottom: 8px;
+            word-wrap: break-word;
         }
 
         .timeline-details p {
             color: #666;
             line-height: 1.8;
+            font-size: clamp(14px, 2.5vw, 16px);
         }
 
         /* Contact Section */
         .contact-section {
-            background: #000;
-            color: #fff;
-            padding: 120px 80px;
+            background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%);
+            color: #1a1a1a;
+            padding: clamp(60px, 12vh, 120px) clamp(20px, 5vw, 80px);
             position: relative;
             overflow: hidden;
         }
@@ -464,38 +458,40 @@
             left: -10%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(184, 149, 106, 0.1) 0%, transparent 70%);
             border-radius: 50%;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(40px, 8vw, 80px);
             max-width: 1000px;
-            margin: 80px auto 0;
+            margin: clamp(40px, 8vh, 80px) auto 0;
             position: relative;
             z-index: 1;
         }
 
         .contact-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
+            background: #fff;
+            padding: clamp(30px, 5vw, 40px);
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(184, 149, 106, 0.2);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .contact-card:hover {
             transform: translateY(-8px);
-            background: rgba(255,255,255,0.15);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
         }
 
         .contact-card h3 {
-            font-size: 36px;
+            font-size: clamp(28px, 5vw, 36px);
             font-weight: 600;
             margin-bottom: 30px;
+            color: #1a1a1a;
+            word-wrap: break-word;
         }
 
         .contact-list {
@@ -504,116 +500,71 @@
 
         .contact-list li {
             padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .contact-list li:last-child {
+            border-bottom: none;
         }
 
         .contact-list a {
-            color: #fff;
+            color: #1a1a1a;
             text-decoration: none;
-            font-size: 16px;
-            transition: opacity 0.3s;
+            font-size: clamp(14px, 2.5vw, 16px);
+            transition: color 0.3s;
+            word-wrap: break-word;
+            display: block;
         }
 
         .contact-list a:hover {
-            opacity: 0.6;
+            color: #b8956a;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #b8956a 0%, #9a7a52 100%);
             color: #fff;
-            padding: 80px 80px 60px;
+            padding: clamp(40px, 8vh, 80px) clamp(20px, 5vw, 80px) clamp(30px, 6vh, 60px);
             text-align: center;
         }
 
         footer p {
-            font-size: 14px;
-            opacity: 0.7;
+            font-size: clamp(12px, 2vw, 14px);
+            opacity: 0.9;
         }
 
-        /* Mobile */
+        /* Mobile Optimizations */
         @media (max-width: 768px) {
-            nav {
-                padding: 20px;
-            }
-
-            .nav-links {
-                gap: 20px;
-                font-size: 12px;
-            }
-
             .hero {
                 grid-template-columns: 1fr;
-                margin-top: 60px;
-            }
-
-            .hero-content {
-                padding: 60px 30px;
-            }
-
-            .hero-names h1 {
-                font-size: 48px;
             }
 
             .hero-image {
-                min-height: 400px;
-            }
-
-            .gallery-section {
-                padding: 80px 30px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+                min-height: 350px;
             }
 
             .split-section {
                 grid-template-columns: 1fr;
             }
 
-            .split-content {
-                padding: 80px 30px;
-            }
-
-            .split-content h2 {
-                font-size: 40px;
-            }
-
-            .timeline-section {
-                padding: 80px 30px;
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
 
             .timeline-item {
-                grid-template-columns: 80px 1fr;
-                gap: 30px;
-                padding: 30px 0;
+                grid-template-columns: 70px 1fr;
+                gap: 20px;
             }
 
-            .timeline-time {
-                font-size: 18px;
+            .nav-links {
+                gap: 15px;
             }
+        }
 
-            .contact-section {
-                padding: 80px 30px;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .content-section {
-                padding: 80px 30px;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            footer {
-                padding: 40px 30px;
+        @media (max-width: 480px) {
+            .timeline-item {
+                grid-template-columns: 60px 1fr;
+                padding: 15px;
             }
         }
     </style>
@@ -657,29 +608,29 @@
 
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600" alt="Couple">
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=85" alt="Couple photo">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600" alt="Couple">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=85" alt="Couple photo">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="Couple">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=85" alt="Couple photo">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Couple">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=85" alt="Couple photo">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1594842645299-4f8f85c62be5?w=600" alt="Couple">
+                <img src="https://images.unsplash.com/photo-1594842645299-4f8f85c62be5?w=600&q=85" alt="Couple photo">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600" alt="Couple">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=85" alt="Couple photo">
             </div>
         </div>
     </section>
 
     <!-- Location Section -->
     <section id="details" class="split-section">
-        <div class="split-content dark">
+        <div class="split-content accent">
             <div class="section-label">02 — Location</div>
             <h2>Where</h2>
             
@@ -734,7 +685,7 @@
             <h2 class="section-title">Gift registry</h2>
         </div>
 
-        <ul class="registry-list" style="max-width: 800px; margin: 80px auto 0;">
+        <ul class="registry-list">
             <li>
                 <div class="registry-info">
                     <h4>Home Essentials</h4>
@@ -818,7 +769,7 @@
     <section id="contact" class="contact-section">
         <div class="section-header">
             <div class="section-label">06 — Contact</div>
-            <h2 class="section-title" style="color: #fff;">Get in touch</h2>
+            <h2 class="section-title">Get in touch</h2>
         </div>
 
         <div class="contact-grid">
@@ -843,7 +794,7 @@
     </section>
 
     <footer>
-        <p>© 2025 Emma & James</p>
+        <p>© 2025 Emma & James • Celebrating Love</p>
     </footer>
 
     <script>
@@ -898,7 +849,7 @@
                 const footer = document.querySelector('footer p');
                 if (footer) {
                     const year = new Date(date || Date.now()).getFullYear();
-                    footer.textContent = `© ${year} ${bride} & ${groom}`;
+                    footer.textContent = `© ${year} ${bride} & ${groom} • Celebrating Love`;
                 }
             }
         });

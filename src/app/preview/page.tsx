@@ -229,7 +229,7 @@ export default function PreviewPage() {
               </div>
 
               {/* Template Preview */}
-              <div className="bg-brand-accent/5 p-6 flex items-center justify-center min-h-[calc(100vh-200px)]">
+              <div className="bg-brand-accent/5 px-6 flex items-center justify-center min-h-[calc(100vh-200px)]">
                 <motion.div
                   key={`${template}-${device}`}
                   initial={{ opacity: 0, scale: 0.95 }}
