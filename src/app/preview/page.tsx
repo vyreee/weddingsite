@@ -229,7 +229,7 @@ export default function PreviewPage() {
               </div>
 
               {/* Template Preview */}
-              <div className="bg-brand-accent/5 px-6 flex items-center justify-center min-h-[calc(100vh-200px)]">
+              <div className="bg-brand-accent/5 flex justify-center">
                 <motion.div
                   key={`${template}-${device}`}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -237,7 +237,7 @@ export default function PreviewPage() {
                   transition={{ duration: 0.3 }}
                   className={`bg-white shadow-2xl overflow-hidden ${
                     device === "desktop" 
-                      ? "w-full rounded-lg" 
+                      ? "w-full h-[calc(100vh-280px)] rounded-lg" 
                       : "w-[375px] h-[667px] rounded-[2.5rem] border-8 border-gray-800"
                   }`}
                 >
@@ -248,7 +248,7 @@ export default function PreviewPage() {
                     onLoad={sendDataToIframe}
                     className="w-full h-full border-0"
                     style={{
-                      height: device === "desktop" ? "calc(100vh - 280px)" : "100%",
+                      height: "100%",
                       minHeight: device === "desktop" ? "600px" : "auto"
                     }}
                     title={`${currentTemplate.name} Preview`}
