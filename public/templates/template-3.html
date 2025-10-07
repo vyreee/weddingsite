@@ -760,11 +760,11 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-ornament">✿ ❀ ✿</div>
-            <h1>Emma</h1>
+            <h1 data-bride-name>Emma</h1>
             <div class="hero-ampersand">&</div>
-            <h1>James</h1>
+            <h1 data-groom-name>James</h1>
             <div class="hero-divider"></div>
-            <p class="hero-date">June 15, 2025 • Garden Estate</p>
+            <p class="hero-date" data-wedding-date>June 15, 2025 • Garden Estate</p>
         </div>
     </section>
 
@@ -996,7 +996,7 @@
 
         <div class="contact-grid">
             <div class="contact-card fade-in">
-                <h3>Emma</h3>
+                <h3 data-bride-name>Emma</h3>
                 <p class="contact-role">Bride</p>
                 <div class="contact-links">
                     <a href="mailto:emma@wedding.com" class="contact-link">
@@ -1015,7 +1015,7 @@
             </div>
 
             <div class="contact-card fade-in">
-                <h3>James</h3>
+                <h3 data-groom-name>James</h3>
                 <p class="contact-role">Groom</p>
                 <div class="contact-links">
                     <a href="mailto:james@wedding.com" class="contact-link">
@@ -1038,7 +1038,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-ornament">✿ ❀ ✿</div>
-        <p>© 2025 Emma & James • Where Love Blooms</p>
+        <p>© 2025 <span data-bride-name>Emma</span> & <span data-groom-name>James</span> • Where Love Blooms</p>
     </footer>
 
     <script>
@@ -1074,6 +1074,40 @@
         
         window.addEventListener('load', function() {
             fadeInOnScroll();
+        });
+
+        // Listen for customization updates from parent
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'UPDATE_WEDDING_DATA') {
+                const { bride, groom, date } = event.data;
+                
+                // Update bride name
+                if (bride) {
+                    document.querySelectorAll('[data-bride-name]').forEach(el => {
+                        el.textContent = bride;
+                    });
+                }
+                
+                // Update groom name
+                if (groom) {
+                    document.querySelectorAll('[data-groom-name]').forEach(el => {
+                        el.textContent = groom;
+                    });
+                }
+                
+                // Update wedding date
+                if (date) {
+                    const dateObj = new Date(date);
+                    const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+                    document.querySelectorAll('[data-wedding-date]').forEach(el => {
+                        el.textContent = formattedDate + ' • Garden Estate';
+                    });
+                }
+            }
         });
     </script>
 </body>
