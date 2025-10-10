@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState("");
 
   const navLinks = [
     { href: "#features", label: "Features" },
@@ -18,6 +19,29 @@ export function Header() {
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
   };
+
+  // Track active section on scroll
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map(link => link.href.substring(1));
+      const scrollPosition = window.scrollY + 100; // Offset for header
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(`#${section}`);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on mount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close mobile menu on resize to desktop
   React.useEffect(() => {
@@ -59,8 +83,21 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm text-brand-dark/80">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-brand-primary transition-colors">
+            <Link 
+              key={link.href} 
+              href={link.href} 
+              className={`hover:text-brand-primary transition-colors relative ${
+                activeSection === link.href ? 'text-brand-primary font-semibold' : ''
+              }`}
+            >
               {link.label}
+              {activeSection === link.href && (
+                <motion.div
+                  layoutId="activeSection"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </Link>
           ))}
         </nav>
@@ -101,7 +138,11 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={handleLinkClick}
-                  className="text-brand-dark/80 hover:text-brand-primary py-2 text-base transition-colors"
+                  className={`py-2 text-base transition-colors ${
+                    activeSection === link.href 
+                      ? 'text-brand-primary font-semibold border-l-4 border-brand-primary pl-3' 
+                      : 'text-brand-dark/80 hover:text-brand-primary'
+                  }`}
                 >
                   {link.label}
                 </Link>
