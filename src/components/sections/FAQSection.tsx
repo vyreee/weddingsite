@@ -19,7 +19,7 @@ const faqCategories = [
       },
       { 
         q: "What's the difference between the three packages?", 
-        a: "Luxury ($45/₱2,499) - Perfect if you want something beautiful and budget-friendly. Pick from 3 templates, choose 4 sections, 1 revision included. Live in 3-7 days. Elegant ($100/₱4,999) - Our most popular! Pick from 10 templates, get ALL 8 sections included, 2 revisions included, priority support. Live in 3 days. Prestige (Custom Quote) - For couples who want something totally unique. Unlimited revisions, custom design, dedicated support, your own features." 
+        a: "<ul class='space-y-3 mt-2'><li><strong>Luxury ($45/₱2,499)</strong> - Perfect if you want something beautiful and budget-friendly. Pick from 3 templates, choose 4 sections, 1 revision included. Live in 3-7 days.</li><li><strong>Elegant ($100/₱4,999)</strong> - Our most popular! Pick from 10 templates, get ALL 8 sections included, 2 revisions included, priority support. Live in 3 days.</li><li><strong>Prestige (Custom Quote)</strong> - For couples who want something totally unique. Unlimited revisions, custom design, dedicated support, your own features.</li></ul>" 
       },
       { 
         q: "Do I need to know anything about websites or coding?", 
@@ -40,7 +40,7 @@ const faqCategories = [
       },
       { 
         q: "How do I choose my website name?", 
-        a: "Pick something memorable! Popular choices: your names together (emmaandjames), a special date (june152025), your hashtag (teamsmith), or something creative (foreverandalways)." 
+        a: "Pick something memorable! <strong>Popular choices:</strong><ul class='mt-2 space-y-1'><li>• Your names together (emmaandjames)</li><li>• A special date (june152025)</li><li>• Your hashtag (teamsmith)</li><li>• Something creative (foreverandalways)</li></ul>" 
       },
       { 
         q: "Can I change my website name later?", 
@@ -65,7 +65,7 @@ const faqCategories = [
       },
       { 
         q: "What sections are included on my website?", 
-        a: "We have 8 sections available: Hero/Header (your names and wedding date), Our Story (your love story with photo gallery), Venue (location, map, and directions), Dress Code (what guests should wear), Gift Registry (your registries with links), Countdown (days until your wedding), Event Schedule (timeline of your wedding day), FAQs (answer common guest questions), and Contact (how to reach you). Luxury Package: Choose 4 sections. Elegant Package: Get ALL 8 sections. Prestige Package: All sections + custom sections you create." 
+        a: "We have <strong>8 sections available:</strong><ul class='mt-2 space-y-1'><li>• <strong>Hero/Header</strong> - Your names and wedding date</li><li>• <strong>Our Story</strong> - Your love story with photo gallery</li><li>• <strong>Venue</strong> - Location, map, and directions</li><li>• <strong>Dress Code</strong> - What guests should wear</li><li>• <strong>Gift Registry</strong> - Your registries with links</li><li>• <strong>Countdown</strong> - Days until your wedding</li><li>• <strong>Event Schedule</strong> - Timeline of your wedding day</li><li>• <strong>FAQs</strong> - Answer common guest questions</li><li>• <strong>Contact</strong> - How to reach you</li></ul><p class='mt-3'><strong>Luxury Package:</strong> Choose 4 sections<br/><strong>Elegant Package:</strong> Get ALL 8 sections<br/><strong>Prestige Package:</strong> All sections + custom sections you create</p>" 
       },
     ]
   },
@@ -74,7 +74,7 @@ const faqCategories = [
     faqs: [
       { 
         q: "How long until my website is ready?", 
-        a: "Luxury: 3-7 days. Elegant: 3 days. Prestige: Depends on customization, discussed in consultation." 
+        a: "<ul class='space-y-1'><li><strong>Luxury:</strong> 3-7 days</li><li><strong>Elegant:</strong> 3 days</li><li><strong>Prestige:</strong> Depends on customization, discussed in consultation</li></ul>" 
       },
       { 
         q: "What if my wedding is in 2 days?!", 
@@ -82,7 +82,7 @@ const faqCategories = [
       },
       { 
         q: "How long will my website stay live?", 
-        a: "Luxury: 30 days (1 month). Elegant: 45 days (can extend for additional fee). Prestige: Extended hosting included." 
+        a: "<ul class='space-y-1'><li><strong>Luxury:</strong> 30 days (1 month)</li><li><strong>Elegant:</strong> 45 days (can extend for additional fee)</li><li><strong>Prestige:</strong> Extended hosting included</li></ul>" 
       },
       { 
         q: "What happens after my time expires?", 
@@ -95,7 +95,7 @@ const faqCategories = [
     faqs: [
       { 
         q: "What counts as a 'revision'?", 
-        a: "One round of changes. For example: 'Change the story text, swap out 3 photos, and fix a typo' = 1 revision. Each time you send us a new list of changes counts as one revision." 
+        a: "<strong>One round of changes.</strong> For example: <em>'Change the story text, swap out 3 photos, and fix a typo'</em> = 1 revision. Each time you send us a new list of changes counts as one revision." 
       },
       { 
         q: "What if I need more revisions than my package includes?", 
@@ -141,7 +141,7 @@ const faqCategories = [
     faqs: [
       { 
         q: "Are there any hidden fees?", 
-        a: "Nope! The only additional costs might be: Additional revisions beyond what's included (₱500 each), Extending your hosting (₱500/month), Rush service (₱1,000 for 24-48 hour delivery), Password protection (₱500 one-time fee), Your own custom domain if you want one (you purchase this separately, around $10-15/year - Prestige only)." 
+        a: "<strong>Nope!</strong> The only additional costs might be:<ul class='mt-2 space-y-1'><li>• Additional revisions beyond what's included (<strong>₱500 each</strong>)</li><li>• Extending your hosting (<strong>₱500/month</strong>)</li><li>• Rush service (<strong>₱1,000</strong> for 24-48 hour delivery)</li><li>• Password protection (<strong>₱500</strong> one-time fee)</li><li>• Your own custom domain if you want one (you purchase this separately, around <strong>$10-15/year</strong> - Prestige only)</li></ul>" 
       },
       { 
         q: "What's your refund policy?", 
@@ -191,7 +191,7 @@ const faqCategories = [
       },
       { 
         q: "Do you create wedding invitations too?", 
-        a: "We don't create physical invitations, but we do something even better! We'll design a beautiful, custom digital card/graphic for you that includes a QR code linking directly to your wedding website. This professionally designed image is perfect for: Sharing on social media (Instagram stories, Facebook posts), Sending via WhatsApp, Messenger, or text, Including in your physical invitations, Email announcements. Your guests simply scan the QR code with their phone camera and they're taken straight to your wedding website - no typing needed! This is included FREE with all packages!" 
+        a: "We don't create physical invitations, but we do something even better! We'll design a beautiful, <strong>custom digital card/graphic</strong> for you that includes a <strong>QR code</strong> linking directly to your wedding website.<p class='mt-2'>This professionally designed image is perfect for:</p><ul class='mt-2 space-y-1'><li>• Sharing on social media (Instagram stories, Facebook posts)</li><li>• Sending via WhatsApp, Messenger, or text</li><li>• Including in your physical invitations</li><li>• Email announcements</li></ul><p class='mt-2'>Your guests simply scan the QR code with their phone camera and they're taken straight to your wedding website - no typing needed! <strong>This is included FREE with all packages!</strong></p>" 
       },
     ]
   },
@@ -208,7 +208,7 @@ const faqCategories = [
       },
       { 
         q: "What if I have questions after my site goes live?", 
-        a: "Luxury: Email support. Elegant: Priority email support. Prestige: Dedicated support (phone, WhatsApp, email)." 
+        a: "<ul class='space-y-1'><li><strong>Luxury:</strong> Email support</li><li><strong>Elegant:</strong> Priority email support</li><li><strong>Prestige:</strong> Dedicated support (phone, WhatsApp, email)</li></ul>" 
       },
     ]
   },
@@ -228,25 +228,57 @@ export default function FAQSection() {
       >
         Frequently Asked Questions
       </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-center text-brand-dark/70 mt-2 mb-8"
+      >
+        Everything You Need to Know About Our Service
+      </motion.p>
+      
+      <div className="space-y-8">
+        {faqCategories.map((category, catIndex) => (
+          <motion.div
+            key={catIndex}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: catIndex * 0.05, duration: 0.5 }}
+          >
+            <h3 className="text-xl font-semibold text-brand-primary mb-3 uppercase tracking-wide">
+              {category.category}
+            </h3>
+            <Accordion type="single" collapsible className="rounded-xl border border-brand-secondary/30 bg-white/90">
+              {category.faqs.map((f, i) => (
+                <AccordionItem key={i} value={`item-${catIndex}-${i}`} className="px-5">
+                  <AccordionTrigger className="text-base font-medium text-brand-dark hover:text-brand-primary text-left">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-brand-dark/80 leading-relaxed">
+                    <div dangerouslySetInnerHTML={{ __html: f.a }} />
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        ))}
+      </div>
+      
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
-        className="mt-8"
+        viewport={{ once: true, amount: 0.8 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="mt-12 p-6 bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 rounded-xl border border-brand-primary/20"
       >
-        <Accordion type="single" collapsible className="rounded-xl border border-brand-secondary/30 bg-white/90">
-          {faqs.map((f, i) => (
-            <AccordionItem key={i} value={`item-${i}`} className="px-5">
-              <AccordionTrigger className="text-base font-medium text-brand-dark hover:text-brand-primary">
-                {f.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm text-brand-dark/80">
-                {f.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <h3 className="text-xl font-semibold text-brand-primary mb-3">Still Have Questions?</h3>
+        <p className="text-brand-dark/80 mb-4">We're here to help! Reach out to us:</p>
+        <ul className="space-y-2 text-sm text-brand-dark/80">
+          <li><strong>Email:</strong> hello@fromthisday.com</li>
+          <li><strong>Response Time:</strong> Within 24 hours (faster for Elegant & Prestige customers)</li>
+        </ul>
       </motion.div>
     </section>
   );
