@@ -420,9 +420,20 @@
             box-shadow: 0 15px 40px rgba(212, 103, 123, 0.3);
         }
 
-        .dresscode-icon {
-            font-size: clamp(40px, 8vw, 60px);
-            margin-bottom: 20px;
+        .dresscode-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 3px solid var(--sage-light);
+            transition: all 0.3s ease;
+        }
+
+        .dresscode-card:hover .dresscode-image {
+            border-color: var(--rose);
+            transform: scale(1.02);
         }
 
         .dresscode-card h3 {
@@ -674,6 +685,138 @@
             color: var(--sage-dark);
         }
 
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(135deg, var(--sage-dark) 0%, var(--sage) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: clamp(20px, 4vw, 30px);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: clamp(25px, 4vw, 35px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '✿';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 60px;
+            color: var(--rose);
+            opacity: 0.2;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--rose);
+        }
+
+        .countdown-number {
+            font-size: clamp(48px, 10vw, 64px);
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: clamp(12px, 2vw, 14px);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--ivory);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--sage-light);
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        .faq-item:hover {
+            border-color: var(--rose);
+            box-shadow: 0 8px 25px rgba(212, 103, 123, 0.2);
+        }
+
+        .faq-question {
+            background: var(--cream);
+            padding: clamp(20px, 4vw, 28px);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--ivory);
+        }
+
+        .faq-question h3 {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--sage-dark);
+            font-weight: 500;
+            margin: 0;
+            font-family: 'Cinzel', serif;
+        }
+
+        .faq-icon {
+            font-size: clamp(24px, 3vw, 28px);
+            color: var(--rose);
+            transition: transform 0.3s ease;
+            font-weight: 300;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: var(--ivory);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: clamp(20px, 4vw, 28px);
+        }
+
+        .faq-answer p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            line-height: 1.9;
+            color: var(--text-light);
+            margin: 0;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--sage-dark) 0%, var(--sage) 50%, var(--terracotta) 100%);
@@ -694,8 +837,79 @@
             letter-spacing: 1px;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 15px;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1002;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(90, 122, 82, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--sage-dark);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Mobile Optimizations */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 240px;
+                height: 100vh;
+                background: var(--ivory);
+                flex-direction: column;
+                padding: 80px 20px 30px;
+                gap: 12px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 20px rgba(90, 122, 82, 0.2);
+                border-left: 3px solid var(--sage);
+                overflow-y: auto;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav a {
+                font-size: 14px;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--sage-light);
+                width: 100%;
+            }
+
+            nav a::after {
+                display: none;
+            }
             .timeline::before {
                 left: 20px;
             }
@@ -745,13 +959,20 @@
 </head>
 <body>
     <header>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <a href="#story">Our Story</a>
             <a href="#gallery">Gallery</a>
             <a href="#venue">Venue</a>
             <a href="#attire">Attire</a>
             <a href="#registry">Registry</a>
+            <a href="#countdown">Countdown</a>
             <a href="#schedule">Schedule</a>
+            <a href="#faqs">FAQs</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -861,7 +1082,7 @@
 
         <div class="dresscode-content">
             <div class="dresscode-card fade-in">
-                <div class="dresscode-icon">👗</div>
+                <div class="dresscode-image" style="background-image: url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=85');"></div>
                 <h3>For Her</h3>
                 <p><strong>Garden Formal</strong></p>
                 <p>Flowing midi or maxi dresses in floral prints or soft pastels. Think romantic garden party with elegant touches.</p>
@@ -869,7 +1090,7 @@
             </div>
 
             <div class="dresscode-card fade-in">
-                <div class="dresscode-icon">🎩</div>
+                <div class="dresscode-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85');"></div>
                 <h3>For Him</h3>
                 <p><strong>Garden Formal</strong></p>
                 <p>Light-colored suits or dress shirts with slacks. Linen or cotton works beautifully.</p>
@@ -877,7 +1098,7 @@
             </div>
 
             <div class="dresscode-card fade-in">
-                <div class="dresscode-icon">🎨</div>
+                <div class="dresscode-image" style="background-image: url('https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=600&q=85');"></div>
                 <h3>Color Palette</h3>
                 <p><strong>Embrace Nature's Hues</strong></p>
                 <p>Sage green, dusty rose, lavender, cream, and soft florals perfectly complement our garden venue.</p>
@@ -917,6 +1138,34 @@
                 <h3>🌱 Seeds of Love</h3>
                 <p>Contribute to our garden fund and help us plant new memories</p>
                 <a href="#" class="btn">Contribute</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament" style="color: rgba(255,255,255,0.8);">✿</div>
+            <h2 class="section-title" style="color: white;">Counting Down</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Until our garden celebration</p>
+        </div>
+
+        <div class="countdown-grid">
+            <div class="countdown-item fade-in">
+                <div class="countdown-number" id="days">0</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item fade-in">
+                <div class="countdown-number" id="hours">0</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item fade-in">
+                <div class="countdown-number" id="minutes">0</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item fade-in">
+                <div class="countdown-number" id="seconds">0</div>
+                <div class="countdown-label">Seconds</div>
             </div>
         </div>
     </section>
@@ -982,6 +1231,87 @@
                     <p class="timeline-description">Sparkler send-off through the moonlit garden path</p>
                 </div>
                 <div class="timeline-flower">❀</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="faq-section">
+        <div class="section-header fade-in">
+            <div class="section-ornament">❀</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <h3>What should I wear?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Garden Formal attire is requested. Think romantic garden party with elegant touches. Flowing dresses in florals or soft pastels for ladies, light-colored suits for gentlemen. See our Dress Code section for details.</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <h3>Will transportation be provided?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Complimentary shuttle service from select hotels and valet parking will be available. Details will be included with your invitation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <h3>Can I bring a plus-one?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>If your invitation includes "and guest," you're welcome to bring someone special. Otherwise, we hope you'll enjoy celebrating with our wonderful guests!</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <h3>Are children welcome?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We've decided to make our wedding an adults-only celebration to allow parents a wonderful night out. We appreciate your understanding!</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <h3>What time should I arrive?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Please arrive by 3:30 PM for welcome drinks in the rose garden. The ceremony begins promptly at 4:00 PM beneath the flowering arbor.</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <h3>Will the ceremony be indoors or outdoors?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our ceremony will be in the beautiful garden surrounded by blooms. We have a covered garden pavilion as backup for weather. The reception will be in our elegant garden terrace.</p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <div class="faq-question">
+                    <h3>Will there be food and drinks?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! Farm-to-table dinner featuring locally-sourced seasonal cuisine, plus cocktails and artisan hors d'oeuvres. Open bar throughout. Please inform us of dietary needs when you RSVP.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1071,6 +1401,63 @@
 
         const throttledFadeIn = throttle(fadeInOnScroll, 100);
         window.addEventListener('scroll', throttledFadeIn);
+
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('2025-06-15T16:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days >= 0 ? days : 0;
+            document.getElementById('hours').textContent = hours >= 0 ? hours : 0;
+            document.getElementById('minutes').textContent = minutes >= 0 ? minutes : 0;
+            document.getElementById('seconds').textContent = seconds >= 0 ? seconds : 0;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const wasActive = faqItem.classList.contains('active');
+                
+                // Close all FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!wasActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
         
         window.addEventListener('load', function() {
             fadeInOnScroll();

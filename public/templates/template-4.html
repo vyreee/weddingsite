@@ -733,6 +733,303 @@
             line-height: 1.8;
         }
 
+        /* Registry Section */
+        .registry-section {
+            padding: 150px 60px;
+            background: var(--cream);
+        }
+
+        .registry-grid {
+            max-width: 1200px;
+            margin: clamp(40px, 8vh, 80px) auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .registry-card {
+            background: #fff;
+            padding: clamp(35px, 6vw, 50px);
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .registry-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .registry-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .registry-icon {
+            font-size: 48px;
+            margin-bottom: 25px;
+        }
+
+        .registry-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .registry-card p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .registry-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--gold);
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .registry-btn:hover {
+            background: var(--dark-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 150px 60px;
+            background: #fff;
+        }
+
+        .contact-grid {
+            max-width: 1000px;
+            margin: clamp(40px, 8vh, 80px) auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--cream);
+            border-radius: 4px;
+            border: 1px solid var(--light-gray);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .contact-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .contact-card h3 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .contact-role {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .contact-list li:last-child {
+            border-bottom: none;
+        }
+
+        .contact-list a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 15px;
+        }
+
+        .contact-list a:hover {
+            color: var(--gold);
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            padding: 150px 60px;
+            background: var(--dark);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+        }
+
+        .countdown-grid {
+            max-width: 900px;
+            margin: clamp(40px, 8vh, 80px) auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: clamp(30px, 5vw, 45px);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .countdown-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .countdown-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .countdown-number {
+            font-size: clamp(48px, 10vw, 64px);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            margin-bottom: 10px;
+            line-height: 1;
+            color: var(--gold);
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 150px 60px;
+            background: var(--cream);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: clamp(40px, 8vh, 80px) auto 0;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+            background: #fff;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .faq-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-item:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            padding: clamp(20px, 4vw, 28px);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--cream);
+        }
+
+        .faq-question h3 {
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 500;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            color: var(--gold);
+            transition: transform 0.3s ease;
+            font-weight: 300;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 clamp(20px, 4vw, 28px) clamp(20px, 4vw, 28px);
+        }
+
+        .faq-answer p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin: 0;
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -836,6 +1133,60 @@
             transform: translateY(0);
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 15px;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1003;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .hamburger {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        header:not(.scrolled) .hamburger {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        header.scrolled .hamburger span {
+            background: var(--dark);
+        }
+
+        header:not(.scrolled) .hamburger span {
+            background: #fff;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Mobile Responsive */
         @media (max-width: 1024px) {
             .about-container {
@@ -876,6 +1227,10 @@
         }
 
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
             header {
                 padding: 20px 30px;
             }
@@ -889,11 +1244,34 @@
             }
 
             .nav-links {
-                gap: 25px;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 240px;
+                height: 100vh;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 80px 20px 40px;
+                gap: 12px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                right: 0;
             }
 
             .nav-links a {
-                font-size: 11px;
+                font-size: 14px;
+                color: #fff !important;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                width: 100%;
+            }
+
+            .nav-links a::after {
+                background: var(--gold);
             }
 
             .about-section,
@@ -935,11 +1313,20 @@
     <header>
         <nav>
             <div class="nav-logo">E & J</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#gallery">Gallery</a>
                 <a href="#details">Details</a>
+                <a href="#registry">Registry</a>
+                <a href="#countdown">Countdown</a>
                 <a href="#program">Program</a>
+                <a href="#faqs">FAQs</a>
+                <a href="#contact">Contact</a>
             </div>
         </nav>
     </header>
@@ -1090,6 +1477,71 @@
         </div>
     </section>
 
+    <!-- Registry Section -->
+    <section id="registry" class="registry-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number">04 — Registry</span>
+            <h2 class="section-title">Gift Registry</h2>
+        </div>
+
+        <div class="registry-grid">
+            <div class="registry-card">
+                <div class="registry-icon">🏠</div>
+                <h3>Home Essentials</h3>
+                <p>Help us create our dream home with curated selections from Crate & Barrel</p>
+                <a href="#" class="registry-btn">View Registry</a>
+            </div>
+
+            <div class="registry-card">
+                <div class="registry-icon">✈️</div>
+                <h3>Honeymoon Fund</h3>
+                <p>Contribute to our Italian escape—from Rome to the Amalfi Coast</p>
+                <a href="#" class="registry-btn">Contribute</a>
+            </div>
+
+            <div class="registry-card">
+                <div class="registry-icon">🍽️</div>
+                <h3>Kitchen & Dining</h3>
+                <p>Gourmet tools and tableware for hosting memorable dinners</p>
+                <a href="#" class="registry-btn">View Registry</a>
+            </div>
+
+            <div class="registry-card">
+                <div class="registry-icon">🎨</div>
+                <h3>Art & Decor</h3>
+                <p>Beautiful pieces to personalize our space together</p>
+                <a href="#" class="registry-btn">View Registry</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number" style="color: var(--gold);">05 — Countdown</span>
+            <h2 class="section-title" style="color: #fff;">Until We Say "I Do"</h2>
+        </div>
+
+        <div class="countdown-grid">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">0</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">0</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">0</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">0</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Program Section -->
     <section id="program" class="program-section">
         <div class="section-title-wrapper reveal">
@@ -1144,6 +1596,118 @@
                 <p class="timeline-description">
                     A magical sparkler send-off as we begin our new journey together. Thank you for celebrating with us!
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="faq-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number">07 — Questions</span>
+            <h2 class="section-title">Frequently Asked</h2>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What should I wear?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Beach Formal Elegance is requested. Think sophisticated yet comfortable for our seaside celebration. Light, flowing fabrics work beautifully. See our Details section for complete dress code guidance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Will transportation be provided?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Complimentary shuttle service from select hotels and valet parking will be available. Details will be included with your invitation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I bring a plus-one?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>If your invitation includes "and guest," you're welcome to bring someone special. Otherwise, we hope you'll enjoy celebrating with our wonderful guests!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Are children welcome?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We've decided to make our wedding an adults-only celebration to allow parents a wonderful night out. We appreciate your understanding!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What time should I arrive?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Please arrive by 3:30 PM for welcome drinks and to find your seats. The ceremony begins promptly at 4:00 PM with beautiful oceanside views.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Will the ceremony be indoors or outdoors?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The ceremony will be outdoors with the Pacific Ocean as our backdrop. We have a beautiful covered location as backup for weather. The reception will be in an elegant indoor-outdoor space.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Will there be food and drinks?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! Cocktail hour with gourmet appetizers, followed by a curated three-course meal with wine pairings. Open bar throughout the evening. Please inform us of dietary restrictions when you RSVP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-title-wrapper reveal">
+            <span class="section-number">08 — Contact</span>
+            <h2 class="section-title">Get In Touch</h2>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Emma</h3>
+                <div class="contact-role">The Bride</div>
+                <ul class="contact-list">
+                    <li><a href="mailto:emma@wedding.com">emma@wedding.com</a></li>
+                    <li><a href="tel:+1234567890">(123) 456-7890</a></li>
+                    <li><a href="https://m.me/emma">Message on Messenger</a></li>
+                    <li><a href="https://facebook.com/emma">Facebook</a></li>
+                </ul>
+            </div>
+
+            <div class="contact-card">
+                <h3>James</h3>
+                <div class="contact-role">The Groom</div>
+                <ul class="contact-list">
+                    <li><a href="mailto:james@wedding.com">james@wedding.com</a></li>
+                    <li><a href="tel:+1234567891">(123) 456-7891</a></li>
+                    <li><a href="https://m.me/james">Message on Messenger</a></li>
+                    <li><a href="https://facebook.com/james">Facebook</a></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -1212,8 +1776,65 @@
 
         setInterval(nextSlide, 5000);
 
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('2025-06-15T16:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days >= 0 ? days : 0;
+            document.getElementById('hours').textContent = hours >= 0 ? hours : 0;
+            document.getElementById('minutes').textContent = minutes >= 0 ? minutes : 0;
+            document.getElementById('seconds').textContent = seconds >= 0 ? seconds : 0;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const wasActive = faqItem.classList.contains('active');
+                
+                // Close all FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!wasActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
         // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal, .about-person, .gallery-item, .detail-card, .timeline-item');
+        const revealElements = document.querySelectorAll('.reveal, .about-person, .gallery-item, .detail-card, .timeline-item, .registry-card, .countdown-item, .faq-item, .contact-card');
 
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {

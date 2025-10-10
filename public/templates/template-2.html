@@ -50,6 +50,8 @@
             font-weight: 700;
             letter-spacing: -0.5px;
             color: #000;
+            position: relative;
+            z-index: 1003;
         }
 
         .nav-links {
@@ -81,6 +83,43 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Hamburger Menu - FIXED */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 15px;
+            position: fixed;
+            right: 20px;
+            top: 18px;
+            z-index: 1003;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1a1a1a;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Hero Section */
@@ -520,6 +559,124 @@
             color: #b8956a;
         }
 
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(135deg, #9a7a52 0%, #b8956a 100%);
+            color: #fff;
+            padding: clamp(60px, 12vh, 120px) clamp(20px, 5vw, 80px);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: clamp(20px, 4vw, 30px);
+            max-width: 800px;
+            margin: clamp(40px, 8vh, 80px) auto 0;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: clamp(25px, 4vw, 35px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .countdown-number {
+            font-size: clamp(48px, 10vw, 64px);
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: clamp(12px, 2vw, 14px);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #fff;
+            padding: clamp(60px, 12vh, 120px) clamp(20px, 5vw, 80px);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: clamp(40px, 8vh, 80px) auto 0;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #b8956a;
+            box-shadow: 0 4px 15px rgba(184, 149, 106, 0.15);
+        }
+
+        .faq-question {
+            background: #f8f8f8;
+            padding: clamp(18px, 3vw, 24px);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+
+        .faq-question h3 {
+            font-size: clamp(15px, 2.5vw, 18px);
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .faq-icon {
+            font-size: clamp(20px, 3vw, 24px);
+            color: #b8956a;
+            transition: transform 0.3s ease;
+            font-weight: 300;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: #fff;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: clamp(18px, 3vw, 24px);
+        }
+
+        .faq-answer p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            line-height: 1.8;
+            color: #666;
+            margin: 0;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, #b8956a 0%, #9a7a52 100%);
@@ -535,6 +692,38 @@
 
         /* Mobile Optimizations */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 240px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 80px 20px 30px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                z-index: 1002;
+                gap: 12px;
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+                width: 100%;
+            }
+
             .hero {
                 grid-template-columns: 1fr;
             }
@@ -555,10 +744,6 @@
                 grid-template-columns: 70px 1fr;
                 gap: 20px;
             }
-
-            .nav-links {
-                gap: 15px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -575,10 +760,19 @@
             <div class="nav-logo">
                 <span class="couple-initials">E & J</span>
             </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-links">
                 <a href="#gallery">Gallery</a>
                 <a href="#details">Details</a>
+                <a href="#dresscode">Dress Code</a>
+                <a href="#registry">Registry</a>
+                <a href="#countdown">Countdown</a>
                 <a href="#program">Program</a>
+                <a href="#faqs">FAQs</a>
                 <a href="#contact">Contact</a>
             </div>
         </nav>
@@ -631,7 +825,7 @@
     <!-- Location Section -->
     <section id="details" class="split-section">
         <div class="split-content accent">
-            <div class="section-label">02 — Location</div>
+            <div class="section-label" style="color: rgba(255,255,255,0.7);">02 — Location</div>
             <h2>Where</h2>
             
             <div class="info-item">
@@ -655,7 +849,7 @@
     </section>
 
     <!-- Dress Code Section -->
-    <section class="content-section">
+    <section id="dresscode" class="content-section">
         <div class="section-header">
             <div class="section-label">03 — Dress Code</div>
             <h2 class="section-title">What to wear</h2>
@@ -679,7 +873,7 @@
     </section>
 
     <!-- Gift Registry Section -->
-    <section class="content-section white">
+    <section id="registry" class="content-section white">
         <div class="section-header">
             <div class="section-label">04 — Registry</div>
             <h2 class="section-title">Gift registry</h2>
@@ -715,6 +909,33 @@
                 <a href="#" class="registry-link">View</a>
             </li>
         </ul>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown-section">
+        <div class="section-header">
+            <div class="section-label" style="color: rgba(255,255,255,0.7);">— Counting Down</div>
+            <h2 class="section-title" style="color: #fff;">Until We Say "I Do"</h2>
+        </div>
+
+        <div class="countdown-grid">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">0</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">0</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">0</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">0</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
     </section>
 
     <!-- Program Timeline -->
@@ -765,10 +986,90 @@
         </div>
     </section>
 
+    <!-- FAQs Section -->
+    <section id="faqs" class="faq-section">
+        <div class="section-header">
+            <div class="section-label">06 — Questions</div>
+            <h2 class="section-title">Frequently Asked</h2>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What should I wear?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Beach Formal attire is requested. Think elegant but comfortable for our seaside celebration. Light, breathable fabrics are perfect. See our Dress Code section for detailed guidance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Will transportation be provided?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Complimentary shuttle service will be available from select hotels. Details will be included with your invitation. Valet parking is also available.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I bring a plus-one?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>If your invitation includes "and guest," you're welcome to bring someone. Otherwise, we hope you'll enjoy celebrating with our other wonderful guests!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Are children welcome?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We've decided to make our wedding an adults-only celebration. We hope this gives parents a wonderful opportunity to enjoy a night out!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What time should I arrive?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Please arrive by 3:30 PM. The ceremony begins promptly at 4:00 PM. We recommend arriving early to find your seats and enjoy the pre-ceremony ambiance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Will the ceremony be indoors or outdoors?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The ceremony will be outdoors with ocean views. We have a covered backup location for inclement weather. The reception will be in an elegant indoor-outdoor space.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Will there be food and drinks?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Cocktail hour with appetizers, followed by a three-course dinner. Open bar throughout the evening. Please inform us of dietary restrictions when you RSVP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="section-header">
-            <div class="section-label">06 — Contact</div>
+            <div class="section-label">07 — Contact</div>
             <h2 class="section-title">Get in touch</h2>
         </div>
 
@@ -798,60 +1099,90 @@
     </footer>
 
     <script>
-        // Listen for customization data
-        window.addEventListener('message', function(event) {
-            if (event.data.type === 'UPDATE_WEDDING_DATA') {
-                const { bride, groom, date } = event.data;
-                
-                // Update initials in nav
-                const initials = document.querySelector('.couple-initials');
-                if (initials) {
-                    initials.textContent = `${bride.charAt(0)} & ${groom.charAt(0)}`;
-                }
-                
-                // Update hero names
-                const heroNames = document.querySelectorAll('.hero-names h1');
-                if (heroNames.length >= 3) {
-                    heroNames[0].textContent = bride;
-                    heroNames[2].textContent = groom;
-                }
-                
-                // Update date
-                if (date) {
-                    const dateObj = new Date(date);
-                    const formatted = dateObj.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                    
-                    const heroDate = document.querySelector('.hero-date');
-                    if (heroDate) {
-                        heroDate.textContent = formatted;
-                    }
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('2025-06-15T16:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
 
-                    // Update in details section
-                    const detailDate = document.querySelectorAll('.info-value')[1];
-                    if (detailDate) {
-                        const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
-                        detailDate.innerHTML = `${dayName}, ${formatted}<br>4:00 PM Ceremony`;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days >= 0 ? days : 0;
+            document.getElementById('hours').textContent = hours >= 0 ? hours : 0;
+            document.getElementById('minutes').textContent = minutes >= 0 ? minutes : 0;
+            document.getElementById('seconds').textContent = seconds >= 0 ? seconds : 0;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Close mobile menu if open
+                    if (hamburger && navLinks) {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
                     }
+                    
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
+            });
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const wasActive = faqItem.classList.contains('active');
                 
-                // Update contact names
-                const contactNames = document.querySelectorAll('.contact-card h3');
-                if (contactNames.length >= 2) {
-                    contactNames[0].textContent = bride;
-                    contactNames[1].textContent = groom;
-                }
+                // Close all FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
                 
-                // Update footer
-                const footer = document.querySelector('footer p');
-                if (footer) {
-                    const year = new Date(date || Date.now()).getFullYear();
-                    footer.textContent = `© ${year} ${bride} & ${groom} • Celebrating Love`;
+                // Open clicked FAQ if it wasn't active
+                if (!wasActive) {
+                    faqItem.classList.add('active');
                 }
-            }
+            });
         });
     </script>
 </body>

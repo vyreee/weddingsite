@@ -80,6 +80,97 @@
             gap: clamp(20px, 4vw, 50px);
             padding: clamp(20px, 3vh, 28px) 20px;
             flex-wrap: wrap;
+            position: relative;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 15px;
+            position: fixed;
+            right: 15px;
+            top: 15px;
+            z-index: 1002;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.transparent .hamburger {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        header.transparent .hamburger span {
+            background: var(--white);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 240px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 80px 20px 20px;
+                gap: 15px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                overflow-y: auto;
+            }
+
+            header.transparent nav {
+                background: rgba(42, 42, 42, 0.98);
+            }
+
+            header.transparent nav a {
+                color: var(--white);
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav a {
+                color: var(--dark);
+                font-size: 16px;
+                width: 100%;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+
+            header.transparent nav a {
+                border-bottom-color: rgba(255,255,255,0.2);
+            }
         }
 
         nav a {
@@ -111,6 +202,125 @@
 
         nav a:hover {
             color: var(--primary);
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: clamp(20px, 4vw, 40px);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            padding: clamp(25px, 4vw, 35px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .countdown-number {
+            font-size: clamp(48px, 10vw, 72px);
+            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: clamp(12px, 2vw, 14px);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            background: var(--light-bg);
+            padding: clamp(20px, 4vw, 28px);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .faq-question:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .faq-question h3 {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--dark);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .faq-icon {
+            font-size: clamp(20px, 3vw, 24px);
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: var(--white);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: clamp(20px, 4vw, 28px);
+        }
+
+        .faq-answer p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            line-height: 1.9;
+            color: var(--gray);
+            margin: 0;
         }
 
         /* Hero Section */
@@ -748,12 +958,19 @@
 
 <body>
     <header class="transparent">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <a href="#gallery">Our Story</a>
             <a href="#location">Venue</a>
             <a href="#dresscode">Attire</a>
             <a href="#registry">Registry</a>
+            <a href="#countdown">Countdown</a>
             <a href="#program">Schedule</a>
+            <a href="#faqs">FAQs</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -762,15 +979,12 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            
             <div class="couple-names">
                 <h1>EMMA</h1>
                 <p class="and">&</p>
                 <h1>JAMES</h1>
             </div>
-
             <p class="hero-date">June 15, 2025 • Malibu, California</p>
-            
             <div class="scroll-indicator" onclick="document.querySelector('#gallery').scrollIntoView({behavior: 'smooth'})">↓ Scroll</div>
         </div>
     </section>
@@ -795,7 +1009,7 @@
                     <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=85" alt="Beach memories">
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1594842645299-4f8f85c62be5?w=800&q=85" alt="Celebrating love">
+                    <img src="https://images.unsplash.com/photos/man-and-woman-holding-hands-focus-photo-464ps_nOflw?w=800&q=85" alt="Celebrating love">
                 </div>
                 <div class="gallery-item fade-in">
                     <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=85" alt="Forever begins">
@@ -912,6 +1126,33 @@
         </div>
     </section>
 
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown-section">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--white);">Counting Down</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Every moment brings us closer to forever</p>
+            
+            <div class="countdown-grid">
+                <div class="countdown-item fade-in">
+                    <div class="countdown-number" id="days">0</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item fade-in">
+                    <div class="countdown-number" id="hours">0</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item fade-in">
+                    <div class="countdown-number" id="minutes">0</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item fade-in">
+                    <div class="countdown-number" id="seconds">0</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Parallax Divider -->
     <div class="parallax-divider">
         <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&q=85');"></div>
@@ -985,6 +1226,116 @@
         </div>
     </section>
 
+    <!-- FAQs Section -->
+    <section id="faqs" class="faq-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <p class="section-subtitle fade-in">Everything you need to know about our special day</p>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What time should I arrive?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend arriving by 3:30 PM to allow time for parking and seating. The ceremony will begin promptly at 4:00 PM.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Is there parking available?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer complimentary valet service for all guests. Simply pull up to the main entrance and our valet team will assist you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Can I bring a plus one?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Due to venue capacity, we can only accommodate guests formally invited on your invitation. If you received a plus one, it will be indicated on your invitation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Are children welcome?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We love your little ones, but we've decided to make our wedding an adults-only celebration. We hope this gives you a chance to enjoy a night off and celebrate with us!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What's the weather typically like in Malibu in June?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>June in Malibu is beautiful with temperatures ranging from 65-75°F (18-24°C). Evenings can get cooler, so we recommend bringing a light jacket or wrap for after sunset.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Will the ceremony and reception be indoors or outdoors?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Both the ceremony and cocktail hour will be outdoors overlooking the ocean. The reception dinner and dancing will take place in our elegant covered pavilion, which offers the best of both worlds.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Is there a hotel room block?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We've reserved room blocks at several nearby hotels. Booking information and special rates were included with your invitation. Shuttle service will be provided from these hotels to the venue.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What food will be served?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We'll be serving a curated three-course dinner featuring locally-sourced ingredients. Menu selections will include options for various dietary preferences. Please let us know about any allergies or dietary restrictions when you RSVP.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Will there be an open bar?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We'll have an open bar featuring signature cocktails, wine, beer, and non-alcoholic beverages throughout the reception.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Can I take photos during the ceremony?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We kindly ask for an unplugged ceremony—please keep phones and cameras put away so everyone can be fully present. Our professional photographer will capture all the special moments. Feel free to take photos during the reception!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
@@ -1049,6 +1400,77 @@
     </footer>
 
     <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a nav link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            }
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('June 15, 2025 16:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
         // Header scroll effect
         let lastScroll = 0;
         window.addEventListener('scroll', function() {
@@ -1111,6 +1533,19 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', function() {
+            const parallaxBgs = document.querySelectorAll('.parallax-bg');
+            parallaxBgs.forEach(bg => {
+                const scrolled = window.pageYOffset;
+                const parallaxDiv = bg.parentElement;
+                const rect = parallaxDiv.getBoundingClientRect();
+                const offset = rect.top + scrolled;
+                const yPos = (scrolled - offset) * 0.5;
+                bg.style.transform = `translateY(${yPos}px) scale(1.1)`;
             });
         });
     </script>
