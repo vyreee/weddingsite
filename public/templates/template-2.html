@@ -438,6 +438,136 @@
             background: #9a7a52;
         }
 
+        /* Registry Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 20px;
+            padding: clamp(30px, 5vw, 50px);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #1a1a1a;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: clamp(28px, 5vw, 36px);
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .modal-subtitle {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .modal .registry-list {
+            margin: 0;
+        }
+
+        .modal .registry-list li {
+            padding: 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .modal .registry-list li:hover {
+            border-color: #b8956a;
+            background: #fafafa;
+            transform: translateX(5px);
+        }
+
+        .modal .registry-info h4 {
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .modal .registry-info p {
+            font-size: clamp(13px, 2vw, 14px);
+            color: #999;
+        }
+
+        .modal .registry-link {
+            padding: 10px 20px;
+            background: #b8956a;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal .registry-link:hover {
+            background: #9a7a52;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 149, 106, 0.4);
+        }
+
         /* Timeline Section */
         .timeline-section {
             padding: clamp(60px, 12vh, 120px) clamp(20px, 5vw, 80px);
@@ -848,6 +978,19 @@
         </div>
     </section>
 
+    <!-- Registry Modal -->
+    <div id="registryModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRegistryModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Registry Items</h2>
+            <p class="modal-subtitle">Click on any item to visit the store</p>
+            
+            <ul class="registry-list" id="registryList">
+                <!-- Items will be populated by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
     <!-- Dress Code Section -->
     <section id="dresscode" class="content-section">
         <div class="section-header">
@@ -885,28 +1028,28 @@
                     <h4>Home Essentials</h4>
                     <p>Crate & Barrel</p>
                 </div>
-                <a href="#" class="registry-link">View</a>
+                <button class="registry-link" onclick="openRegistryModal('home')">View</button>
             </li>
             <li>
                 <div class="registry-info">
                     <h4>Honeymoon Fund</h4>
                     <p>Help us explore Italy</p>
                 </div>
-                <a href="#" class="registry-link">Contribute</a>
+                <button class="registry-link" onclick="openRegistryModal('honeymoon')">Contribute</button>
             </li>
             <li>
                 <div class="registry-info">
                     <h4>Kitchen & Dining</h4>
                     <p>Williams Sonoma</p>
                 </div>
-                <a href="#" class="registry-link">View</a>
+                <button class="registry-link" onclick="openRegistryModal('kitchen')">View</button>
             </li>
             <li>
                 <div class="registry-info">
                     <h4>Art & Decor</h4>
                     <p>West Elm</p>
                 </div>
-                <a href="#" class="registry-link">View</a>
+                <button class="registry-link" onclick="openRegistryModal('decor')">View</button>
             </li>
         </ul>
     </section>
@@ -1165,6 +1308,89 @@
                     });
                 }
             });
+        });
+
+        // Registry Modal
+        const registryData = {
+            home: [
+                { name: 'Bedding Set - Queen', store: 'Crate & Barrel', url: 'https://www.crateandbarrel.com' },
+                { name: 'Throw Pillows', store: 'Crate & Barrel', url: 'https://www.crateandbarrel.com' },
+                { name: 'Area Rug 8x10', store: 'West Elm', url: 'https://www.westelm.com' },
+                { name: 'Table Lamps (Set of 2)', store: 'Pottery Barn', url: 'https://www.potterybarn.com' },
+                { name: 'Storage Baskets', store: 'Target', url: 'https://www.target.com' }
+            ],
+            honeymoon: [
+                { name: 'Rome City Tour', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Amalfi Coast Boat Trip', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Romantic Dinner in Venice', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Wine Tasting in Tuscany', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Hotel Accommodations', store: 'Honeymoon Fund', url: '#' }
+            ],
+            kitchen: [
+                { name: 'Stand Mixer', store: 'Williams Sonoma', url: 'https://www.williams-sonoma.com' },
+                { name: 'Cookware Set', store: 'Sur La Table', url: 'https://www.surlatable.com' },
+                { name: 'Dinnerware Set (12-piece)', store: 'Crate & Barrel', url: 'https://www.crateandbarrel.com' },
+                { name: 'Wine Glasses', store: 'Pottery Barn', url: 'https://www.potterybarn.com' },
+                { name: 'Coffee Maker', store: 'Williams Sonoma', url: 'https://www.williams-sonoma.com' }
+            ],
+            decor: [
+                { name: 'Wall Art - Abstract', store: 'West Elm', url: 'https://www.westelm.com' },
+                { name: 'Decorative Vases', store: 'CB2', url: 'https://www.cb2.com' },
+                { name: 'Picture Frames', store: 'Pottery Barn', url: 'https://www.potterybarn.com' },
+                { name: 'Candle Holders', store: 'Anthropologie', url: 'https://www.anthropologie.com' },
+                { name: 'Decorative Mirrors', store: 'West Elm', url: 'https://www.westelm.com' }
+            ]
+        };
+
+        function openRegistryModal(category) {
+            const modal = document.getElementById('registryModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const registryList = document.getElementById('registryList');
+            
+            const titles = {
+                home: 'Home Essentials Registry',
+                honeymoon: 'Honeymoon Adventures',
+                kitchen: 'Kitchen & Dining Registry',
+                decor: 'Art & Decor Registry'
+            };
+            modalTitle.textContent = titles[category];
+            
+            registryList.innerHTML = '';
+            registryData[category].forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="registry-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.store}</p>
+                    </div>
+                    <a href="${item.url}" target="_blank" class="registry-link">
+                        Shop
+                        <span>→</span>
+                    </a>
+                `;
+                registryList.appendChild(li);
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRegistryModal() {
+            const modal = document.getElementById('registryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('registryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRegistryModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeRegistryModal();
+            }
         });
 
         // FAQ Toggle

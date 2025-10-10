@@ -490,6 +490,147 @@
             line-height: 1.8;
         }
 
+        /* Registry Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(90, 122, 82, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--ivory);
+            border-radius: 20px;
+            padding: clamp(30px, 5vw, 50px);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(90, 122, 82, 0.5);
+            animation: modalSlideIn 0.3s ease;
+            border: 3px solid var(--sage);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--sage-dark);
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background: var(--sage-light);
+            color: var(--rose);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: clamp(28px, 5vw, 36px);
+            color: var(--sage-dark);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .modal-subtitle {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .modal .registry-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .modal .registry-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border: 2px solid var(--sage-light);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        .modal .registry-item:hover {
+            border-color: var(--rose);
+            background: var(--ivory);
+            transform: translateX(5px);
+        }
+
+        .modal .registry-item-info {
+            flex: 1;
+        }
+
+        .modal .registry-item-name {
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 600;
+            color: var(--sage-dark);
+            margin-bottom: 5px;
+        }
+
+        .modal .registry-item-store {
+            font-size: clamp(13px, 2vw, 14px);
+            color: var(--text-light);
+        }
+
+        .modal .registry-item-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--sage);
+            color: var(--ivory);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .modal .registry-item-link:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 122, 82, 0.4);
+        }
+
         .btn {
             display: inline-block;
             padding: 14px 35px;
@@ -1119,28 +1260,41 @@
             <div class="registry-card fade-in">
                 <h3>🏡 Home & Garden</h3>
                 <p>Help us create our dream home and cultivate our garden sanctuary</p>
-                <a href="#" class="btn">View Registry</a>
+                <button class="btn" onclick="openRegistryModal('home')">View Registry</button>
             </div>
 
             <div class="registry-card fade-in">
                 <h3>✈️ Honeymoon Fund</h3>
                 <p>Join us on our adventure through the gardens of Tuscany and Provence</p>
-                <a href="#" class="btn">Contribute</a>
+                <button class="btn" onclick="openRegistryModal('honeymoon')">Contribute</button>
             </div>
 
             <div class="registry-card fade-in">
                 <h3>🍽️ Kitchen & Dining</h3>
                 <p>Help us host beautiful garden dinners and Sunday brunches</p>
-                <a href="#" class="btn">View Registry</a>
+                <button class="btn" onclick="openRegistryModal('kitchen')">View Registry</button>
             </div>
 
             <div class="registry-card fade-in">
                 <h3>🌱 Seeds of Love</h3>
                 <p>Contribute to our garden fund and help us plant new memories</p>
-                <a href="#" class="btn">Contribute</a>
+                <button class="btn" onclick="openRegistryModal('decor')">Contribute</button>
             </div>
         </div>
     </section>
+
+    <!-- Registry Modal -->
+    <div id="registryModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRegistryModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Registry Items</h2>
+            <p class="modal-subtitle">Click on any item to visit the store</p>
+            
+            <ul class="registry-list" id="registryList">
+                <!-- Items will be populated by JavaScript -->
+            </ul>
+        </div>
+    </div>
 
     <!-- Countdown Section -->
     <section id="countdown" class="countdown-section">
@@ -1440,6 +1594,90 @@
                 });
             });
         }
+
+        // Registry Modal
+        const registryData = {
+            home: [
+                { name: 'Bedding Set - Queen', store: 'Crate & Barrel', url: 'https://www.crateandbarrel.com' },
+                { name: 'Throw Pillows', store: 'Crate & Barrel', url: 'https://www.crateandbarrel.com' },
+                { name: 'Area Rug 8x10', store: 'West Elm', url: 'https://www.westelm.com' },
+                { name: 'Garden Tools Set', store: 'Williams Sonoma', url: 'https://www.williams-sonoma.com' },
+                { name: 'Outdoor Furniture', store: 'Pottery Barn', url: 'https://www.potterybarn.com' }
+            ],
+            honeymoon: [
+                { name: 'Tuscany Villa Stay', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Provence Garden Tour', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Wine Tasting Experience', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Cooking Class in Florence', store: 'Honeymoon Fund', url: '#' },
+                { name: 'Romantic Dinner', store: 'Honeymoon Fund', url: '#' }
+            ],
+            kitchen: [
+                { name: 'Stand Mixer', store: 'Williams Sonoma', url: 'https://www.williams-sonoma.com' },
+                { name: 'Cookware Set', store: 'Sur La Table', url: 'https://www.surlatable.com' },
+                { name: 'Dinnerware Set (12-piece)', store: 'Crate & Barrel', url: 'https://www.crateandbarrel.com' },
+                { name: 'Garden Party Serving Set', store: 'Pottery Barn', url: 'https://www.potterybarn.com' },
+                { name: 'Herb Garden Kit', store: 'Williams Sonoma', url: 'https://www.williams-sonoma.com' }
+            ],
+            decor: [
+                { name: 'Garden Planters', store: 'West Elm', url: 'https://www.westelm.com' },
+                { name: 'Decorative Vases', store: 'CB2', url: 'https://www.cb2.com' },
+                { name: 'Botanical Prints', store: 'Pottery Barn', url: 'https://www.potterybarn.com' },
+                { name: 'Garden Lanterns', store: 'Anthropologie', url: 'https://www.anthropologie.com' },
+                { name: 'Seed Collection', store: 'Terrain', url: 'https://www.shopterrain.com' }
+            ]
+        };
+
+        function openRegistryModal(category) {
+            const modal = document.getElementById('registryModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const registryList = document.getElementById('registryList');
+            
+            const titles = {
+                home: 'Home & Garden Registry',
+                honeymoon: 'Honeymoon Adventures',
+                kitchen: 'Kitchen & Dining Registry',
+                decor: 'Seeds of Love Fund'
+            };
+            modalTitle.textContent = titles[category];
+            
+            registryList.innerHTML = '';
+            registryData[category].forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'registry-item';
+                li.innerHTML = `
+                    <div class="registry-item-info">
+                        <div class="registry-item-name">${item.name}</div>
+                        <div class="registry-item-store">${item.store}</div>
+                    </div>
+                    <a href="${item.url}" target="_blank" class="registry-item-link">
+                        Shop
+                        <span>→</span>
+                    </a>
+                `;
+                registryList.appendChild(li);
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRegistryModal() {
+            const modal = document.getElementById('registryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('registryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRegistryModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeRegistryModal();
+            }
+        });
 
         // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(question => {
