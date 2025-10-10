@@ -4,6 +4,9 @@ import * as React from "react";
 import BrandButton from "@/components/BrandButton";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
+import tp1Screenshot from "@/tp1-ss.png";
+import tp2Screenshot from "@/tp2-ss.png";
 
 export default function TemplateShowcaseSection() {
   const templates = [
@@ -11,13 +14,15 @@ export default function TemplateShowcaseSection() {
       name: "Bella & James", 
       desc: "Romantic & Elegant", 
       gradient: "from-[#98C1D9] via-[#6969B3] to-[#533A7B]",
-      preview: "/templates/template-1.html"
+      preview: "/templates/template-1.html",
+      image: tp1Screenshot
     },
     { 
       name: "Modern Minimalist", 
       desc: "Clean & Contemporary", 
       gradient: "from-[#6969B3] to-[#533A7B]",
-      preview: "/templates/template-2.html"
+      preview: "/templates/template-2.html",
+      image: tp2Screenshot
     },
   ];
 
@@ -74,7 +79,7 @@ export default function TemplateShowcaseSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mb-8 relative"
           >
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden border-4 border-white shadow-2xl mx-auto max-w-3xl">
+            <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden border-4 border-white shadow-2xl mx-auto max-w-4xl bg-white">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentTemplate}
@@ -82,14 +87,23 @@ export default function TemplateShowcaseSection() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5 }}
-                  className={`absolute inset-0 bg-gradient-to-br ${templates[currentTemplate].gradient}`}
+                  className="absolute inset-0"
                 >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-8">
+                  <Image
+                    src={templates[currentTemplate].image}
+                    alt={`${templates[currentTemplate].name} template preview`}
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                  
+                  {/* Overlay with template name */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6">
                     <motion.h3 
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2 }}
-                      className="text-3xl md:text-4xl font-serif mb-2"
+                      className="text-2xl md:text-3xl font-serif text-white mb-1"
                     >
                       {templates[currentTemplate].name}
                     </motion.h3>
@@ -97,7 +111,7 @@ export default function TemplateShowcaseSection() {
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.3 }}
-                      className="text-lg opacity-90"
+                      className="text-base md:text-lg text-white/90"
                     >
                       {templates[currentTemplate].desc}
                     </motion.p>
