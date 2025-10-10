@@ -11,15 +11,15 @@ import tp2Screenshot from "@/tp2-ss.png";
 export default function TemplateShowcaseSection() {
   const templates = [
     { 
-      name: "Bella & James", 
-      desc: "Romantic & Elegant", 
+      name: "Classic Elegance", 
+      desc: "Timeless & Romantic", 
       gradient: "from-[#98C1D9] via-[#6969B3] to-[#533A7B]",
       preview: "/templates/template-1.html",
       image: tp1Screenshot
     },
     { 
-      name: "Modern Minimalist", 
-      desc: "Clean & Contemporary", 
+      name: "Royal Bliss", 
+      desc: "Royalty Bliss", 
       gradient: "from-[#6969B3] to-[#533A7B]",
       preview: "/templates/template-2.html",
       image: tp2Screenshot
