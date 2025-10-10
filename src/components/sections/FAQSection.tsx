@@ -214,8 +214,6 @@ const faqCategories = [
   },
 ];
 
-const faqs = faqCategories.flatMap(cat => cat.faqs);
-
 export default function FAQSection() {
   return (
     <section id="faq" className="mx-auto max-w-4xl px-4 py-16">
@@ -274,7 +272,7 @@ export default function FAQSection() {
         className="mt-12 p-6 bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 rounded-xl border border-brand-primary/20"
       >
         <h3 className="text-xl font-semibold text-brand-primary mb-3">Still Have Questions?</h3>
-        <p className="text-brand-dark/80 mb-4">We're here to help! Reach out to us:</p>
+        <p className="text-brand-dark/80 mb-4">We&apos;re here to help! Reach out to us:</p>
         <ul className="space-y-2 text-sm text-brand-dark/80">
           <li><strong>Email:</strong> hello@fromthisday.com</li>
           <li><strong>Response Time:</strong> Within 24 hours (faster for Elegant & Prestige customers)</li>

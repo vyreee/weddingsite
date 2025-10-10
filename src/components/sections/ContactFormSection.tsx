@@ -60,6 +60,7 @@ export default function ContactFormSection() {
 
     try {
       // Don't send honeypot field to the server
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { website: _website, ...dataToSend } = formData;
       
       await fetch(GOOGLE_SCRIPT_URL, {
