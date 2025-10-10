@@ -13,6 +13,7 @@ export function Header() {
     { href: "#features", label: "Features" },
     { href: "#templates", label: "Templates" },
     { href: "#pricing", label: "Pricing" },
+    { href: "#faq", label: "FAQs" },
     { href: "#contact", label: "Contact" },
   ];
 
