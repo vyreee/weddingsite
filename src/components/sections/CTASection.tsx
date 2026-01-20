@@ -48,7 +48,7 @@ export default function CTASection() {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="mt-3 text-xs text-brand-dark/70"
       >
-        No credit card required • 30-day money-back guarantee
+        No credit card required • Strictly no refunds • All details explained upon direct contact
       </motion.div>
     </section>
   );
