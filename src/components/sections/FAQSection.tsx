@@ -295,7 +295,7 @@ export default function FAQSection() {
           </a>
         </div>
         <p className="text-sm text-brand-dark/60 mt-4">
-          <strong>Response Time:</strong> Within 24 hours (faster for Elegant & Custom customers)
+          <strong>Response Time:</strong> Within 24 hours
         </p>
       </motion.div>
     </section>
