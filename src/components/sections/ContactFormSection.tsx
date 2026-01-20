@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Instagram, Facebook } from "lucide-react";
 import BrandButton from "@/components/BrandButton";
 
 export default function ContactFormSection() {
@@ -109,8 +109,30 @@ export default function ContactFormSection() {
         <h2 className="text-3xl font-semibold text-brand-primary text-center mb-3">
           Get Started Today
         </h2>
-        <p className="text-center text-brand-dark/70 mb-10">
+        <p className="text-center text-brand-dark/70 mb-4">
           Tell us about your special day and we&apos;ll get back to you within 24 hours
+        </p>
+        <p className="text-center text-brand-dark/60 text-sm mb-8">
+          Or send us a message on{" "}
+          <a 
+            href="https://www.instagram.com/luredexigns" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-brand-primary hover:text-brand-accent transition-colors font-medium"
+          >
+            <Instagram className="size-4" />
+            Instagram
+          </a>
+          {" "}or{" "}
+          <a 
+            href="https://www.facebook.com/luredexigns" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-brand-primary hover:text-brand-accent transition-colors font-medium"
+          >
+            <Facebook className="size-4" />
+            Facebook
+          </a>
         </p>
 
         <motion.form
