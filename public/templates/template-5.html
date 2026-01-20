@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma & James - June 15, 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1a1a1a;
+            --dark-gray: #2d2d2d;
+            --gray: #666666;
+            --light-gray: #999999;
+            --bg: #fafafa;
+            --white: #ffffff;
+            --accent: #c17a74;
+            --accent-light: #d4a29f;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--dark-gray);
+            background: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 6vw, 80px);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: clamp(20px, 3vh, 32px) clamp(24px, 6vw, 80px);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 600;
+            color: var(--black);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(24px, 4vw, 48px);
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-size: clamp(13px, 2vw, 15px);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            position: fixed;
+            right: 24px;
+            top: 28px;
+            z-index: 1002;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 0;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: clamp(40px, 8vw, 120px);
+            background: var(--white);
+        }
+
+        .hero-label {
+            font-size: clamp(11px, 2vw, 13px);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: clamp(40px, 6vh, 60px);
+            font-weight: 500;
+        }
+
+        .hero-names {
+            margin-bottom: clamp(30px, 5vh, 50px);
+        }
+
+        .hero-names h1 {
+            font-size: clamp(56px, 10vw, 96px);
+            font-weight: 500;
+            letter-spacing: -1px;
+            line-height: 0.95;
+            margin-bottom: 16px;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            margin: clamp(30px, 5vh, 50px) 0;
+        }
+
+        .hero-date {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--dark-gray);
+            letter-spacing: 1px;
+            margin-bottom: clamp(20px, 4vh, 30px);
+        }
+
+        .hero-location {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--gray);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        section {
+            padding: clamp(80px, 12vh, 160px) 0;
+        }
+
+        .section-header {
+            margin-bottom: clamp(60px, 10vh, 100px);
+        }
+
+        .section-number {
+            font-size: clamp(11px, 2vw, 13px);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: clamp(42px, 7vw, 72px);
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--gray);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        .about-section {
+            background: var(--bg);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(60px, 10vw, 120px);
+            align-items: start;
+        }
+
+        .about-person {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%);
+            transition: transform 0.6s ease;
+        }
+
+        .about-person:hover .about-image img {
+            transform: scale(1.03);
+        }
+
+        .about-name {
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .about-role {
+            font-size: clamp(13px, 2vw, 15px);
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .about-bio {
+            font-size: clamp(15px, 2.5vw, 17px);
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .story-section {
+            background: var(--white);
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-text {
+            font-size: clamp(18px, 3vw, 24px);
+            line-height: 1.8;
+            color: var(--dark-gray);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .story-timeline {
+            margin-top: clamp(60px, 10vh, 100px);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-year {
+            font-size: clamp(32px, 5vw, 48px);
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .timeline-content h3 {
+            font-size: clamp(20px, 3vw, 28px);
+            margin-bottom: 16px;
+        }
+
+        .timeline-content p {
+            font-size: clamp(15px, 2.5vw, 17px);
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .location-section {
+            background: var(--bg);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: clamp(40px, 8vw, 80px);
+            align-items: center;
+        }
+
+        .location-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .location-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+        }
+
+        .location-details h3 {
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: 24px;
+        }
+
+        .location-info {
+            margin-bottom: 32px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .info-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .info-text {
+            font-size: clamp(15px, 2.5vw, 17px);
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .info-text strong {
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-size: clamp(13px, 2vw, 15px);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--black);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--black);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+        }
+
+        .btn-outline:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .dresscode-section {
+            background: var(--white);
+        }
+
+        .dresscode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(40px, 6vw, 60px);
+            margin-top: clamp(60px, 10vh, 80px);
+        }
+
+        .dresscode-item {
+            text-align: center;
+            padding: clamp(40px, 6vw, 60px) clamp(30px, 5vw, 40px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dresscode-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+        }
+
+        .dresscode-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 24px;
+        }
+
+        .dresscode-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .dresscode-item h3 {
+            font-size: clamp(20px, 3vw, 26px);
+            margin-bottom: 16px;
+        }
+
+        .dresscode-item p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .registry-section {
+            background: var(--bg);
+        }
+
+        .registry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(30px, 5vw, 40px);
+            margin-top: clamp(60px, 10vh, 80px);
+        }
+
+        .registry-card {
+            background: var(--white);
+            padding: clamp(40px, 6vw, 60px);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .registry-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .registry-logo {
+            font-size: clamp(24px, 4vw, 32px);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .registry-card p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--gray);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .countdown-section {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .countdown-section .section-title {
+            color: var(--white);
+        }
+
+        .countdown-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: clamp(20px, 4vw, 40px);
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: clamp(60px, 10vh, 80px);
+        }
+
+        .countdown-item {
+            padding: clamp(30px, 5vw, 40px) 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .countdown-number {
+            font-size: clamp(48px, 10vw, 72px);
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1;
+            color: var(--white);
+        }
+
+        .countdown-label {
+            font-size: clamp(12px, 2vw, 14px);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+
+        .program-section {
+            background: var(--white);
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(60px, 10vw, 100px);
+            margin-top: clamp(60px, 10vh, 80px);
+        }
+
+        .program-event {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .program-event:last-child {
+            border-bottom: none;
+        }
+
+        .program-time {
+            font-size: clamp(16px, 3vw, 20px);
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            min-width: 100px;
+            font-weight: 500;
+        }
+
+        .program-details h3 {
+            font-size: clamp(20px, 3vw, 26px);
+            margin-bottom: 12px;
+        }
+
+        .program-details p {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .faq-section {
+            background: var(--bg);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            margin-top: clamp(60px, 10vh, 80px);
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 28px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover h3 {
+            color: var(--accent);
+        }
+
+        .faq-question h3 {
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .faq-toggle::before,
+        .faq-toggle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .faq-toggle::before {
+            width: 16px;
+            height: 2px;
+        }
+
+        .faq-toggle::after {
+            width: 2px;
+            height: 16px;
+        }
+
+        .faq-item.active .faq-toggle::after {
+            transform: translate(-50%, -50%) rotate(90deg);
+            opacity: 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-bottom: 28px;
+        }
+
+        .faq-answer p {
+            font-size: clamp(15px, 2.5vw, 17px);
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .contact-section {
+            background: var(--white);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            margin-top: clamp(60px, 10vh, 80px);
+        }
+
+        .contact-info {
+            margin-bottom: 48px;
+        }
+
+        .contact-item {
+            margin-bottom: 32px;
+        }
+
+        .contact-item h3 {
+            font-size: clamp(18px, 3vw, 22px);
+            margin-bottom: 12px;
+        }
+
+        .contact-item a {
+            font-size: clamp(15px, 2.5vw, 17px);
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--dark-gray);
+        }
+
+        footer {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: clamp(60px, 10vh, 80px) 20px;
+        }
+
+        .footer-names {
+            font-size: clamp(28px, 5vw, 42px);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 16px;
+        }
+
+        .footer-date {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .hero-image {
+                order: -1;
+                height: 50vh;
+                min-height: 400px;
+            }
+
+            .about-grid,
+            .location-grid,
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 32px;
+                transition: right 0.3s ease;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 18px;
+            }
+
+            .dresscode-grid,
+            .registry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-event {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .program-time {
+                min-width: auto;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <div class="nav-logo">E & J</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#story">Story</a>
+                <a href="#location">Location</a>
+                <a href="#dresscode">Dress Code</a>
+                <a href="#registry">Registry</a>
+                <a href="#program">Program</a>
+                <a href="#faqs">FAQs</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Wedding Invitation</div>
+            <div class="hero-names">
+                <h1>Emma</h1>
+                <h1>James</h1>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hero-date">June 15, 2025</div>
+            <div class="hero-location">Rosewood Manor, Napa Valley</div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=85" alt="Wedding venue">
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">01 — About Us</div>
+                <h2 class="section-title fade-in">Meet the Couple</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-person fade-in">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=85" alt="Emma">
+                    </div>
+                    <h3 class="about-name">Emma Rose</h3>
+                    <div class="about-role">The Bride</div>
+                    <p class="about-bio">A passionate architect with a love for minimalist design and Sunday morning coffee. Emma believes in the beauty of simplicity and finding joy in life's quiet moments.</p>
+                </div>
+                <div class="about-person fade-in">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85" alt="James">
+                    </div>
+                    <h3 class="about-name">James Carter</h3>
+                    <div class="about-role">The Groom</div>
+                    <p class="about-bio">A documentary photographer who captures stories through his lens. James finds beauty in authenticity and believes every moment has a story worth telling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="story" class="story-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">02 — Our Journey</div>
+                <h2 class="section-title fade-in">Love Story</h2>
+            </div>
+            <div class="story-content">
+                <p class="story-text fade-in">Seven years ago, we met at a coffee shop where James accidentally spilled his latte on Emma's laptop. What started as an awkward apology turned into hours of conversation, countless adventures, and a love that grows stronger every day.</p>
+                
+                <div class="story-timeline">
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <h3>First Meeting</h3>
+                            <p>A chance encounter at Café Lumière turned into an eight-hour conversation about art, architecture, and dreams.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h3>Moving In Together</h3>
+                            <p>We found our first apartment in the city, a small loft with big windows and even bigger dreams.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h3>The Proposal</h3>
+                            <p>On a quiet beach in Big Sur, James asked the question that changed everything. Emma said yes before he could finish.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3>Our Wedding Day</h3>
+                            <p>Surrounded by loved ones, we begin our greatest adventure yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="location-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">03 — Venue</div>
+                <h2 class="section-title fade-in">The Location</h2>
+            </div>
+            <div class="location-grid">
+                <div class="location-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f29da8c8b0?w=1200&q=85" alt="Venue">
+                </div>
+                <div class="location-details fade-in">
+                    <h3>Rosewood Manor</h3>
+                    <div class="location-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                                    <circle cx="12" cy="9" r="2.5"/>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <strong>Address:</strong><br>
+                                1234 Vineyard Lane<br>
+                                Napa Valley, CA 94558
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <strong>Time:</strong><br>
+                                Ceremony begins at 4:00 PM<br>
+                                Reception to follow
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <strong>Date:</strong><br>
+                                Saturday, June 15, 2025
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dresscode" class="dresscode-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">04 — Attire</div>
+                <h2 class="section-title fade-in">Dress Code</h2>
+                <p class="section-subtitle fade-in">We want you to feel comfortable and confident. Here's what we suggest.</p>
+            </div>
+            <div class="dresscode-grid">
+                <div class="dresscode-item fade-in">
+                    <div class="dresscode-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                    </div>
+                    <h3>Formal Attire</h3>
+                    <p>Floor-length gowns and tuxedos are encouraged. Think elegant and refined.</p>
+                </div>
+                <div class="dresscode-item fade-in">
+                    <div class="dresscode-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <line x1="9" y1="9" x2="9.01" y2="9"/>
+                            <line x1="15" y1="9" x2="15.01" y2="9"/>
+                        </svg>
+                    </div>
+                    <h3>Color Palette</h3>
+                    <p>Neutral tones, earth colors, and muted shades complement our venue beautifully.</p>
+                </div>
+                <div class="dresscode-item fade-in">
+                    <div class="dresscode-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <polyline points="2 17 12 22 22 17"/>
+                            <polyline points="2 12 12 17 22 12"/>
+                        </svg>
+                    </div>
+                    <h3>Outdoor Venue</h3>
+                    <p>Consider comfortable footwear for grass and stone pathways. Bring a light wrap for the evening.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="registry" class="registry-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">05 — Registry</div>
+                <h2 class="section-title fade-in">Gift Registry</h2>
+                <p class="section-subtitle fade-in">Your presence is the greatest gift. For those who have asked, we've created a few registries.</p>
+            </div>
+            <div class="registry-grid">
+                <div class="registry-card fade-in">
+                    <div class="registry-logo">Crate & Barrel</div>
+                    <p>Home essentials and kitchen favorites for our new life together.</p>
+                    <a href="#" class="btn-outline btn">View Registry</a>
+                </div>
+                <div class="registry-card fade-in">
+                    <div class="registry-logo">Zola</div>
+                    <p>A curated collection of items we love, plus cash fund options.</p>
+                    <a href="#" class="btn-outline btn">View Registry</a>
+                </div>
+                <div class="registry-card fade-in">
+                    <div class="registry-logo">Honeymoon Fund</div>
+                    <p>Help us create memories on our adventure to Japan.</p>
+                    <a href="#" class="btn-outline btn">Contribute</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="countdown" class="countdown-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number" style="color: rgba(255,255,255,0.5);">06 — Countdown</div>
+                <h2 class="section-title">Days Until Forever</h2>
+                <p class="section-subtitle">Every moment brings us closer</p>
+            </div>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">000</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="program-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">07 — Schedule</div>
+                <h2 class="section-title fade-in">Event Timeline</h2>
+            </div>
+            <div class="program-grid">
+                <div>
+                    <div class="program-event fade-in">
+                        <div class="program-time">3:30 PM</div>
+                        <div class="program-details">
+                            <h3>Guest Arrival</h3>
+                            <p>Please arrive early to find your seat and enjoy the garden setting.</p>
+                        </div>
+                    </div>
+                    <div class="program-event fade-in">
+                        <div class="program-time">4:00 PM</div>
+                        <div class="program-details">
+                            <h3>Ceremony</h3>
+                            <p>Join us as we exchange vows in the vineyard overlooking the valley.</p>
+                        </div>
+                    </div>
+                    <div class="program-event fade-in">
+                        <div class="program-time">5:00 PM</div>
+                        <div class="program-details">
+                            <h3>Cocktail Hour</h3>
+                            <p>Enjoy drinks and hors d'oeuvres on the terrace while we take photos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="program-event fade-in">
+                        <div class="program-time">6:00 PM</div>
+                        <div class="program-details">
+                            <h3>Reception</h3>
+                            <p>Dinner, toasts, and celebration in the grand ballroom.</p>
+                        </div>
+                    </div>
+                    <div class="program-event fade-in">
+                        <div class="program-time">8:00 PM</div>
+                        <div class="program-details">
+                            <h3>First Dance</h3>
+                            <p>Watch us take our first dance as a married couple, then join us on the floor.</p>
+                        </div>
+                    </div>
+                    <div class="program-event fade-in">
+                        <div class="program-time">11:00 PM</div>
+                        <div class="program-details">
+                            <h3>Send-Off</h3>
+                            <p>A sparkler exit to end the perfect evening.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faqs" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">08 — Questions</div>
+                <h2 class="section-title fade-in">Frequently Asked</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What time should I arrive?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend arriving by 3:30 PM to allow time for parking and seating. The ceremony will begin promptly at 4:00 PM.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Is there parking available?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, complimentary valet parking will be available at the venue. There is also a self-parking lot adjacent to the property.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Can I bring a plus-one?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Due to limited capacity, we can only accommodate guests formally invited on your invitation. If you received a plus-one, it will be indicated on your invite.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Will the ceremony be indoors or outdoors?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The ceremony will be held outdoors in the vineyard, weather permitting. We have a beautiful indoor backup plan in case of inclement weather.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Are children welcome?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While we love your little ones, we've decided to make this an adults-only celebration. We hope this gives you a chance to relax and enjoy the evening.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What dietary restrictions can be accommodated?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Please let us know about any dietary restrictions when you RSVP. Our caterer can accommodate vegetarian, vegan, gluten-free, and most other dietary needs.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Will there be transportation provided?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We will provide shuttle service from select hotels in downtown Napa. Details will be sent with your invitation. Rideshare services are also readily available.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What is your wedding hashtag?</h3>
+                        <div class="faq-toggle"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Share your photos using #EmmaAndJames2025. We can't wait to see the day through your eyes!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">09 — Contact</div>
+                <h2 class="section-title fade-in">Get In Touch</h2>
+                <p class="section-subtitle fade-in">Questions? We're here to help.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item fade-in">
+                        <h3>Email</h3>
+                        <a href="mailto:hello@emmaandjames.com">hello@emmaandjames.com</a>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <h3>Wedding Coordinator</h3>
+                        <a href="mailto:sarah@rosewoodmanor.com">sarah@rosewoodmanor.com</a>
+                    </div>
+                </div>
+                <a href="#" class="btn fade-in">RSVP Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-names">Emma & James</div>
+        <div class="footer-date">June 15, 2025 — Napa Valley, California</div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const header = document.getElementById('header');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        const weddingDate = new Date('June 15, 2025 16:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(3, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('days').textContent = '000';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

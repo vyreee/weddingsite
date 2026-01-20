@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { Monitor, Smartphone, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-type TemplateKey = "1" | "2" | "3" | "4";
+type TemplateKey = "1" | "2" | "3" | "4" | "5";
 type DeviceView = "desktop" | "mobile";
 
 const TEMPLATES: Record<TemplateKey, { name: string; desc: string; status: string }> = {
@@ -13,6 +13,7 @@ const TEMPLATES: Record<TemplateKey, { name: string; desc: string; status: strin
   "2": { name: "Modern Minimalist", desc: "Clean & Contemporary", status: "Live" },
   "3": { name: "Garden Romance", desc: "Floral & Natural", status: "Live" },
   "4": { name: "Royal Bliss", desc: "Royalty Feels", status: "Live" },
+  "5": { name: "Editorial Minimalism", desc: "Magazine Style", status: "Live" },
 };
 
 export default function PreviewPage() {
