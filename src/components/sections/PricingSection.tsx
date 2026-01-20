@@ -8,47 +8,36 @@ import Link from "next/link";
 export default function PricingSection() {
   const tiers = [
     { 
-      name: "Luxury", 
-      price: "$45 / ₱2,499", 
-      duration: "30 days", 
-      features: [
-        "3 templates to choose from",
-        "Choose 4 sections from: Header, Our Story, Prenup Gallery, Dress Code, Location, Gifts, Contact, Countdown, FAQs",
-        "Free QR code invitation for social media",
-        "1 revision (pictures, copy, colors)",
-        "Site live within 3-7 days",
-        "Custom domain",
-        "Email support",
-        "Additional revisions: ₱500 per request"
-      ], 
-      popular: false 
-    },
-    { 
       name: "Elegant", 
       price: "$100 / ₱4,999", 
-      duration: "45 days (can extended- addtl fees may apply)", 
+      duration: "45 days (can be extended - additional fees may apply)", 
       features: [
-        "10 templates to choose from",
-        "Choose 5 sections from: Header, Our Story, Prenup Gallery, Dress Code, Location, Gifts, Contact, Countdown, FAQs",
+        "Choose from 5 beautiful templates",
+        "All sections included: Header, Our Story, Gallery, Dress Code, Location, Gifts, Contact, Countdown, FAQs",
+        "Fixed template design - only your details, photos, and text change",
         "Free QR code invitation for social media",
         "2 revisions (pictures, copy, colors)",
         "Site live within 3 days",
-        "Custom domain",
+        "Domain: bridename&groomname.fromthisday.com",
         "Priority support",
         "Additional revisions: ₱500 per request"
       ], 
       popular: true 
     },
     { 
-      name: "Prestige", 
-      price: "Custom", 
-      duration: "Consultation", 
+      name: "Custom", 
+      price: "Custom Quote", 
+      duration: "Consultation Required", 
       features: [
-        "Custom design and sections",
+        "Fully custom layout and design",
+        "Custom color schemes and branding",
+        "Your own custom domain (e.g., yournames.com)",
+        "All sections with custom modifications",
         "Free QR code invitation for social media",
         "Unlimited revisions",
         "Dedicated support",
-        "Extended hosting"
+        "Extended hosting",
+        "We'll create a personalized price quotation"
       ], 
       popular: false 
     },
@@ -65,7 +54,7 @@ export default function PricingSection() {
         Simple, Transparent Pricing
       </motion.h2>
       <motion.div
-        className="mt-10 grid gap-6 md:grid-cols-3"
+        className="mt-10 grid gap-8 md:grid-cols-2 max-w-4xl mx-auto"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}

@@ -18,8 +18,8 @@ const faqCategories = [
         a: "It's super simple! Pick your package, fill out our information form, send us your photos, and we'll build your beautiful wedding website. You'll get a link to review it, request any changes, and then it goes live for your guests!" 
       },
       { 
-        q: "What's the difference between the three packages?", 
-        a: "<ul class='space-y-3 mt-2'><li><strong>Luxury ($45/₱2,499)</strong> - Perfect if you want something beautiful and budget-friendly. Pick from 3 templates, choose 4 sections, 1 revision included. Live in 3-7 days.</li><li><strong>Elegant ($100/₱4,999)</strong> - Our most popular! Pick from 10 templates, get ALL 8 sections included, 2 revisions included, priority support. Live in 3 days.</li><li><strong>Prestige (Custom Quote)</strong> - For couples who want something totally unique. Unlimited revisions, custom design, dedicated support, your own features.</li></ul>" 
+        q: "What's the difference between the two packages?", 
+        a: "<ul class='space-y-3 mt-2'><li><strong>Elegant ($100/₱4,999)</strong> - Our most popular! Choose from 5 beautiful templates with ALL sections included. The template design is fixed - only your details, photos, and text change. Perfect for couples who want a stunning website quickly. 2 revisions included, priority support. Live in 3 days. Domain: bridename&groomname.fromthisday.com</li><li><strong>Custom (Price Quotation)</strong> - For couples who want something totally unique. Fully custom layout, custom colors and branding, your own custom domain (e.g., yournames.com). Unlimited revisions, dedicated support. We'll create a personalized price quote based on your needs.</li></ul>" 
       },
       { 
         q: "Do I need to know anything about websites or coding?", 
@@ -36,7 +36,7 @@ const faqCategories = [
       },
       { 
         q: "Can I have my own custom domain like 'emmaandjames.com'?", 
-        a: "Yes! Custom domain connection is available with our Prestige package. You'll need to purchase your own domain name (around $10-15/year) and we'll connect it for you." 
+        a: "Yes! Custom domain connection is available with our Custom package. The Elegant package uses our subdomain format (bridename&groomname.fromthisday.com). For a custom domain, you'll need to purchase your own domain name (around $10-15/year) and we'll connect it for you." 
       },
       { 
         q: "How do I choose my website name?", 
@@ -56,8 +56,8 @@ const faqCategories = [
         a: "Absolutely! We have an interactive demo page where you can preview ALL available templates. The best part? You can type in your own names and wedding date, and see how it would look in real-time! This helps you visualize your actual website before committing. Just visit our demo page or ask us for the link!" 
       },
       { 
-        q: "What if I want to mix sections from different templates?", 
-        a: "That's only available in our Prestige package where we create custom designs. Luxury and Elegant packages use one template throughout for consistency." 
+        q: "Can I customize the colors or layout in the Elegant package?", 
+        a: "The Elegant package uses fixed template designs for consistency and quick delivery. Only your content (names, dates, photos, text) changes. If you need custom colors, layouts, or design modifications, our Custom package is perfect for you - we'll create a personalized quote based on your specific needs." 
       },
       { 
         q: "Can I change my template after I've chosen one?", 
@@ -65,7 +65,7 @@ const faqCategories = [
       },
       { 
         q: "What sections are included on my website?", 
-        a: "We have <strong>8 sections available:</strong><ul class='mt-2 space-y-1'><li>• <strong>Hero/Header</strong> - Your names and wedding date</li><li>• <strong>Our Story</strong> - Your love story with photo gallery</li><li>• <strong>Venue</strong> - Location, map, and directions</li><li>• <strong>Dress Code</strong> - What guests should wear</li><li>• <strong>Gift Registry</strong> - Your registries with links</li><li>• <strong>Countdown</strong> - Days until your wedding</li><li>• <strong>Event Schedule</strong> - Timeline of your wedding day</li><li>• <strong>FAQs</strong> - Answer common guest questions</li><li>• <strong>Contact</strong> - How to reach you</li></ul><p class='mt-3'><strong>Luxury Package:</strong> Choose 4 sections<br/><strong>Elegant Package:</strong> Get ALL 8 sections<br/><strong>Prestige Package:</strong> All sections + custom sections you create</p>" 
+        a: "We have <strong>9 sections available:</strong><ul class='mt-2 space-y-1'><li>• <strong>Hero/Header</strong> - Your names and wedding date</li><li>• <strong>Our Story</strong> - Your love story with photo gallery</li><li>• <strong>Venue</strong> - Location, map, and directions</li><li>• <strong>Dress Code</strong> - What guests should wear</li><li>• <strong>Gift Registry</strong> - Your registries with links</li><li>• <strong>Countdown</strong> - Days until your wedding</li><li>• <strong>Event Schedule</strong> - Timeline of your wedding day</li><li>• <strong>FAQs</strong> - Answer common guest questions</li><li>• <strong>Contact</strong> - How to reach you</li></ul><p class='mt-3'><strong>Elegant Package:</strong> ALL sections included<br/><strong>Custom Package:</strong> All sections + custom sections and modifications you create</p>" 
       },
     ]
   },
@@ -74,7 +74,7 @@ const faqCategories = [
     faqs: [
       { 
         q: "How long until my website is ready?", 
-        a: "<ul class='space-y-1'><li><strong>Luxury:</strong> 3-7 days</li><li><strong>Elegant:</strong> 3 days</li><li><strong>Prestige:</strong> Depends on customization, discussed in consultation</li></ul>" 
+        a: "<ul class='space-y-1'><li><strong>Elegant:</strong> 3 days</li><li><strong>Custom:</strong> Depends on customization level, timeline discussed during consultation</li></ul>" 
       },
       { 
         q: "What if my wedding is in 2 days?!", 
@@ -82,7 +82,7 @@ const faqCategories = [
       },
       { 
         q: "How long will my website stay live?", 
-        a: "<ul class='space-y-1'><li><strong>Luxury:</strong> 30 days (1 month)</li><li><strong>Elegant:</strong> 45 days (can extend for additional fee)</li><li><strong>Prestige:</strong> Extended hosting included</li></ul>" 
+        a: "<ul class='space-y-1'><li><strong>Elegant:</strong> 45 days (can extend for additional fee)</li><li><strong>Custom:</strong> Extended hosting included</li></ul>" 
       },
       { 
         q: "What happens after my time expires?", 
@@ -158,7 +158,7 @@ const faqCategories = [
       },
       { 
         q: "Can guests RSVP on the website?", 
-        a: "RSVP functionality is only available in the Prestige package. For Luxury and Elegant, you can include your contact info so guests can RSVP via email or phone." 
+        a: "RSVP functionality is only available in the Custom package. For Elegant, you can include your contact info so guests can RSVP via email or phone." 
       },
       { 
         q: "Can I password-protect my website?", 
@@ -208,7 +208,7 @@ const faqCategories = [
       },
       { 
         q: "What if I have questions after my site goes live?", 
-        a: "<ul class='space-y-1'><li><strong>Luxury:</strong> Email support</li><li><strong>Elegant:</strong> Priority email support</li><li><strong>Prestige:</strong> Dedicated support (phone, WhatsApp, email)</li></ul>" 
+        a: "<ul class='space-y-1'><li><strong>Elegant:</strong> Priority email support</li><li><strong>Custom:</strong> Dedicated support (phone, WhatsApp, email)</li></ul>" 
       },
     ]
   },

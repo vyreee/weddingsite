@@ -11,7 +11,7 @@ export default function ContactFormSection() {
     email: "",
     phone: "",
     weddingDate: "",
-    package: "Luxury",
+    package: "Elegant",
     message: "",
     // Honeypot field for bot protection
     website: ""
@@ -83,7 +83,7 @@ export default function ContactFormSection() {
         email: "",
         phone: "",
         weddingDate: "",
-        package: "Luxury",
+        package: "Elegant",
         message: "",
         website: ""
       });
@@ -200,9 +200,8 @@ export default function ContactFormSection() {
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors bg-white"
               >
-                <option value="Luxury">Luxury - $45 / ₱2,499</option>
                 <option value="Elegant">Elegant - $100 / ₱4,999</option>
-                <option value="Prestige">Prestige - Custom</option>
+                <option value="Custom">Custom - Price Quotation</option>
                 <option value="Just Browsing">Just Browsing / Questions</option>
               </select>
             </div>

@@ -74,7 +74,7 @@ export default function Home() {
             </Link>
           </div>
         </BrandCard>
-        <BrandCard title="Simple, Transparent Pricing" subtitle="Starting at $45 / ₱2,499">
+        <BrandCard title="Simple, Transparent Pricing" subtitle="Starting at $100 / ₱4,999">
           <ul className="text-sm/6 list-disc pl-5">
             <li>Elegant designs</li>
             <li>Mobile responsive</li>
