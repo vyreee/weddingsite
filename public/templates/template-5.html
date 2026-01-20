@@ -201,20 +201,59 @@
             letter-spacing: 0.5px;
         }
 
-        .hero-image {
+        .hero-slideshow {
             position: relative;
             overflow: hidden;
         }
 
-        .hero-image img {
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
         }
 
         section {
             padding: clamp(80px, 12vh, 160px) 0;
+        }
+
+        .gallery-section {
+            background: var(--bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            margin-top: clamp(60px, 10vh, 80px);
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+            transition: transform 0.6s ease, filter 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
         }
 
         .section-header {
@@ -857,6 +896,7 @@
             <div class="nav-links" id="navLinks">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
+                <a href="#gallery">Gallery</a>
                 <a href="#story">Story</a>
                 <a href="#location">Location</a>
                 <a href="#dresscode">Dress Code</a>
@@ -879,8 +919,10 @@
             <div class="hero-date">June 15, 2025</div>
             <div class="hero-location">Rosewood Manor, Napa Valley</div>
         </div>
-        <div class="hero-image">
-            <img src="/imgs/venue.jpg" alt="Wedding venue">
+        <div class="hero-slideshow">
+            <div class="hero-slide active" style="background-image: url('/imgs/elvis-bekmanis-WJc87MVcDaA-unsplash.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('/imgs/katelyn-macmillan-MtwNya-3mac-unsplash.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('/imgs/leonardo-miranda-dvF6s1H1x68-unsplash.jpg')"></div>
         </div>
     </section>
 
@@ -911,10 +953,39 @@
         </div>
     </section>
 
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-number">02 — Gallery</div>
+                <h2 class="section-title fade-in">Captured Moments</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="/imgs/elvis-bekmanis-WJc87MVcDaA-unsplash.jpg" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="/imgs/katelyn-macmillan-MtwNya-3mac-unsplash.jpg" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="/imgs/leonardo-miranda-dvF6s1H1x68-unsplash.jpg" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="/imgs/foto-pettine-IfjHaIoAoqE-unsplash.jpg" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="/imgs/olivia-bauso-30UOqDM5QW0-unsplash.jpg" alt="Couple photo">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="/imgs/samantha-gades-x40Q9jrEVT0-unsplash.jpg" alt="Couple photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="story" class="story-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number">02 — Our Journey</div>
+                <div class="section-number">03 — Our Journey</div>
                 <h2 class="section-title fade-in">Love Story</h2>
             </div>
             <div class="story-content">
@@ -957,7 +1028,7 @@
     <section id="location" class="location-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number">03 — Venue</div>
+                <div class="section-number">04 — Venue</div>
                 <h2 class="section-title fade-in">The Location</h2>
             </div>
             <div class="location-grid">
@@ -1017,7 +1088,7 @@
     <section id="dresscode" class="dresscode-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number">04 — Attire</div>
+                <div class="section-number">05 — Attire</div>
                 <h2 class="section-title fade-in">Dress Code</h2>
                 <p class="section-subtitle fade-in">We want you to feel comfortable and confident. Here's what we suggest.</p>
             </div>
@@ -1061,7 +1132,7 @@
     <section id="registry" class="registry-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number">05 — Registry</div>
+                <div class="section-number">06 — Registry</div>
                 <h2 class="section-title fade-in">Gift Registry</h2>
                 <p class="section-subtitle fade-in">Your presence is the greatest gift. For those who have asked, we've created a few registries.</p>
             </div>
@@ -1088,7 +1159,7 @@
     <section id="countdown" class="countdown-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number" style="color: rgba(255,255,255,0.5);">06 — Countdown</div>
+                <div class="section-number" style="color: rgba(255,255,255,0.5);">07 — Countdown</div>
                 <h2 class="section-title">Days Until Forever</h2>
                 <p class="section-subtitle">Every moment brings us closer</p>
             </div>
@@ -1116,7 +1187,7 @@
     <section id="program" class="program-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number">07 — Schedule</div>
+                <div class="section-number">08 — Schedule</div>
                 <h2 class="section-title fade-in">Event Timeline</h2>
             </div>
             <div class="program-grid">
@@ -1173,7 +1244,7 @@
     <section id="faqs" class="faq-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number">08 — Questions</div>
+                <div class="section-number">09 — Questions</div>
                 <h2 class="section-title fade-in">Frequently Asked</h2>
             </div>
             <div class="faq-container">
@@ -1256,7 +1327,7 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-number">09 — Contact</div>
+                <div class="section-number">10 — Contact</div>
                 <h2 class="section-title fade-in">Get In Touch</h2>
                 <p class="section-subtitle fade-in">Questions? We're here to help.</p>
             </div>
@@ -1305,6 +1376,18 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // Hero Slideshow
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 4000);
 
         const weddingDate = new Date('June 15, 2025 16:00:00').getTime();
 
