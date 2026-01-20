@@ -19,7 +19,7 @@ const faqCategories = [
       },
       { 
         q: "What's the difference between the two packages?", 
-        a: "<ul class='space-y-3 mt-2'><li><strong>Elegant ($100/₱4,999)</strong> - Our most popular! Choose from 5 beautiful templates with ALL sections included. The template design is fixed - only your details, photos, and text change. Perfect for couples who want a stunning website quickly. 2 revisions included, priority support. Live in 3 days. Domain: bridename&groomname.fromthisday.com</li><li><strong>Custom (Price Quotation)</strong> - For couples who want something totally unique. Fully custom layout, custom colors and branding, your own custom domain (e.g., yournames.com). Unlimited revisions, dedicated support. We'll create a personalized price quote based on your needs.</li></ul>" 
+        a: "<ul class='space-y-3 mt-2'><li><strong>Elegant ($100/₱4,999)</strong> - Our most popular! Choose from 5 beautiful templates with ALL sections included. The template design is fixed - only your details, photos, and text change. Perfect for couples who want a stunning website quickly. 2 revisions included, priority support. Live in 3 days. Domain: bridesname&groomsname.withvows.com</li><li><strong>Custom (Price Quotation)</strong> - For couples who want something totally unique. Fully custom layout, custom colors and branding, your own custom domain (e.g., yournames.com). Unlimited revisions, dedicated support. We'll create a personalized price quote based on your needs.</li></ul>" 
       },
       { 
         q: "Do I need to know anything about websites or coding?", 
@@ -32,11 +32,11 @@ const faqCategories = [
     faqs: [
       { 
         q: "What will my website address look like?", 
-        a: "Your website will be a subdomain of ours. For example: emmaandjames.fromthisday.com or forever.fromthisday.com - you choose the first part!" 
+        a: "Your website will be a subdomain of ours. For example: emmaandjames.withvows.com or forever.withvows.com - you choose the first part!" 
       },
       { 
         q: "Can I have my own custom domain like 'emmaandjames.com'?", 
-        a: "Yes! Custom domain connection is available with our Custom package. The Elegant package uses our subdomain format (bridename&groomname.fromthisday.com). For a custom domain, you'll need to purchase your own domain name (around $10-15/year) and we'll connect it for you." 
+        a: "Yes! Custom domain connection is available with our Custom package. The Elegant package uses our subdomain format (bridesname&groomsname.withvows.com). For a custom domain, you'll need to purchase your own domain name (around $10-15/year) and we'll connect it for you." 
       },
       { 
         q: "How do I choose my website name?", 

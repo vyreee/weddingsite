@@ -65,7 +65,7 @@ export default function PreviewPage() {
   const generateUrl = () => {
     const bride = brideName.toLowerCase().replace(/\s+/g, '');
     const groom = groomName.toLowerCase().replace(/\s+/g, '');
-    return bride && groom ? `${bride}${groom}.wedding.site` : 'yournames.wedding.site';
+    return bride && groom ? `${bride}${groom}.withvows.com` : 'yournames.withvows.com';
   };
 
   return (

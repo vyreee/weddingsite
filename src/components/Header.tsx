@@ -78,7 +78,7 @@ export function Header() {
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-lg font-semibold text-brand-primary z-50">
-         LD Wedding Sites
+         With Vows
         </Link>
 
         {/* Desktop Navigation */}

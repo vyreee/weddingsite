@@ -16,9 +16,9 @@ export default function PricingSection() {
         "All sections included: Header, Our Story, Gallery, Dress Code, Location, Gifts, Contact, Countdown, FAQs",
         "Fixed template design - only your details, photos, and text change",
         "Free QR code invitation for social media",
-        "2 revisions (pictures, copy, colors)",
+        "2 revisions (pictures and copy changes only)",
         "Site live within 3 days",
-        "Domain: bridename&groomname.fromthisday.com",
+        "Domain: bridesname&groomsname.withvows.com",
         "Priority support",
         "Additional revisions: ₱500 per request"
       ], 
