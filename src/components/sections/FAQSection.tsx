@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Instagram, Facebook } from "lucide-react";
 
 const faqCategories = [
   {
@@ -273,10 +274,29 @@ export default function FAQSection() {
       >
         <h3 className="text-xl font-semibold text-brand-primary mb-3">Still Have Questions?</h3>
         <p className="text-brand-dark/80 mb-4">We&apos;re here to help! Reach out to us:</p>
-        <ul className="space-y-2 text-sm text-brand-dark/80">
-          <li><strong>Email:</strong> hello@fromthisday.com</li>
-          <li><strong>Response Time:</strong> Within 24 hours (faster for Elegant & Prestige customers)</li>
-        </ul>
+        <div className="flex flex-wrap gap-4 items-center">
+          <a 
+            href="https://www.instagram.com/luredexigns" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-brand-primary/30 text-brand-primary hover:bg-brand-primary hover:text-white transition-colors font-medium text-sm"
+          >
+            <Instagram className="size-5" />
+            Message us on Instagram
+          </a>
+          <a 
+            href="https://www.facebook.com/luredexigns" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-brand-primary/30 text-brand-primary hover:bg-brand-primary hover:text-white transition-colors font-medium text-sm"
+          >
+            <Facebook className="size-5" />
+            Message us on Facebook
+          </a>
+        </div>
+        <p className="text-sm text-brand-dark/60 mt-4">
+          <strong>Response Time:</strong> Within 24 hours (faster for Elegant & Custom customers)
+        </p>
       </motion.div>
     </section>
   );
