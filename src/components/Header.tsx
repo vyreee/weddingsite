@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 
@@ -77,8 +78,23 @@ export function Header() {
       className="w-full sticky top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-brand-secondary/20"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold text-brand-primary z-50">
-         With Vows
+        <Link href="/" className="relative z-50">
+          <Image
+            src="/imgs/for white bg expanded logo.png"
+            alt="With Vows Wedding Websites"
+            width={180}
+            height={40}
+            className="hidden sm:block h-10 w-auto"
+            priority
+          />
+          <Image
+            src="/imgs/for white bg not expanded logo.png"
+            alt="With Vows"
+            width={120}
+            height={40}
+            className="sm:hidden h-10 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
