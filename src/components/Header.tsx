@@ -80,19 +80,11 @@ export function Header() {
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <Link href="/" className="relative z-50">
           <Image
-            src="/imgs/for white bg expanded logo.png"
-            alt="With Vows Wedding Websites"
-            width={180}
-            height={40}
-            className="hidden sm:block h-10 w-auto"
-            priority
-          />
-          <Image
             src="/imgs/for white bg not expanded logo.png"
             alt="With Vows"
-            width={120}
-            height={40}
-            className="sm:hidden h-10 w-auto"
+            width={150}
+            height={50}
+            className="h-[50px] w-auto"
             priority
           />
         </Link>
