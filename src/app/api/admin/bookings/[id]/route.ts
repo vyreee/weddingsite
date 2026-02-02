@@ -35,13 +35,17 @@ export async function PATCH(
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error;
+    }
 
     return NextResponse.json({ booking: data });
   } catch (error) {
     console.error('Error updating booking:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to update booking';
     return NextResponse.json(
-      { error: 'Failed to update booking' },
+      { error: errorMessage, details: error },
       { status: 500 }
     );
   }

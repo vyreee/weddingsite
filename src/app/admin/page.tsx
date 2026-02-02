@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Lock, LogOut, Calendar, CheckCircle2, Clock, XCircle } from "lucide-react";
+import { Lock, LogOut, Calendar, CheckCircle2, Clock, XCircle, Download } from "lucide-react";
 import BrandButton from "@/components/BrandButton";
 import { Booking } from "@/types/booking";
 import Image from "next/image";
@@ -128,6 +128,62 @@ export default function AdminPage() {
     } finally {
       setActionLoading(false);
     }
+  };
+
+  const handleExportBooking = (booking: Booking) => {
+    const exportData = {
+      "Booking ID": booking.id,
+      "Status": booking.status.toUpperCase(),
+      "Created At": new Date(booking.created_at).toLocaleString(),
+      "Launch Date": booking.launch_date,
+      "Site End Date": booking.site_end_date,
+      "Groom Name": booking.groom_name,
+      "Bride Name": booking.bride_name,
+      "Email": booking.email,
+      "Phone": booking.phone,
+      "Wedding Date": booking.wedding_date,
+      "Package": booking.package,
+      "Hero Tagline": booking.hero_tagline || "N/A",
+      "Hero Subtitle": booking.hero_subtitle || "N/A",
+      "Couple Story": booking.couple_story,
+      "How We Met": booking.how_we_met || "N/A",
+      "Proposal Story": booking.proposal_story || "N/A",
+      "Relationship Highlights": booking.relationship_highlights || "N/A",
+      "Venue Name": booking.venue_name,
+      "Venue Address": booking.venue_address,
+      "Venue Description": booking.venue_description || "N/A",
+      "Ceremony Time": booking.ceremony_time,
+      "Reception Time": booking.reception_time,
+      "Dress Code": booking.dresscode || "N/A",
+      "Directions & Transport": booking.directions_transport || "N/A",
+      "Groomsmen": booking.groomsmen || "N/A",
+      "Bridesmaids": booking.bridesmaids || "N/A",
+      "Parents & Sponsors": booking.parents || "N/A",
+      "Schedule of Events": booking.schedule_of_events || "N/A",
+      "RSVP Deadline": booking.rsvp_deadline || "N/A",
+      "Gift Registry": booking.gift_registry_info || "N/A",
+      "Accommodation Info": booking.accommodation_info || "N/A",
+      "Leave Content to Vows": booking.leave_content_to_vows ? "Yes" : "No",
+      "Image Sections Notes": booking.image_sections_notes || "N/A",
+      "Drive Folder URL": booking.drive_folder_url || "Not set",
+      "GCash Receipt URL": booking.gcash_receipt_url || "Not uploaded",
+      "Payment Confirmed At": booking.payment_confirmed_at ? new Date(booking.payment_confirmed_at).toLocaleString() : "Not confirmed",
+      "Special Requests": booking.special_requests || "None"
+    };
+
+    const content = Object.entries(exportData)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join("\n\n");
+
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `booking-${booking.groom_name}-${booking.bride_name}-${booking.launch_date}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   if (!isAuthenticated) {
@@ -311,6 +367,15 @@ export default function AdminPage() {
                     className="text-sm"
                   >
                     {selectedBooking?.id === booking.id ? "Hide Details" : "View Details"}
+                  </BrandButton>
+                  
+                  <BrandButton
+                    variant="ghost"
+                    onClick={() => handleExportBooking(booking)}
+                    className="text-sm flex items-center gap-1"
+                  >
+                    <Download className="size-4" />
+                    Export
                   </BrandButton>
                   
                   {booking.status === "reserved" && (
