@@ -44,13 +44,16 @@ export default function Home() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-8 flex items-center justify-center gap-3"
+            className="mt-8 flex items-center justify-center gap-3 flex-wrap"
           >
-            <Link href="/preview">
-              <BrandButton>Try Interactive Preview</BrandButton>
+            <Link href="/book">
+              <BrandButton>Book Your Date</BrandButton>
             </Link>
-            <Link href="/#pricing">
-              <BrandButton variant="ghost">View Pricing</BrandButton>
+            <Link href="/book/calendar">
+              <BrandButton variant="secondary">View Calendar</BrandButton>
+            </Link>
+            <Link href="/preview">
+              <BrandButton variant="ghost">Preview Templates</BrandButton>
             </Link>
           </motion.div>
           <div className="mt-6">
