@@ -23,12 +23,38 @@ CREATE TABLE IF NOT EXISTS bookings (
   wedding_date DATE NOT NULL,
   package TEXT NOT NULL CHECK (package IN ('Elegant', 'Custom')),
   
-  -- Content details
+  -- Content details - Hero Section
+  hero_tagline TEXT,
+  hero_subtitle TEXT,
+  
+  -- Content details - Love Story
   couple_story TEXT,
+  how_we_met TEXT,
+  proposal_story TEXT,
+  relationship_highlights TEXT,
+  
+  -- Content details - Venue & Event
   venue_name TEXT,
   venue_address TEXT,
   ceremony_time TEXT,
   reception_time TEXT,
+  venue_description TEXT,
+  dresscode TEXT,
+  directions_transport TEXT,
+  
+  -- Content details - Wedding Party
+  groomsmen TEXT,
+  bridesmaids TEXT,
+  parents TEXT,
+  
+  -- Content details - Additional
+  schedule_of_events TEXT,
+  rsvp_deadline DATE,
+  gift_registry_info TEXT,
+  accommodation_info TEXT,
+  
+  -- Leave content to Vows team flag
+  leave_content_to_vows BOOLEAN DEFAULT FALSE,
   
   -- Image sections (stored as JSON notes about what images are needed)
   image_sections_notes TEXT,

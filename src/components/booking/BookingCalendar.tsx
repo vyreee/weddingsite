@@ -109,30 +109,52 @@ export default function BookingCalendar({
           const isSelected = selectedDate === dateStr;
           const isCurrentMonth = dateObj.date.getMonth() === currentMonth.getMonth();
           const isAvailable = dateObj.status === "available";
+          const hasBookings = dateObj.bookings && dateObj.bookings.length > 0;
 
           return (
-            <motion.button
-              key={index}
-              whileHover={isAvailable ? { scale: 1.05 } : {}}
-              whileTap={isAvailable ? { scale: 0.95 } : {}}
-              onClick={() => isAvailable && onSelectDate(dateStr)}
-              disabled={!isAvailable}
-              className={`
-                relative aspect-square rounded-lg border-2 p-2 text-sm font-medium transition-all
-                ${getStatusColor(dateObj.status)}
-                ${isSelected ? "ring-2 ring-brand-primary ring-offset-2" : ""}
-                ${!isCurrentMonth ? "opacity-40" : ""}
-              `}
-            >
-              <span className={isCurrentMonth ? "text-brand-dark" : "text-brand-dark/50"}>
-                {dateObj.date.getDate()}
-              </span>
-              {dateObj.status !== "available" && (
-                <span className="absolute top-0.5 right-0.5 text-xs">
-                  {getStatusIcon(dateObj.status)}
+            <div key={index} className="relative group">
+              <motion.button
+                whileHover={isAvailable ? { scale: 1.05 } : {}}
+                whileTap={isAvailable ? { scale: 0.95 } : {}}
+                onClick={() => isAvailable && onSelectDate(dateStr)}
+                disabled={!isAvailable}
+                className={`
+                  relative aspect-square rounded-lg border-2 p-2 text-sm font-medium transition-all w-full
+                  ${getStatusColor(dateObj.status)}
+                  ${isSelected ? "ring-2 ring-brand-primary ring-offset-2" : ""}
+                  ${!isCurrentMonth ? "opacity-40" : ""}
+                `}
+              >
+                <span className={isCurrentMonth ? "text-brand-dark" : "text-brand-dark/50"}>
+                  {dateObj.date.getDate()}
                 </span>
+                {dateObj.status !== "available" && (
+                  <span className="absolute top-0.5 right-0.5 text-xs">
+                    {getStatusIcon(dateObj.status)}
+                  </span>
+                )}
+              </motion.button>
+              
+              {hasBookings && (
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-10 pointer-events-none">
+                  <div className="bg-brand-dark text-white text-xs rounded-lg px-3 py-2 shadow-lg whitespace-nowrap">
+                    <div className="font-semibold mb-1">Reservations:</div>
+                    {dateObj.bookings!.map((booking, idx) => {
+                      const groomInitials = booking.groomName.split(' ').map(n => n[0]).join('');
+                      const brideInitials = booking.brideName.split(' ').map(n => n[0]).join('');
+                      const statusIcon = booking.status === 'booked' ? '🟢' : '🟡';
+                      return (
+                        <div key={idx} className="flex items-center gap-2">
+                          <span>{statusIcon}</span>
+                          <span>{groomInitials} & {brideInitials}</span>
+                        </div>
+                      );
+                    })}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-brand-dark"></div>
+                  </div>
+                </div>
               )}
-            </motion.button>
+            </div>
           );
         })}
       </div>

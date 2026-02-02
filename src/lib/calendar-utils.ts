@@ -20,7 +20,7 @@ export function parseDate(dateString: string): Date {
 export function isDateAvailable(
   date: Date,
   bookings: Booking[]
-): { available: boolean; reason?: string; bookingId?: string } {
+): { available: boolean; reason?: string } {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   
@@ -36,22 +36,19 @@ export function isDateAvailable(
     };
   }
   
-  for (const booking of bookings) {
-    if (booking.status === 'cancelled') continue;
-    
-    const launchDate = parseDate(booking.launch_date);
-    const endDate = parseDate(booking.site_end_date);
-    
-    if (checkDate >= launchDate && checkDate <= endDate) {
-      return {
-        available: false,
-        reason: `Date is within an existing booking period`,
-        bookingId: booking.id,
-      };
-    }
-  }
-  
   return { available: true };
+}
+
+export function getBookingsForDate(date: Date, bookings: Booking[]): Booking[] {
+  const checkDate = new Date(date);
+  checkDate.setHours(0, 0, 0, 0);
+  
+  return bookings.filter(booking => {
+    if (booking.status === 'cancelled') return false;
+    const launchDate = parseDate(booking.launch_date);
+    launchDate.setHours(0, 0, 0, 0);
+    return launchDate.getTime() === checkDate.getTime();
+  });
 }
 
 export function calculateSiteEndDate(launchDate: Date): Date {
@@ -77,24 +74,26 @@ export function getCalendarDates(
   
   while (currentDate <= endDate) {
     const dateCheck = isDateAvailable(currentDate, bookings);
+    const dateBookings = getBookingsForDate(currentDate, bookings);
     
     let status: CalendarDate['status'] = 'available';
-    let bookingId: string | undefined;
     
     if (!dateCheck.available) {
-      if (dateCheck.bookingId) {
-        const booking = bookings.find(b => b.id === dateCheck.bookingId);
-        status = booking?.status === 'booked' ? 'booked' : 'reserved';
-        bookingId = dateCheck.bookingId;
-      } else {
-        status = 'unavailable';
-      }
+      status = 'unavailable';
+    } else if (dateBookings.length > 0) {
+      const hasBooked = dateBookings.some(b => b.status === 'booked');
+      status = hasBooked ? 'booked' : 'reserved';
     }
     
     dates.push({
       date: new Date(currentDate),
       status,
-      bookingId,
+      bookings: dateBookings.map(b => ({
+        id: b.id,
+        groomName: b.groom_name,
+        brideName: b.bride_name,
+        status: b.status,
+      })),
     });
     
     currentDate = addDays(currentDate, 1);

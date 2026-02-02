@@ -15,6 +15,10 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
     onUpdate({ [e.target.name]: e.target.value });
   };
 
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onUpdate({ [e.target.name]: e.target.checked });
+  };
+
   const handleImageSectionChange = (sectionKey: string, value: string) => {
     onUpdate({
       imageSections: {
@@ -43,22 +47,144 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </p>
       </div>
 
-      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-6">
+      {/* Leave it to Vows Option */}
+      <div className="bg-gradient-to-r from-brand-powder/20 to-brand-secondary/20 rounded-xl border-2 border-brand-primary/30 p-6 shadow-lg">
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            name="leaveContentToVows"
+            checked={formData.leaveContentToVows}
+            onChange={handleCheckboxChange}
+            className="mt-1 w-5 h-5 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+          />
+          <div>
+            <span className="text-lg font-semibold text-brand-primary block mb-1">
+              Leave content creation to Vows team
+            </span>
+            <p className="text-sm text-brand-dark/70">
+              Check this if you&apos;d like our team to craft the website copy based on the basic information you provide. 
+              We&apos;ll create suitable content for all sections using our expertise and the details you share.
+            </p>
+            <p className="text-xs text-brand-dark/60 mt-2 italic">
+              <strong>Disclaimer:</strong> We will do our best to create beautiful and appropriate content based on your information. 
+              You can always request revisions after reviewing the initial draft.
+            </p>
+          </div>
+        </label>
+      </div>
+
+      {/* Hero Section */}
+      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
+        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+          <span className="text-2xl">💍</span> Hero Section
+        </h3>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <label htmlFor="heroTagline" className="block text-sm font-medium text-brand-dark mb-2">
+              Tagline {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            </label>
+            <input
+              type="text"
+              id="heroTagline"
+              name="heroTagline"
+              disabled={formData.leaveContentToVows}
+              value={formData.heroTagline || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+              placeholder="e.g., 'Two Hearts, One Love'"
+            />
+          </div>
+          <div>
+            <label htmlFor="heroSubtitle" className="block text-sm font-medium text-brand-dark mb-2">
+              Subtitle {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            </label>
+            <input
+              type="text"
+              id="heroSubtitle"
+              name="heroSubtitle"
+              disabled={formData.leaveContentToVows}
+              value={formData.heroSubtitle || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+              placeholder="e.g., 'Join us as we celebrate our love'"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Love Story Section */}
+      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
+        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+          <span className="text-2xl">❤️</span> Our Love Story
+        </h3>
         <div>
           <label htmlFor="coupleStory" className="block text-sm font-medium text-brand-dark mb-2">
-            Your Love Story *
+            Love Story Overview *
           </label>
           <textarea
             id="coupleStory"
             name="coupleStory"
             required
-            rows={5}
+            rows={4}
+            disabled={formData.leaveContentToVows}
             value={formData.coupleStory}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none"
-            placeholder="Tell us how you met, your journey together, and what makes your love special..."
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Tell us about your journey together..."
           />
         </div>
+        <div>
+          <label htmlFor="howWeMet" className="block text-sm font-medium text-brand-dark mb-2">
+            How We Met {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="howWeMet"
+            name="howWeMet"
+            rows={3}
+            disabled={formData.leaveContentToVows}
+            value={formData.howWeMet || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Share the story of your first meeting..."
+          />
+        </div>
+        <div>
+          <label htmlFor="proposalStory" className="block text-sm font-medium text-brand-dark mb-2">
+            The Proposal {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="proposalStory"
+            name="proposalStory"
+            rows={3}
+            disabled={formData.leaveContentToVows}
+            value={formData.proposalStory || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Tell us about the proposal..."
+          />
+        </div>
+        <div>
+          <label htmlFor="relationshipHighlights" className="block text-sm font-medium text-brand-dark mb-2">
+            Relationship Highlights {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="relationshipHighlights"
+            name="relationshipHighlights"
+            rows={3}
+            disabled={formData.leaveContentToVows}
+            value={formData.relationshipHighlights || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Special moments, milestones, or memories you'd like to share..."
+          />
+        </div>
+      </div>
+
+      {/* Venue & Event Details */}
+      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
+        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+          <span className="text-2xl">🏛️</span> Venue & Event Details
+        </h3>
 
         <div className="grid gap-4 md:grid-cols-2">
           <div>
@@ -76,7 +202,6 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
               placeholder="Grand Ballroom Hotel"
             />
           </div>
-
           <div>
             <label htmlFor="venueAddress" className="block text-sm font-medium text-brand-dark mb-2">
               Venue Address *
@@ -92,7 +217,6 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
               placeholder="123 Main St, City"
             />
           </div>
-
           <div>
             <label htmlFor="ceremonyTime" className="block text-sm font-medium text-brand-dark mb-2">
               Ceremony Time *
@@ -107,7 +231,6 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
               className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
             />
           </div>
-
           <div>
             <label htmlFor="receptionTime" className="block text-sm font-medium text-brand-dark mb-2">
               Reception Time *
@@ -123,10 +246,174 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
             />
           </div>
         </div>
+        <div>
+          <label htmlFor="venueDescription" className="block text-sm font-medium text-brand-dark mb-2">
+            Venue Description {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="venueDescription"
+            name="venueDescription"
+            rows={2}
+            disabled={formData.leaveContentToVows}
+            value={formData.venueDescription || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Describe the venue atmosphere, special features, etc..."
+          />
+        </div>
+        <div>
+          <label htmlFor="dresscode" className="block text-sm font-medium text-brand-dark mb-2">
+            Dress Code {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <input
+            type="text"
+            id="dresscode"
+            name="dresscode"
+            disabled={formData.leaveContentToVows}
+            value={formData.dresscode || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="e.g., Formal, Semi-Formal, Cocktail Attire"
+          />
+        </div>
+        <div>
+          <label htmlFor="directionsTransport" className="block text-sm font-medium text-brand-dark mb-2">
+            Directions & Transportation {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="directionsTransport"
+            name="directionsTransport"
+            rows={2}
+            disabled={formData.leaveContentToVows}
+            value={formData.directionsTransport || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Parking info, shuttle service, nearby landmarks..."
+          />
+        </div>
+      </div>
 
+      {/* Wedding Party */}
+      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
+        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+          <span className="text-2xl">👥</span> Wedding Party
+        </h3>
+        <div>
+          <label htmlFor="groomsmen" className="block text-sm font-medium text-brand-dark mb-2">
+            Groomsmen {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="groomsmen"
+            name="groomsmen"
+            rows={2}
+            disabled={formData.leaveContentToVows}
+            value={formData.groomsmen || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="List names and roles (e.g., Best Man: John Doe, Groomsman: Mike Smith)"
+          />
+        </div>
+        <div>
+          <label htmlFor="bridesmaids" className="block text-sm font-medium text-brand-dark mb-2">
+            Bridesmaids {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="bridesmaids"
+            name="bridesmaids"
+            rows={2}
+            disabled={formData.leaveContentToVows}
+            value={formData.bridesmaids || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="List names and roles (e.g., Maid of Honor: Jane Doe, Bridesmaid: Sarah Lee)"
+          />
+        </div>
+        <div>
+          <label htmlFor="parents" className="block text-sm font-medium text-brand-dark mb-2">
+            Parents & Sponsors {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="parents"
+            name="parents"
+            rows={2}
+            disabled={formData.leaveContentToVows}
+            value={formData.parents || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Parents' names, principal sponsors, etc..."
+          />
+        </div>
+      </div>
+
+      {/* Additional Details */}
+      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
+        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+          <span className="text-2xl">📋</span> Additional Information
+        </h3>
+        <div>
+          <label htmlFor="scheduleOfEvents" className="block text-sm font-medium text-brand-dark mb-2">
+            Schedule of Events {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="scheduleOfEvents"
+            name="scheduleOfEvents"
+            rows={3}
+            disabled={formData.leaveContentToVows}
+            value={formData.scheduleOfEvents || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Timeline of the day (e.g., 2:00 PM - Ceremony, 3:00 PM - Cocktail Hour, 4:00 PM - Reception)"
+          />
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <label htmlFor="rsvpDeadline" className="block text-sm font-medium text-brand-dark mb-2">
+              RSVP Deadline {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            </label>
+            <input
+              type="date"
+              id="rsvpDeadline"
+              name="rsvpDeadline"
+              disabled={formData.leaveContentToVows}
+              value={formData.rsvpDeadline || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+            />
+          </div>
+          <div>
+            <label htmlFor="giftRegistryInfo" className="block text-sm font-medium text-brand-dark mb-2">
+              Gift Registry {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            </label>
+            <input
+              type="text"
+              id="giftRegistryInfo"
+              name="giftRegistryInfo"
+              disabled={formData.leaveContentToVows}
+              value={formData.giftRegistryInfo || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+              placeholder="Registry link or cash gift details"
+            />
+          </div>
+        </div>
+        <div>
+          <label htmlFor="accommodationInfo" className="block text-sm font-medium text-brand-dark mb-2">
+            Accommodation Information {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+          </label>
+          <textarea
+            id="accommodationInfo"
+            name="accommodationInfo"
+            rows={2}
+            disabled={formData.leaveContentToVows}
+            value={formData.accommodationInfo || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Nearby hotels, room blocks, special rates for guests..."
+          />
+        </div>
         <div>
           <label htmlFor="specialRequests" className="block text-sm font-medium text-brand-dark mb-2">
-            Special Requests or Additional Notes
+            Special Requests or Design Preferences
           </label>
           <textarea
             id="specialRequests"
@@ -135,7 +422,7 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
             value={formData.specialRequests || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none"
-            placeholder="Any special design requests, color preferences, or additional information..."
+            placeholder="Color preferences, design style, special features you'd like..."
           />
         </div>
       </div>
