@@ -50,7 +50,7 @@ export default function AdminPage() {
       setIsAuthenticated(true);
       setPassword("");
       fetchBookings();
-    } catch (error) {
+    } catch {
       setLoginError("Invalid password. Please try again.");
     } finally {
       setIsLoggingIn(false);

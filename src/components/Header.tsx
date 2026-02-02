@@ -43,7 +43,7 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check on mount
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navLinks]);
 
   // Close mobile menu on resize to desktop
   React.useEffect(() => {

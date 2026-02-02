@@ -176,7 +176,7 @@ export default function StepPayment({ formData, onUpdate }: StepPaymentProps) {
 
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
         <p className="text-sm text-yellow-800">
-          <strong>Important:</strong> Your booking will be marked as "Reserved" until we confirm your payment. 
+          <strong>Important:</strong> Your booking will be marked as &quot;Reserved&quot; until we confirm your payment. 
           Once confirmed, you&apos;ll receive an email with next steps and a Google Drive folder link for photo uploads.
         </p>
       </div>
