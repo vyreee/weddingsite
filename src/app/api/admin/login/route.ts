@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
-import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,23 +11,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const admin = supabaseAdmin();
-    const { data, error } = await admin
-      .from('admin_settings')
-      .select('setting_value')
-      .eq('setting_key', 'admin_password_hash')
-      .single();
+    const adminPassword = process.env.ADMIN_PASSWORD || 'withvowsadminadmin123';
 
-    if (error || !data) {
-      return NextResponse.json(
-        { error: 'Authentication failed' },
-        { status: 401 }
-      );
-    }
-
-    const isValid = await bcrypt.compare(password, data.setting_value);
-
-    if (!isValid) {
+    if (password !== adminPassword) {
       return NextResponse.json(
         { error: 'Invalid password' },
         { status: 401 }
