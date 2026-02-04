@@ -465,6 +465,109 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         )}
       </div>
 
+      {/* RSVP */}
+      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+            <span className="text-2xl">💌</span> RSVP
+          </h3>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              name="leaveRsvpToVows"
+              checked={formData.leaveRsvpToVows || false}
+              onChange={handleCheckboxChange}
+              className="w-4 h-4 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+            />
+            <span className="text-brand-dark/70">Leave to Vows team</span>
+          </label>
+        </div>
+        <div>
+          <label htmlFor="rsvpDeadline" className="block text-sm font-medium text-brand-dark mb-2">
+            RSVP Deadline <span className="text-xs text-brand-dark/60">(Optional)</span>
+          </label>
+          <input
+            type="date"
+            id="rsvpDeadline"
+            name="rsvpDeadline"
+            disabled={formData.leaveRsvpToVows}
+            value={formData.rsvpDeadline || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+          />
+        </div>
+        {formData.leaveRsvpToVows && (
+          <p className="text-xs text-brand-dark/60 italic bg-brand-powder/10 p-3 rounded-lg">
+            Our team will set up RSVP functionality for your website.
+          </p>
+        )}
+      </div>
+
+      {/* Gift Registry */}
+      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+            <span className="text-2xl">🎁</span> Gift Registry
+          </h3>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              name="leaveGiftRegistryToVows"
+              checked={formData.leaveGiftRegistryToVows || false}
+              onChange={handleCheckboxChange}
+              className="w-4 h-4 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+            />
+            <span className="text-brand-dark/70">Leave to Vows team</span>
+          </label>
+        </div>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+          <p className="text-sm text-blue-900">
+            <strong>📝 Note:</strong> We&apos;ll add a feature on your website where guests can notify you when they want to gift an item. This helps prevent duplicate gifts!
+          </p>
+        </div>
+        <div>
+          <label htmlFor="giftRegistryItems" className="block text-sm font-medium text-brand-dark mb-2">
+            Gift Items & Links <span className="text-xs text-brand-dark/60">(Optional)</span>
+          </label>
+          <textarea
+            id="giftRegistryItems"
+            name="giftRegistryItems"
+            rows={4}
+            disabled={formData.leaveGiftRegistryToVows}
+            value={formData.giftRegistryItems || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="List your desired gifts with links (one per line):
+
+Example:
+KitchenAid Mixer - https://example.com/mixer
+Luggage Set - https://example.com/luggage
+Honeymoon Fund - Cash/GCash"
+          />
+        </div>
+        <div>
+          <label htmlFor="giftNotificationContact" className="block text-sm font-medium text-brand-dark mb-2">
+            Contact for Gift Notifications <span className="text-xs text-brand-dark/60">(Optional - Messenger/Phone)</span>
+          </label>
+          <input
+            type="text"
+            id="giftNotificationContact"
+            name="giftNotificationContact"
+            disabled={formData.leaveGiftRegistryToVows}
+            value={formData.giftNotificationContact || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Facebook Messenger link, phone number, or email"
+          />
+          <p className="text-xs text-brand-dark/60 mt-1">Guests will use this to inform you when they want to gift an item, so you can coordinate and avoid duplicates</p>
+        </div>
+        {formData.leaveGiftRegistryToVows && (
+          <p className="text-xs text-brand-dark/60 italic bg-brand-powder/10 p-3 rounded-lg">
+            Our team will help you set up your gift registry with the notification feature.
+          </p>
+        )}
+      </div>
+
       {/* Additional Details */}
       <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
         <div className="flex items-center justify-between">
@@ -496,22 +599,6 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
             placeholder="Timeline of the day (e.g., 2:00 PM - Ceremony, 3:00 PM - Cocktail Hour, 4:00 PM - Reception)"
           />
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <label htmlFor="rsvpDeadline" className="block text-sm font-medium text-brand-dark mb-2">
-              RSVP Deadline <span className="text-xs text-brand-dark/60">(Optional)</span>
-            </label>
-            <input
-              type="date"
-              id="rsvpDeadline"
-              name="rsvpDeadline"
-              disabled={formData.leaveAdditionalToVows}
-              value={formData.rsvpDeadline || ""}
-              onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
-            />
-          </div>
         </div>
         <div>
           <label htmlFor="accommodationInfo" className="block text-sm font-medium text-brand-dark mb-2">

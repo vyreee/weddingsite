@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
       parents: body.parents,
       leave_wedding_party_to_vows: body.leaveWeddingPartyToVows || false,
       schedule_of_events: body.scheduleOfEvents,
-      rsvp_deadline: body.rsvpDeadline,
+      rsvp_deadline: body.rsvpDeadline || null,
       leave_rsvp_to_vows: body.leaveRsvpToVows || false,
       gift_registry_items: body.giftRegistryItems,
       gift_notification_contact: body.giftNotificationContact,
