@@ -4,9 +4,29 @@ import * as React from "react";
 import { motion } from "motion/react";
 import Header from "@/components/Header";
 import SiteFooter from "@/components/SiteFooter";
-import { Calendar, Clock } from "lucide-react";
+import BookingWizard from "@/components/booking/BookingWizard";
+import { Booking } from "@/types/booking";
 
 export default function BookPage() {
+  const [bookings, setBookings] = React.useState<Booking[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await fetch("/api/bookings");
+        const data = await response.json();
+        setBookings(data.bookings || []);
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBookings();
+  }, []);
+
   return (
     <div className="font-sans min-h-screen flex flex-col">
       <Header />
@@ -20,30 +40,26 @@ export default function BookPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center max-w-2xl mx-auto"
+              className="text-center mb-12"
             >
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-brand-powder/20 mb-6">
-                <Clock className="size-10 text-brand-primary" />
-              </div>
-              
               <h1 className="text-4xl sm:text-5xl font-semibold text-brand-primary mb-4">
-                Coming Soon
+                Book Your Wedding Website
               </h1>
-              
-              <p className="text-lg text-brand-dark/80 mb-6">
-                We&apos;re currently working on our booking system to bring you the best experience.
+              <p className="text-lg text-brand-dark/80">
+                Create your perfect wedding website in just a few simple steps
               </p>
-              
-              <div className="bg-white rounded-xl border border-brand-secondary/30 p-8 shadow-lg">
-                <Calendar className="size-12 text-brand-secondary mx-auto mb-4" />
-                <h2 className="text-xl font-semibold text-brand-dark mb-2">
-                  Booking System Under Development
-                </h2>
-                <p className="text-brand-dark/70">
-                  Our team is finalizing the booking experience. Check back soon to reserve your wedding website!
-                </p>
-              </div>
             </motion.div>
+
+            {loading ? (
+              <div className="text-center py-12">
+                <div className="inline-flex items-center gap-2 text-brand-primary">
+                  <div className="animate-spin rounded-full h-8 w-8 border-4 border-brand-primary border-t-transparent" />
+                  <span>Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <BookingWizard bookings={bookings} />
+            )}
           </div>
         </section>
       </main>
