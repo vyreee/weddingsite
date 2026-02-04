@@ -1,6 +1,7 @@
 export type BookingStatus = "reserved" | "booked" | "cancelled";
 
 export type PackageType = "Elegant" | "Custom";
+export type TemplateType = "1" | "2" | "3" | "4" | "5";
 
 export interface ImageSection {
   sectionName: string;
@@ -17,48 +18,50 @@ export interface BookingFormData {
   phone: string;
   weddingDate: string;
   package: PackageType;
+  template: TemplateType;
   
   // Hero Section
   heroTagline?: string;
   heroSubtitle?: string;
+  leaveHeroToVows?: boolean;
   
   // About/Love Story Section
   coupleStory: string;
   howWeMet?: string;
   proposalStory?: string;
   relationshipHighlights?: string;
+  leaveLoveStoryToVows?: boolean;
   
   // Venue & Event Details
   venueName: string;
   venueAddress: string;
+  venueGoogleMapsLink?: string;
   ceremonyTime: string;
   receptionTime: string;
   venueDescription?: string;
   dresscode?: string;
+  leaveVenueToVows?: boolean;
   
   // Wedding Party
   groomsmen?: string;
   bridesmaids?: string;
   parents?: string;
+  leaveWeddingPartyToVows?: boolean;
   
   // RSVP & Registry
   rsvpDeadline?: string;
   giftRegistryInfo?: string;
+  leaveRsvpToVows?: boolean;
   
   // Additional Sections
   scheduleOfEvents?: string;
   accommodationInfo?: string;
   directionsTransport?: string;
+  leaveAdditionalToVows?: boolean;
   
-  // Leave it to Vows option
-  leaveContentToVows: boolean;
+  // Image requirements - no upload, just notification
+  imageRequirementsAcknowledged: boolean;
   
-  imageSections: {
-    couplePhotos: string;
-    venuePhotos: string;
-    entouragePhotos: string;
-    extraPhotos: string;
-  };
   driveFolderUrl?: string;
   gcashReceiptUrl?: string;
   specialRequests?: string;
@@ -76,31 +79,43 @@ export interface Booking {
   phone: string;
   wedding_date: string;
   package: PackageType;
+  template: TemplateType;
   
   // Content fields
   hero_tagline?: string;
   hero_subtitle?: string;
+  leave_hero_to_vows?: boolean;
+  
   couple_story: string;
   how_we_met?: string;
   proposal_story?: string;
   relationship_highlights?: string;
+  leave_love_story_to_vows?: boolean;
+  
   venue_name: string;
   venue_address: string;
+  venue_google_maps_link?: string;
   ceremony_time: string;
   reception_time: string;
   venue_description?: string;
   dresscode?: string;
+  leave_venue_to_vows?: boolean;
+  
   groomsmen?: string;
   bridesmaids?: string;
   parents?: string;
+  leave_wedding_party_to_vows?: boolean;
+  
   rsvp_deadline?: string;
   gift_registry_info?: string;
+  leave_rsvp_to_vows?: boolean;
+  
   schedule_of_events?: string;
   accommodation_info?: string;
   directions_transport?: string;
-  leave_content_to_vows: boolean;
+  leave_additional_to_vows?: boolean;
   
-  image_sections_notes: string;
+  image_requirements_acknowledged: boolean;
   drive_folder_url?: string;
   gcash_receipt_url?: string;
   payment_confirmed_at?: string;

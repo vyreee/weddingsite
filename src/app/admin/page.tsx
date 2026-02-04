@@ -130,56 +130,188 @@ export default function AdminPage() {
     }
   };
 
-  const handleExportBooking = (booking: Booking) => {
-    const exportData = {
-      "Booking ID": booking.id,
-      "Status": booking.status.toUpperCase(),
-      "Created At": new Date(booking.created_at).toLocaleString(),
-      "Launch Date": booking.launch_date,
-      "Site End Date": booking.site_end_date,
-      "Groom Name": booking.groom_name,
-      "Bride Name": booking.bride_name,
-      "Email": booking.email,
-      "Phone": booking.phone,
-      "Wedding Date": booking.wedding_date,
-      "Package": booking.package,
-      "Hero Tagline": booking.hero_tagline || "N/A",
-      "Hero Subtitle": booking.hero_subtitle || "N/A",
-      "Couple Story": booking.couple_story,
-      "How We Met": booking.how_we_met || "N/A",
-      "Proposal Story": booking.proposal_story || "N/A",
-      "Relationship Highlights": booking.relationship_highlights || "N/A",
-      "Venue Name": booking.venue_name,
-      "Venue Address": booking.venue_address,
-      "Venue Description": booking.venue_description || "N/A",
-      "Ceremony Time": booking.ceremony_time,
-      "Reception Time": booking.reception_time,
-      "Dress Code": booking.dresscode || "N/A",
-      "Directions & Transport": booking.directions_transport || "N/A",
-      "Groomsmen": booking.groomsmen || "N/A",
-      "Bridesmaids": booking.bridesmaids || "N/A",
-      "Parents & Sponsors": booking.parents || "N/A",
-      "Schedule of Events": booking.schedule_of_events || "N/A",
-      "RSVP Deadline": booking.rsvp_deadline || "N/A",
-      "Gift Registry": booking.gift_registry_info || "N/A",
-      "Accommodation Info": booking.accommodation_info || "N/A",
-      "Leave Content to Vows": booking.leave_content_to_vows ? "Yes" : "No",
-      "Image Sections Notes": booking.image_sections_notes || "N/A",
-      "Drive Folder URL": booking.drive_folder_url || "Not set",
-      "GCash Receipt URL": booking.gcash_receipt_url || "Not uploaded",
-      "Payment Confirmed At": booking.payment_confirmed_at ? new Date(booking.payment_confirmed_at).toLocaleString() : "Not confirmed",
-      "Special Requests": booking.special_requests || "None"
+  const handleExportBooking = (booking: Booking, format: 'txt' | 'json' | 'md' = 'txt') => {
+    const templateData = {
+      bookingId: booking.id,
+      template: booking.template,
+      couple: {
+        groomName: booking.groom_name,
+        brideName: booking.bride_name,
+        email: booking.email,
+        phone: booking.phone,
+      },
+      wedding: {
+        date: booking.wedding_date,
+        launchDate: booking.launch_date,
+        siteEndDate: booking.site_end_date,
+      },
+      hero: {
+        tagline: booking.hero_tagline || "",
+        subtitle: booking.hero_subtitle || "",
+      },
+      story: {
+        overview: booking.couple_story,
+        howWeMet: booking.how_we_met || "",
+        proposal: booking.proposal_story || "",
+        highlights: booking.relationship_highlights || "",
+      },
+      venue: {
+        name: booking.venue_name,
+        address: booking.venue_address,
+        googleMapsLink: booking.venue_google_maps_link || "",
+        description: booking.venue_description || "",
+        ceremonyTime: booking.ceremony_time,
+        receptionTime: booking.reception_time,
+        dresscode: booking.dresscode || "",
+        directions: booking.directions_transport || "",
+      },
+      party: {
+        groomsmen: booking.groomsmen || "",
+        bridesmaids: booking.bridesmaids || "",
+        parents: booking.parents || "",
+      },
+      details: {
+        schedule: booking.schedule_of_events || "",
+        rsvpDeadline: booking.rsvp_deadline || "",
+        giftRegistry: booking.gift_registry_info || "",
+        accommodation: booking.accommodation_info || "",
+      },
+      admin: {
+        status: booking.status,
+        package: booking.package,
+        driveFolderUrl: booking.drive_folder_url || "",
+        specialRequests: booking.special_requests || "",
+      }
     };
 
-    const content = Object.entries(exportData)
-      .map(([key, value]) => `${key}: ${value}`)
-      .join("\n\n");
+    let content: string;
+    let filename: string;
+    let mimeType: string;
 
-    const blob = new Blob([content], { type: "text/plain" });
+    if (format === 'json') {
+      content = JSON.stringify(templateData, null, 2);
+      filename = `booking-${booking.groom_name}-${booking.bride_name}.json`;
+      mimeType = "application/json";
+    } else if (format === 'md') {
+      content = `# Wedding Website Data
+## ${booking.groom_name} & ${booking.bride_name}
+
+### Template
+- **Selected Template:** Template ${booking.template}
+
+### Couple Information
+- **Groom:** ${booking.groom_name}
+- **Bride:** ${booking.bride_name}
+- **Email:** ${booking.email}
+- **Phone:** ${booking.phone}
+
+### Wedding Details
+- **Wedding Date:** ${booking.wedding_date}
+- **Launch Date:** ${booking.launch_date}
+- **Site End Date:** ${booking.site_end_date}
+
+### Hero Section
+- **Tagline:** ${booking.hero_tagline || "Not provided"}
+- **Subtitle:** ${booking.hero_subtitle || "Not provided"}
+
+### Love Story
+**Overview:**
+${booking.couple_story}
+
+**How We Met:**
+${booking.how_we_met || "Not provided"}
+
+**The Proposal:**
+${booking.proposal_story || "Not provided"}
+
+**Highlights:**
+${booking.relationship_highlights || "Not provided"}
+
+### Venue & Event
+- **Venue Name:** ${booking.venue_name}
+- **Address:** ${booking.venue_address}
+- **Google Maps:** ${booking.venue_google_maps_link || "Not provided"}
+- **Ceremony Time:** ${booking.ceremony_time}
+- **Reception Time:** ${booking.reception_time}
+- **Dress Code:** ${booking.dresscode || "Not specified"}
+
+**Venue Description:**
+${booking.venue_description || "Not provided"}
+
+**Directions & Transportation:**
+${booking.directions_transport || "Not provided"}
+
+### Wedding Party
+**Groomsmen:**
+${booking.groomsmen || "Not provided"}
+
+**Bridesmaids:**
+${booking.bridesmaids || "Not provided"}
+
+**Parents & Sponsors:**
+${booking.parents || "Not provided"}
+
+### Additional Details
+**Schedule of Events:**
+${booking.schedule_of_events || "Not provided"}
+
+**RSVP Deadline:** ${booking.rsvp_deadline || "Not set"}
+
+**Gift Registry:**
+${booking.gift_registry_info || "Not provided"}
+
+**Accommodation:**
+${booking.accommodation_info || "Not provided"}
+
+### Admin Notes
+- **Package:** ${booking.package}
+- **Status:** ${booking.status}
+- **Drive Folder:** ${booking.drive_folder_url || "Not set"}
+
+**Special Requests:**
+${booking.special_requests || "None"}
+
+---
+*Exported on ${new Date().toLocaleString()}*
+`;
+      filename = `booking-${booking.groom_name}-${booking.bride_name}.md`;
+      mimeType = "text/markdown";
+    } else {
+      // TXT format (original)
+      const exportData = {
+        "Booking ID": booking.id,
+        "Template": `Template ${booking.template}`,
+        "Status": booking.status.toUpperCase(),
+        "Package": booking.package,
+        "Groom Name": booking.groom_name,
+        "Bride Name": booking.bride_name,
+        "Email": booking.email,
+        "Phone": booking.phone,
+        "Wedding Date": booking.wedding_date,
+        "Launch Date": booking.launch_date,
+        "Hero Tagline": booking.hero_tagline || "N/A",
+        "Hero Subtitle": booking.hero_subtitle || "N/A",
+        "Couple Story": booking.couple_story,
+        "How We Met": booking.how_we_met || "N/A",
+        "Proposal Story": booking.proposal_story || "N/A",
+        "Venue Name": booking.venue_name,
+        "Venue Address": booking.venue_address,
+        "Google Maps Link": booking.venue_google_maps_link || "N/A",
+        "Ceremony Time": booking.ceremony_time,
+        "Reception Time": booking.reception_time,
+        "Drive Folder URL": booking.drive_folder_url || "Not set",
+        "Special Requests": booking.special_requests || "None"
+      };
+      content = Object.entries(exportData).map(([key, value]) => `${key}: ${value}`).join("\n\n");
+      filename = `booking-${booking.groom_name}-${booking.bride_name}.txt`;
+      mimeType = "text/plain";
+    }
+
+    const blob = new Blob([content], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `booking-${booking.groom_name}-${booking.bride_name}-${booking.launch_date}.txt`;
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -369,14 +501,35 @@ export default function AdminPage() {
                     {selectedBooking?.id === booking.id ? "Hide Details" : "View Details"}
                   </BrandButton>
                   
-                  <BrandButton
-                    variant="ghost"
-                    onClick={() => handleExportBooking(booking)}
-                    className="text-sm flex items-center gap-1"
-                  >
-                    <Download className="size-4" />
-                    Export
-                  </BrandButton>
+                  <div className="relative group">
+                    <BrandButton
+                      variant="ghost"
+                      className="text-sm flex items-center gap-1"
+                    >
+                      <Download className="size-4" />
+                      Export
+                    </BrandButton>
+                    <div className="absolute left-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10 min-w-[120px]">
+                      <button
+                        onClick={() => handleExportBooking(booking, 'txt')}
+                        className="block w-full text-left px-4 py-2 text-sm text-brand-dark hover:bg-brand-powder/10 rounded-t-lg"
+                      >
+                        Text (.txt)
+                      </button>
+                      <button
+                        onClick={() => handleExportBooking(booking, 'json')}
+                        className="block w-full text-left px-4 py-2 text-sm text-brand-dark hover:bg-brand-powder/10"
+                      >
+                        JSON (.json)
+                      </button>
+                      <button
+                        onClick={() => handleExportBooking(booking, 'md')}
+                        className="block w-full text-left px-4 py-2 text-sm text-brand-dark hover:bg-brand-powder/10 rounded-b-lg"
+                      >
+                        Markdown (.md)
+                      </button>
+                    </div>
+                  </div>
                   
                   {booking.status === "reserved" && (
                     <BrandButton

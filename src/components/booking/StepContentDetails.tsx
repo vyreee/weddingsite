@@ -19,14 +19,6 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
     onUpdate({ [e.target.name]: e.target.checked });
   };
 
-  const handleImageSectionChange = (sectionKey: string, value: string) => {
-    onUpdate({
-      imageSections: {
-        ...formData.imageSections,
-        [sectionKey]: value,
-      },
-    });
-  };
 
   return (
     <motion.div
@@ -47,47 +39,34 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </p>
       </div>
 
-      {/* Leave it to Vows Option */}
-      <div className="bg-gradient-to-r from-brand-powder/20 to-brand-secondary/20 rounded-xl border-2 border-brand-primary/30 p-6 shadow-lg">
-        <label className="flex items-start gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            name="leaveContentToVows"
-            checked={formData.leaveContentToVows}
-            onChange={handleCheckboxChange}
-            className="mt-1 w-5 h-5 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
-          />
-          <div>
-            <span className="text-lg font-semibold text-brand-primary block mb-1">
-              Leave content creation to Vows team
-            </span>
-            <p className="text-sm text-brand-dark/70">
-              Check this if you&apos;d like our team to craft the website copy based on the basic information you provide. 
-              We&apos;ll create suitable content for all sections using our expertise and the details you share.
-            </p>
-            <p className="text-xs text-brand-dark/60 mt-2 italic">
-              <strong>Disclaimer:</strong> We will do our best to create beautiful and appropriate content based on your information. 
-              You can always request revisions after reviewing the initial draft.
-            </p>
-          </div>
-        </label>
-      </div>
 
       {/* Hero Section */}
       <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
-        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
-          <span className="text-2xl">💍</span> Hero Section
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+            <span className="text-2xl">💍</span> Hero Section
+          </h3>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              name="leaveHeroToVows"
+              checked={formData.leaveHeroToVows || false}
+              onChange={handleCheckboxChange}
+              className="w-4 h-4 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+            />
+            <span className="text-brand-dark/70">Leave to Vows team</span>
+          </label>
+        </div>
         <div className="grid gap-4 md:grid-cols-2">
           <div>
             <label htmlFor="heroTagline" className="block text-sm font-medium text-brand-dark mb-2">
-              Tagline {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+              Tagline <span className="text-xs text-brand-dark/60">(Optional)</span>
             </label>
             <input
               type="text"
               id="heroTagline"
               name="heroTagline"
-              disabled={formData.leaveContentToVows}
+              disabled={formData.leaveHeroToVows}
               value={formData.heroTagline || ""}
               onChange={handleChange}
               className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -96,13 +75,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
           </div>
           <div>
             <label htmlFor="heroSubtitle" className="block text-sm font-medium text-brand-dark mb-2">
-              Subtitle {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+              Subtitle <span className="text-xs text-brand-dark/60">(Optional)</span>
             </label>
             <input
               type="text"
               id="heroSubtitle"
               name="heroSubtitle"
-              disabled={formData.leaveContentToVows}
+              disabled={formData.leaveHeroToVows}
               value={formData.heroSubtitle || ""}
               onChange={handleChange}
               className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -110,23 +89,40 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
             />
           </div>
         </div>
+        {formData.leaveHeroToVows && (
+          <p className="text-xs text-brand-dark/60 italic bg-brand-powder/10 p-3 rounded-lg">
+            Our team will craft compelling hero section content based on your basic information.
+          </p>
+        )}
       </div>
 
       {/* Love Story Section */}
       <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
-        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
-          <span className="text-2xl">❤️</span> Our Love Story
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+            <span className="text-2xl">❤️</span> Our Love Story
+          </h3>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              name="leaveLoveStoryToVows"
+              checked={formData.leaveLoveStoryToVows || false}
+              onChange={handleCheckboxChange}
+              className="w-4 h-4 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+            />
+            <span className="text-brand-dark/70">Leave to Vows team</span>
+          </label>
+        </div>
         <div>
           <label htmlFor="coupleStory" className="block text-sm font-medium text-brand-dark mb-2">
-            Love Story Overview *
+            Love Story Overview {!formData.leaveLoveStoryToVows && <span className="text-red-500">*</span>}
           </label>
           <textarea
             id="coupleStory"
             name="coupleStory"
-            required
+            required={!formData.leaveLoveStoryToVows}
             rows={4}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveLoveStoryToVows}
             value={formData.coupleStory}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -135,13 +131,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="howWeMet" className="block text-sm font-medium text-brand-dark mb-2">
-            How We Met {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            How We Met <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="howWeMet"
             name="howWeMet"
             rows={3}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveLoveStoryToVows}
             value={formData.howWeMet || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -150,13 +146,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="proposalStory" className="block text-sm font-medium text-brand-dark mb-2">
-            The Proposal {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            The Proposal <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="proposalStory"
             name="proposalStory"
             rows={3}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveLoveStoryToVows}
             value={formData.proposalStory || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -165,26 +161,43 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="relationshipHighlights" className="block text-sm font-medium text-brand-dark mb-2">
-            Relationship Highlights {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Relationship Highlights <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="relationshipHighlights"
             name="relationshipHighlights"
             rows={3}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveLoveStoryToVows}
             value={formData.relationshipHighlights || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
             placeholder="Special moments, milestones, or memories you'd like to share..."
           />
         </div>
+        {formData.leaveLoveStoryToVows && (
+          <p className="text-xs text-brand-dark/60 italic bg-brand-powder/10 p-3 rounded-lg">
+            Our team will craft your love story based on your basic information and any details you share with us.
+          </p>
+        )}
       </div>
 
       {/* Venue & Event Details */}
       <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
-        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
-          <span className="text-2xl">🏛️</span> Venue & Event Details
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+            <span className="text-2xl">🏛️</span> Venue & Event Details
+          </h3>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              name="leaveVenueToVows"
+              checked={formData.leaveVenueToVows || false}
+              onChange={handleCheckboxChange}
+              className="w-4 h-4 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+            />
+            <span className="text-brand-dark/70">Leave to Vows team</span>
+          </label>
+        </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           <div>
@@ -215,6 +228,20 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
               onChange={handleChange}
               className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
               placeholder="123 Main St, City"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label htmlFor="venueGoogleMapsLink" className="block text-sm font-medium text-brand-dark mb-2">
+              Google Maps Link <span className="text-xs text-brand-dark/60">(Optional)</span>
+            </label>
+            <input
+              type="url"
+              id="venueGoogleMapsLink"
+              name="venueGoogleMapsLink"
+              value={formData.venueGoogleMapsLink || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+              placeholder="https://maps.google.com/..."
             />
           </div>
           <div>
@@ -248,13 +275,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="venueDescription" className="block text-sm font-medium text-brand-dark mb-2">
-            Venue Description {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Venue Description <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="venueDescription"
             name="venueDescription"
             rows={2}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveVenueToVows}
             value={formData.venueDescription || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -263,13 +290,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="dresscode" className="block text-sm font-medium text-brand-dark mb-2">
-            Dress Code {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Dress Code <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <input
             type="text"
             id="dresscode"
             name="dresscode"
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveVenueToVows}
             value={formData.dresscode || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -278,35 +305,52 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="directionsTransport" className="block text-sm font-medium text-brand-dark mb-2">
-            Directions & Transportation {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Directions & Transportation <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="directionsTransport"
             name="directionsTransport"
             rows={2}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveVenueToVows}
             value={formData.directionsTransport || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
             placeholder="Parking info, shuttle service, nearby landmarks..."
           />
         </div>
+        {formData.leaveVenueToVows && (
+          <p className="text-xs text-brand-dark/60 italic bg-brand-powder/10 p-3 rounded-lg">
+            Our team will add venue details and directions based on the information you provide.
+          </p>
+        )}
       </div>
 
       {/* Wedding Party */}
       <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
-        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
-          <span className="text-2xl">👥</span> Wedding Party
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+            <span className="text-2xl">👥</span> Wedding Party
+          </h3>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              name="leaveWeddingPartyToVows"
+              checked={formData.leaveWeddingPartyToVows || false}
+              onChange={handleCheckboxChange}
+              className="w-4 h-4 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+            />
+            <span className="text-brand-dark/70">Leave to Vows team</span>
+          </label>
+        </div>
         <div>
           <label htmlFor="groomsmen" className="block text-sm font-medium text-brand-dark mb-2">
-            Groomsmen {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Groomsmen <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="groomsmen"
             name="groomsmen"
             rows={2}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveWeddingPartyToVows}
             value={formData.groomsmen || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -315,13 +359,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="bridesmaids" className="block text-sm font-medium text-brand-dark mb-2">
-            Bridesmaids {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Bridesmaids <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="bridesmaids"
             name="bridesmaids"
             rows={2}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveWeddingPartyToVows}
             value={formData.bridesmaids || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -330,35 +374,52 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="parents" className="block text-sm font-medium text-brand-dark mb-2">
-            Parents & Sponsors {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Parents & Sponsors <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="parents"
             name="parents"
             rows={2}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveWeddingPartyToVows}
             value={formData.parents || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
             placeholder="Parents' names, principal sponsors, etc..."
           />
         </div>
+        {formData.leaveWeddingPartyToVows && (
+          <p className="text-xs text-brand-dark/60 italic bg-brand-powder/10 p-3 rounded-lg">
+            Our team will format the wedding party section based on the information you provide.
+          </p>
+        )}
       </div>
 
       {/* Additional Details */}
       <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
-        <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
-          <span className="text-2xl">📋</span> Additional Information
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
+            <span className="text-2xl">📋</span> Additional Information
+          </h3>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              name="leaveAdditionalToVows"
+              checked={formData.leaveAdditionalToVows || false}
+              onChange={handleCheckboxChange}
+              className="w-4 h-4 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+            />
+            <span className="text-brand-dark/70">Leave to Vows team</span>
+          </label>
+        </div>
         <div>
           <label htmlFor="scheduleOfEvents" className="block text-sm font-medium text-brand-dark mb-2">
-            Schedule of Events {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Schedule of Events <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="scheduleOfEvents"
             name="scheduleOfEvents"
             rows={3}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveAdditionalToVows}
             value={formData.scheduleOfEvents || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -368,13 +429,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         <div className="grid gap-4 md:grid-cols-2">
           <div>
             <label htmlFor="rsvpDeadline" className="block text-sm font-medium text-brand-dark mb-2">
-              RSVP Deadline {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+              RSVP Deadline <span className="text-xs text-brand-dark/60">(Optional)</span>
             </label>
             <input
               type="date"
               id="rsvpDeadline"
               name="rsvpDeadline"
-              disabled={formData.leaveContentToVows}
+              disabled={formData.leaveAdditionalToVows}
               value={formData.rsvpDeadline || ""}
               onChange={handleChange}
               className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -382,13 +443,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
           </div>
           <div>
             <label htmlFor="giftRegistryInfo" className="block text-sm font-medium text-brand-dark mb-2">
-              Gift Registry {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+              Gift Registry <span className="text-xs text-brand-dark/60">(Optional)</span>
             </label>
             <input
               type="text"
               id="giftRegistryInfo"
               name="giftRegistryInfo"
-              disabled={formData.leaveContentToVows}
+              disabled={formData.leaveAdditionalToVows}
               value={formData.giftRegistryInfo || ""}
               onChange={handleChange}
               className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -398,13 +459,13 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         </div>
         <div>
           <label htmlFor="accommodationInfo" className="block text-sm font-medium text-brand-dark mb-2">
-            Accommodation Information {!formData.leaveContentToVows && <span className="text-xs text-brand-dark/60">(Optional)</span>}
+            Accommodation Information <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
           <textarea
             id="accommodationInfo"
             name="accommodationInfo"
             rows={2}
-            disabled={formData.leaveContentToVows}
+            disabled={formData.leaveAdditionalToVows}
             value={formData.accommodationInfo || ""}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -425,56 +486,73 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
             placeholder="Color preferences, design style, special features you'd like..."
           />
         </div>
+        {formData.leaveAdditionalToVows && (
+          <p className="text-xs text-brand-dark/60 italic bg-brand-powder/10 p-3 rounded-lg">
+            Our team will add RSVP, registry, and accommodation details based on your information.
+          </p>
+        )}
       </div>
 
-      <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
-        <div className="flex items-center gap-3 mb-4">
+      {/* Image Requirements Notification */}
+      <div className="bg-gradient-to-r from-brand-powder/20 to-brand-secondary/20 rounded-xl border-2 border-brand-primary/30 p-6 shadow-lg space-y-4">
+        <div className="flex items-center gap-3 mb-2">
           <ImageIcon className="size-6 text-brand-primary" />
           <h3 className="text-lg font-semibold text-brand-primary">
             Image Requirements
           </h3>
         </div>
-        <p className="text-sm text-brand-dark/70 mb-4">
-          After booking, we&apos;ll share a Google Drive folder where you can upload your photos. 
-          Please note the requirements for each section below:
-        </p>
-
-        <div className="space-y-4">
-          {IMAGE_SECTIONS.map((section, index) => {
-            const sectionKey = section.sectionName.toLowerCase().replace(/\s+/g, "") + "Photos";
-            const sectionKey2 = sectionKey.charAt(0).toLowerCase() + sectionKey.slice(1);
-            
-            return (
-              <div key={index} className="border border-brand-secondary/20 rounded-lg p-4">
-                <h4 className="font-semibold text-brand-dark mb-1">
-                  {section.sectionName}
-                  {section.minImages > 0 && <span className="text-red-500 ml-1">*</span>}
-                </h4>
-                <p className="text-sm text-brand-dark/70 mb-2">{section.description}</p>
-                <p className="text-xs text-brand-dark/60">
-                  {section.minImages > 0 
-                    ? `Required: ${section.minImages}-${section.maxImages === 999 ? "unlimited" : section.maxImages} photos`
-                    : `Optional: Up to ${section.maxImages === 999 ? "unlimited" : section.maxImages} photos`
-                  }
-                </p>
-                <input
-                  type="text"
-                  value={formData.imageSections[sectionKey2 as keyof typeof formData.imageSections] || ""}
-                  onChange={(e) => handleImageSectionChange(sectionKey2, e.target.value)}
-                  placeholder="Add any specific notes for this section (optional)"
-                  className="mt-2 w-full px-3 py-2 text-sm rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
-                />
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="bg-brand-powder/10 border border-brand-secondary/30 rounded-lg p-4 mt-4">
+        
+        <div className="bg-white rounded-lg p-4 space-y-3">
           <p className="text-sm text-brand-dark/80">
-            <strong>Note:</strong> You&apos;ll receive a Google Drive folder link via email after completing your booking. 
-            Please upload all photos there, organized by section.
+            <strong>📁 Google Drive Folder:</strong> After booking confirmation, we&apos;ll provide you with a Google Drive folder link via email.
+          </p>
+          <p className="text-sm text-brand-dark/80">
+            <strong>⏰ Timeline:</strong> Please upload all required images within <span className="font-semibold text-brand-primary">24-48 hours</span> of receiving the folder link.
+          </p>
+          <p className="text-sm text-brand-dark/80">
+            <strong>⚠️ Important:</strong> If images are not provided within the timeframe, we&apos;ll send you a reminder notification.
           </p>
         </div>
+
+        <div className="space-y-3">
+          <h4 className="font-semibold text-brand-dark">Required Images:</h4>
+          {IMAGE_SECTIONS.map((section, index) => (
+            <div key={index} className="bg-white rounded-lg p-4 border border-brand-secondary/20">
+              <div className="flex items-start justify-between mb-2">
+                <h5 className="font-semibold text-brand-dark">
+                  {section.sectionName}
+                  {section.minImages > 0 && <span className="text-red-500 ml-1">*</span>}
+                </h5>
+                <span className="text-xs text-brand-dark/60 bg-brand-powder/20 px-2 py-1 rounded">
+                  {section.minImages > 0 
+                    ? `${section.minImages}-${section.maxImages === 999 ? "∞" : section.maxImages} photos`
+                    : `Up to ${section.maxImages === 999 ? "∞" : section.maxImages} photos`
+                  }
+                </span>
+              </div>
+              <p className="text-sm text-brand-dark/70">{section.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <label className="flex items-start gap-3 cursor-pointer bg-white rounded-lg p-4">
+          <input
+            type="checkbox"
+            name="imageRequirementsAcknowledged"
+            checked={formData.imageRequirementsAcknowledged}
+            onChange={handleCheckboxChange}
+            required
+            className="mt-1 w-5 h-5 rounded border-brand-secondary/30 text-brand-primary focus:ring-2 focus:ring-brand-primary/50"
+          />
+          <div>
+            <span className="text-sm font-semibold text-brand-dark block mb-1">
+              I understand the image requirements <span className="text-red-500">*</span>
+            </span>
+            <p className="text-xs text-brand-dark/70">
+              I acknowledge that I will receive a Google Drive folder link and will upload all required images within 24-48 hours.
+            </p>
+          </div>
+        </label>
       </div>
     </motion.div>
   );

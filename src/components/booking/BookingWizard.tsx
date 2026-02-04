@@ -24,33 +24,35 @@ const INITIAL_FORM_DATA: BookingFormData = {
   phone: "",
   weddingDate: "",
   package: "Elegant",
+  template: "1",
   heroTagline: "",
   heroSubtitle: "",
+  leaveHeroToVows: false,
   coupleStory: "",
   howWeMet: "",
   proposalStory: "",
   relationshipHighlights: "",
+  leaveLoveStoryToVows: false,
   venueName: "",
   venueAddress: "",
+  venueGoogleMapsLink: "",
   ceremonyTime: "",
   receptionTime: "",
   venueDescription: "",
   dresscode: "",
+  leaveVenueToVows: false,
   groomsmen: "",
   bridesmaids: "",
   parents: "",
+  leaveWeddingPartyToVows: false,
   rsvpDeadline: "",
   giftRegistryInfo: "",
+  leaveRsvpToVows: false,
   scheduleOfEvents: "",
   accommodationInfo: "",
   directionsTransport: "",
-  leaveContentToVows: false,
-  imageSections: {
-    couplePhotos: "",
-    venuePhotos: "",
-    entouragePhotos: "",
-    extraPhotos: "",
-  },
+  leaveAdditionalToVows: false,
+  imageRequirementsAcknowledged: false,
   specialRequests: "",
 };
 
@@ -88,11 +90,12 @@ export default function BookingWizard({ bookings }: BookingWizardProps) {
         );
       case 2:
         return !!(
-          formData.coupleStory &&
+          (formData.coupleStory || formData.leaveLoveStoryToVows) &&
           formData.venueName &&
           formData.venueAddress &&
           formData.ceremonyTime &&
-          formData.receptionTime
+          formData.receptionTime &&
+          formData.imageRequirementsAcknowledged
         );
       case 3:
         return true;
