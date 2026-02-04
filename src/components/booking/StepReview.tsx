@@ -111,23 +111,35 @@ export default function StepReview({ formData }: StepReviewProps) {
 
         <div>
           <h3 className="text-lg font-semibold text-brand-primary mb-3 border-b border-brand-secondary/30 pb-2">
-            Venue Details
+            Venue & Event Details
           </h3>
           <div className="grid gap-3 text-sm">
+            {formData.churchVenueName && (
+              <>
+                <div className="flex justify-between">
+                  <span className="text-brand-dark/70">Church Venue:</span>
+                  <span className="font-medium text-brand-dark">{formData.churchVenueName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-brand-dark/70">Church Address:</span>
+                  <span className="font-medium text-brand-dark">{formData.churchVenueAddress}</span>
+                </div>
+              </>
+            )}
             <div className="flex justify-between">
-              <span className="text-brand-dark/70">Venue:</span>
-              <span className="font-medium text-brand-dark">{formData.venueName}</span>
+              <span className="text-brand-dark/70">Reception Venue:</span>
+              <span className="font-medium text-brand-dark">{formData.receptionVenueName}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-brand-dark/70">Address:</span>
-              <span className="font-medium text-brand-dark">{formData.venueAddress}</span>
+              <span className="text-brand-dark/70">Reception Address:</span>
+              <span className="font-medium text-brand-dark">{formData.receptionVenueAddress}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-brand-dark/70">Ceremony:</span>
+              <span className="text-brand-dark/70">Ceremony Time:</span>
               <span className="font-medium text-brand-dark">{formData.ceremonyTime}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-brand-dark/70">Reception:</span>
+              <span className="text-brand-dark/70">Reception Time:</span>
               <span className="font-medium text-brand-dark">{formData.receptionTime}</span>
             </div>
           </div>
