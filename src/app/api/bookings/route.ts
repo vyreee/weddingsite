@@ -83,13 +83,19 @@ export async function POST(request: NextRequest) {
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase error:', error);
+      return NextResponse.json(
+        { error: 'Database error', details: error.message },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ booking: data }, { status: 201 });
   } catch (error) {
     console.error('Error creating booking:', error);
     return NextResponse.json(
-      { error: 'Failed to create booking' },
+      { error: 'Failed to create booking', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
