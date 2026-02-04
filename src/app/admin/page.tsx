@@ -587,10 +587,13 @@ ${booking.special_requests || "None"}
                       <div>
                         <h4 className="font-semibold text-brand-dark mb-2">Venue Details</h4>
                         <div className="text-sm space-y-1">
-                          <p><strong>Venue:</strong> {booking.venue_name}</p>
-                          <p><strong>Address:</strong> {booking.venue_address}</p>
+                          {booking.church_venue_name && (
+                            <p><strong>Church:</strong> {booking.church_venue_name}</p>
+                          )}
+                          <p><strong>Reception:</strong> {booking.reception_venue_name}</p>
+                          <p><strong>Reception Address:</strong> {booking.reception_venue_address}</p>
                           <p><strong>Ceremony:</strong> {booking.ceremony_time}</p>
-                          <p><strong>Reception:</strong> {booking.reception_time}</p>
+                          <p><strong>Reception Time:</strong> {booking.reception_time}</p>
                         </div>
                       </div>
 
