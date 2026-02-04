@@ -76,21 +76,19 @@ export default function StepPayment({ formData, onUpdate }: StepPaymentProps) {
 
         <div className="border-t border-brand-secondary/30 pt-6">
           <h4 className="font-semibold text-brand-dark mb-4">Step 1: Scan GCash QR Code</h4>
-          <div className="bg-gray-100 rounded-lg p-8 flex items-center justify-center">
-            <div className="text-center">
-              <div className="relative w-64 h-64 bg-white rounded-lg shadow-md overflow-hidden mb-4">
-                <Image
-                  src="/images/gcash-qr.jpg"
-                  alt="GCash QR Code for Payment"
-                  fill
-                  className="object-contain p-4"
-                  priority
-                />
-              </div>
-              <p className="text-sm text-brand-dark/70">
-                Scan this QR code with your GCash app to complete payment
-              </p>
+          <div className="bg-gray-100 rounded-lg p-8 flex flex-col items-center justify-center">
+            <div className="relative w-64 h-64 bg-white rounded-lg shadow-md overflow-hidden mb-4 mx-auto">
+              <Image
+                src="/images/gcash-qr.jpg"
+                alt="GCash QR Code for Payment"
+                fill
+                className="object-contain p-4"
+                priority
+              />
             </div>
+            <p className="text-sm text-brand-dark/70 text-center">
+              Scan this QR code with your GCash app to complete payment
+            </p>
           </div>
         </div>
 
