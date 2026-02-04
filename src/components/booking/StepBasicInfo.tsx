@@ -132,25 +132,35 @@ export default function StepBasicInfo({ formData, onUpdate }: StepBasicInfoProps
             </select>
           </div>
 
-          <div>
-            <label htmlFor="template" className="block text-sm font-medium text-brand-dark mb-2">
-              Template Selection *
-            </label>
-            <select
-              id="template"
-              name="template"
-              required
-              value={formData.template}
-              onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors bg-white"
-            >
-              <option value="1">Template 1 - Classic Elegance</option>
-              <option value="2">Template 2 - Modern Minimalist</option>
-              <option value="3">Template 3 - Garden Romance</option>
-              <option value="4">Template 4 - Royal Bliss</option>
-              <option value="5">Template 5 - Editorial Minimalism</option>
-            </select>
-          </div>
+          {formData.package === "Elegant" && (
+            <div>
+              <label htmlFor="template" className="block text-sm font-medium text-brand-dark mb-2">
+                Template Selection *
+              </label>
+              <select
+                id="template"
+                name="template"
+                required
+                value={formData.template}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors bg-white"
+              >
+                <option value="1">Template 1 - Classic Elegance</option>
+                <option value="2">Template 2 - Modern Minimalist</option>
+                <option value="3">Template 3 - Garden Romance</option>
+                <option value="4">Template 4 - Royal Bliss</option>
+                <option value="5">Template 5 - Editorial Minimalism</option>
+              </select>
+            </div>
+          )}
+
+          {formData.package === "Custom" && (
+            <div className="bg-brand-powder/10 border border-brand-secondary/30 rounded-lg p-4">
+              <p className="text-sm text-brand-dark/80">
+                <strong>Custom Package:</strong> You&apos;ll work directly with our team to create a unique template tailored to your vision.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </motion.div>

@@ -33,13 +33,17 @@ export interface BookingFormData {
   leaveLoveStoryToVows?: boolean;
   
   // Venue & Event Details
-  venueName: string;
-  venueAddress: string;
-  venueGoogleMapsLink?: string;
+  churchVenueName?: string;
+  churchVenueAddress?: string;
+  churchGoogleMapsLink?: string;
+  receptionVenueName: string;
+  receptionVenueAddress: string;
+  receptionGoogleMapsLink?: string;
   ceremonyTime: string;
   receptionTime: string;
   venueDescription?: string;
   dresscode?: string;
+  dresscodeImageLink?: string;
   leaveVenueToVows?: boolean;
   
   // Wedding Party
@@ -48,10 +52,14 @@ export interface BookingFormData {
   parents?: string;
   leaveWeddingPartyToVows?: boolean;
   
-  // RSVP & Registry
+  // RSVP
   rsvpDeadline?: string;
-  giftRegistryInfo?: string;
   leaveRsvpToVows?: boolean;
+
+  // Gift Registry (Separate Section)
+  giftRegistryItems?: string;
+  giftNotificationContact?: string;
+  leaveGiftRegistryToVows?: boolean;
   
   // Additional Sections
   scheduleOfEvents?: string;
@@ -92,23 +100,30 @@ export interface Booking {
   relationship_highlights?: string;
   leave_love_story_to_vows?: boolean;
   
-  venue_name: string;
-  venue_address: string;
-  venue_google_maps_link?: string;
+  church_venue_name?: string;
+  church_venue_address?: string;
+  church_google_maps_link?: string;
+  reception_venue_name: string;
+  reception_venue_address: string;
+  reception_google_maps_link?: string;
   ceremony_time: string;
   reception_time: string;
   venue_description?: string;
   dresscode?: string;
+  dresscode_image_link?: string;
   leave_venue_to_vows?: boolean;
-  
+
   groomsmen?: string;
   bridesmaids?: string;
   parents?: string;
   leave_wedding_party_to_vows?: boolean;
-  
+
   rsvp_deadline?: string;
-  gift_registry_info?: string;
   leave_rsvp_to_vows?: boolean;
+
+  gift_registry_items?: string;
+  gift_notification_contact?: string;
+  leave_gift_registry_to_vows?: boolean;
   
   schedule_of_events?: string;
   accommodation_info?: string;

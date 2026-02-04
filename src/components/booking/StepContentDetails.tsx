@@ -123,7 +123,7 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
             required={!formData.leaveLoveStoryToVows}
             rows={4}
             disabled={formData.leaveLoveStoryToVows}
-            value={formData.coupleStory}
+            value={formData.leaveLoveStoryToVows ? "" : formData.coupleStory}
             onChange={handleChange}
             className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
             placeholder="Tell us about your journey together..."
@@ -199,77 +199,132 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
           </label>
         </div>
 
+        <h4 className="text-sm font-semibold text-brand-dark mt-4">Church/Ceremony Venue <span className="text-xs font-normal text-brand-dark/60">(Optional if same as reception)</span></h4>
         <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label htmlFor="venueName" className="block text-sm font-medium text-brand-dark mb-2">
-              Venue Name *
+            <label htmlFor="churchVenueName" className="block text-sm font-medium text-brand-dark mb-2">
+              Church/Ceremony Venue Name
             </label>
             <input
               type="text"
-              id="venueName"
-              name="venueName"
-              required
-              value={formData.venueName}
+              id="churchVenueName"
+              name="churchVenueName"
+              disabled={formData.leaveVenueToVows}
+              value={formData.churchVenueName || ""}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+              placeholder="St. Mary's Cathedral"
+            />
+          </div>
+          <div>
+            <label htmlFor="churchVenueAddress" className="block text-sm font-medium text-brand-dark mb-2">
+              Church/Ceremony Address
+            </label>
+            <input
+              type="text"
+              id="churchVenueAddress"
+              name="churchVenueAddress"
+              disabled={formData.leaveVenueToVows}
+              value={formData.churchVenueAddress || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+              placeholder="456 Church St, City"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label htmlFor="churchGoogleMapsLink" className="block text-sm font-medium text-brand-dark mb-2">
+              Church Google Maps Link
+            </label>
+            <input
+              type="url"
+              id="churchGoogleMapsLink"
+              name="churchGoogleMapsLink"
+              disabled={formData.leaveVenueToVows}
+              value={formData.churchGoogleMapsLink || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+              placeholder="https://maps.google.com/..."
+            />
+          </div>
+        </div>
+
+        <h4 className="text-sm font-semibold text-brand-dark mt-4">Reception Venue *</h4>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <label htmlFor="receptionVenueName" className="block text-sm font-medium text-brand-dark mb-2">
+              Reception Venue Name {!formData.leaveVenueToVows && <span className="text-red-500">*</span>}
+            </label>
+            <input
+              type="text"
+              id="receptionVenueName"
+              name="receptionVenueName"
+              required={!formData.leaveVenueToVows}
+              disabled={formData.leaveVenueToVows}
+              value={formData.leaveVenueToVows ? "" : formData.receptionVenueName}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
               placeholder="Grand Ballroom Hotel"
             />
           </div>
           <div>
-            <label htmlFor="venueAddress" className="block text-sm font-medium text-brand-dark mb-2">
-              Venue Address *
+            <label htmlFor="receptionVenueAddress" className="block text-sm font-medium text-brand-dark mb-2">
+              Reception Address {!formData.leaveVenueToVows && <span className="text-red-500">*</span>}
             </label>
             <input
               type="text"
-              id="venueAddress"
-              name="venueAddress"
-              required
-              value={formData.venueAddress}
+              id="receptionVenueAddress"
+              name="receptionVenueAddress"
+              required={!formData.leaveVenueToVows}
+              disabled={formData.leaveVenueToVows}
+              value={formData.leaveVenueToVows ? "" : formData.receptionVenueAddress}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
               placeholder="123 Main St, City"
             />
           </div>
           <div className="md:col-span-2">
-            <label htmlFor="venueGoogleMapsLink" className="block text-sm font-medium text-brand-dark mb-2">
-              Google Maps Link <span className="text-xs text-brand-dark/60">(Optional)</span>
+            <label htmlFor="receptionGoogleMapsLink" className="block text-sm font-medium text-brand-dark mb-2">
+              Reception Google Maps Link
             </label>
             <input
               type="url"
-              id="venueGoogleMapsLink"
-              name="venueGoogleMapsLink"
-              value={formData.venueGoogleMapsLink || ""}
+              id="receptionGoogleMapsLink"
+              name="receptionGoogleMapsLink"
+              disabled={formData.leaveVenueToVows}
+              value={formData.receptionGoogleMapsLink || ""}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
               placeholder="https://maps.google.com/..."
             />
           </div>
           <div>
             <label htmlFor="ceremonyTime" className="block text-sm font-medium text-brand-dark mb-2">
-              Ceremony Time *
+              Ceremony Time {!formData.leaveVenueToVows && <span className="text-red-500">*</span>}
             </label>
             <input
               type="time"
               id="ceremonyTime"
               name="ceremonyTime"
-              required
-              value={formData.ceremonyTime}
+              required={!formData.leaveVenueToVows}
+              disabled={formData.leaveVenueToVows}
+              value={formData.leaveVenueToVows ? "" : formData.ceremonyTime}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
             />
           </div>
           <div>
             <label htmlFor="receptionTime" className="block text-sm font-medium text-brand-dark mb-2">
-              Reception Time *
+              Reception Time {!formData.leaveVenueToVows && <span className="text-red-500">*</span>}
             </label>
             <input
               type="time"
               id="receptionTime"
               name="receptionTime"
-              required
-              value={formData.receptionTime}
+              required={!formData.leaveVenueToVows}
+              disabled={formData.leaveVenueToVows}
+              value={formData.leaveVenueToVows ? "" : formData.receptionTime}
               onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors"
+              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
             />
           </div>
         </div>
@@ -304,6 +359,22 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
           />
         </div>
         <div>
+          <label htmlFor="dresscodeImageLink" className="block text-sm font-medium text-brand-dark mb-2">
+            Dress Code Inspiration Link <span className="text-xs text-brand-dark/60">(Optional - if you have a photo/peg in mind)</span>
+          </label>
+          <input
+            type="url"
+            id="dresscodeImageLink"
+            name="dresscodeImageLink"
+            disabled={formData.leaveVenueToVows}
+            value={formData.dresscodeImageLink || ""}
+            onChange={handleChange}
+            className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
+            placeholder="Link to Pinterest, Instagram, or any image URL"
+          />
+          <p className="text-xs text-brand-dark/60 mt-1">Share a link to your dress code inspiration photo if you have one</p>
+        </div>
+        <div>
           <label htmlFor="directionsTransport" className="block text-sm font-medium text-brand-dark mb-2">
             Directions & Transportation <span className="text-xs text-brand-dark/60">(Optional)</span>
           </label>
@@ -325,11 +396,11 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
         )}
       </div>
 
-      {/* Wedding Party */}
+      {/* Important People */}
       <div className="bg-white rounded-xl border border-brand-secondary/30 p-6 shadow-lg space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-brand-primary flex items-center gap-2">
-            <span className="text-2xl">👥</span> Wedding Party
+            <span className="text-2xl">👥</span> Important People in Your Wedding
           </h3>
           <label className="flex items-center gap-2 text-sm cursor-pointer">
             <input
@@ -439,21 +510,6 @@ export default function StepContentDetails({ formData, onUpdate }: StepContentDe
               value={formData.rsvpDeadline || ""}
               onChange={handleChange}
               className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
-            />
-          </div>
-          <div>
-            <label htmlFor="giftRegistryInfo" className="block text-sm font-medium text-brand-dark mb-2">
-              Gift Registry <span className="text-xs text-brand-dark/60">(Optional)</span>
-            </label>
-            <input
-              type="text"
-              id="giftRegistryInfo"
-              name="giftRegistryInfo"
-              disabled={formData.leaveAdditionalToVows}
-              value={formData.giftRegistryInfo || ""}
-              onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-brand-secondary/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed"
-              placeholder="Registry link or cash gift details"
             />
           </div>
         </div>

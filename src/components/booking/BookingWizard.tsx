@@ -33,21 +33,27 @@ const INITIAL_FORM_DATA: BookingFormData = {
   proposalStory: "",
   relationshipHighlights: "",
   leaveLoveStoryToVows: false,
-  venueName: "",
-  venueAddress: "",
-  venueGoogleMapsLink: "",
+  churchVenueName: "",
+  churchVenueAddress: "",
+  churchGoogleMapsLink: "",
+  receptionVenueName: "",
+  receptionVenueAddress: "",
+  receptionGoogleMapsLink: "",
   ceremonyTime: "",
   receptionTime: "",
   venueDescription: "",
   dresscode: "",
+  dresscodeImageLink: "",
   leaveVenueToVows: false,
   groomsmen: "",
   bridesmaids: "",
   parents: "",
   leaveWeddingPartyToVows: false,
   rsvpDeadline: "",
-  giftRegistryInfo: "",
   leaveRsvpToVows: false,
+  giftRegistryItems: "",
+  giftNotificationContact: "",
+  leaveGiftRegistryToVows: false,
   scheduleOfEvents: "",
   accommodationInfo: "",
   directionsTransport: "",
@@ -91,10 +97,10 @@ export default function BookingWizard({ bookings }: BookingWizardProps) {
       case 2:
         return !!(
           (formData.coupleStory || formData.leaveLoveStoryToVows) &&
-          formData.venueName &&
-          formData.venueAddress &&
-          formData.ceremonyTime &&
-          formData.receptionTime &&
+          (formData.receptionVenueName || formData.leaveVenueToVows) &&
+          (formData.receptionVenueAddress || formData.leaveVenueToVows) &&
+          (formData.ceremonyTime || formData.leaveVenueToVows) &&
+          (formData.receptionTime || formData.leaveVenueToVows) &&
           formData.imageRequirementsAcknowledged
         );
       case 3:
