@@ -156,13 +156,17 @@ export default function AdminPage() {
         highlights: booking.relationship_highlights || "",
       },
       venue: {
-        name: booking.venue_name,
-        address: booking.venue_address,
-        googleMapsLink: booking.venue_google_maps_link || "",
+        churchName: booking.church_venue_name || "",
+        churchAddress: booking.church_venue_address || "",
+        churchGoogleMapsLink: booking.church_google_maps_link || "",
+        receptionName: booking.reception_venue_name,
+        receptionAddress: booking.reception_venue_address,
+        receptionGoogleMapsLink: booking.reception_google_maps_link || "",
         description: booking.venue_description || "",
         ceremonyTime: booking.ceremony_time,
         receptionTime: booking.reception_time,
         dresscode: booking.dresscode || "",
+        dresscodeImageLink: booking.dresscode_image_link || "",
         directions: booking.directions_transport || "",
       },
       party: {
@@ -173,7 +177,8 @@ export default function AdminPage() {
       details: {
         schedule: booking.schedule_of_events || "",
         rsvpDeadline: booking.rsvp_deadline || "",
-        giftRegistry: booking.gift_registry_info || "",
+        giftRegistryItems: booking.gift_registry_items || "",
+        giftNotificationContact: booking.gift_notification_contact || "",
         accommodation: booking.accommodation_info || "",
       },
       admin: {
@@ -228,12 +233,20 @@ ${booking.proposal_story || "Not provided"}
 ${booking.relationship_highlights || "Not provided"}
 
 ### Venue & Event
-- **Venue Name:** ${booking.venue_name}
-- **Address:** ${booking.venue_address}
-- **Google Maps:** ${booking.venue_google_maps_link || "Not provided"}
+**Church/Ceremony Venue:**
+- **Name:** ${booking.church_venue_name || "Not provided"}
+- **Address:** ${booking.church_venue_address || "Not provided"}
+- **Google Maps:** ${booking.church_google_maps_link || "Not provided"}
+
+**Reception Venue:**
+- **Name:** ${booking.reception_venue_name}
+- **Address:** ${booking.reception_venue_address}
+- **Google Maps:** ${booking.reception_google_maps_link || "Not provided"}
+
 - **Ceremony Time:** ${booking.ceremony_time}
 - **Reception Time:** ${booking.reception_time}
 - **Dress Code:** ${booking.dresscode || "Not specified"}
+- **Dress Code Inspiration:** ${booking.dresscode_image_link || "Not provided"}
 
 **Venue Description:**
 ${booking.venue_description || "Not provided"}
@@ -257,8 +270,11 @@ ${booking.schedule_of_events || "Not provided"}
 
 **RSVP Deadline:** ${booking.rsvp_deadline || "Not set"}
 
-**Gift Registry:**
-${booking.gift_registry_info || "Not provided"}
+**Gift Registry Items:**
+${booking.gift_registry_items || "Not provided"}
+
+**Gift Notification Contact:**
+${booking.gift_notification_contact || "Not provided"}
 
 **Accommodation:**
 ${booking.accommodation_info || "Not provided"}
@@ -294,11 +310,14 @@ ${booking.special_requests || "None"}
         "Couple Story": booking.couple_story,
         "How We Met": booking.how_we_met || "N/A",
         "Proposal Story": booking.proposal_story || "N/A",
-        "Venue Name": booking.venue_name,
-        "Venue Address": booking.venue_address,
-        "Google Maps Link": booking.venue_google_maps_link || "N/A",
+        "Church Venue": booking.church_venue_name || "N/A",
+        "Church Address": booking.church_venue_address || "N/A",
+        "Reception Venue": booking.reception_venue_name,
+        "Reception Address": booking.reception_venue_address,
         "Ceremony Time": booking.ceremony_time,
         "Reception Time": booking.reception_time,
+        "Gift Registry Items": booking.gift_registry_items || "N/A",
+        "Gift Notification Contact": booking.gift_notification_contact || "N/A",
         "Drive Folder URL": booking.drive_folder_url || "Not set",
         "Special Requests": booking.special_requests || "None"
       };
